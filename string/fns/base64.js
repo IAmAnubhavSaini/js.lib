@@ -14,6 +14,11 @@ const URL_SAFE_BASE_64_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrs
 const BASE_64_DEFAULT_PAD = "=";
 
 /**
+ * The URL safe base64 padding character
+ * */
+const URL_SAFE_BASE_64_PAD = "=";
+
+/**
  * The length of the token processed at a time
  * */
 const TOKEN_LENGTH = 3;
@@ -52,7 +57,7 @@ function codePointFromBinaryString(binary) {
  * const encoded = encode('Hello World')
  * console.log(encoded) // SGVsbG8gV29ybGQ=
  * */
-function encode(input /* string */) {
+function encode(input /* string */, alphabet = BASE_64_DEFAULT_ALPHABET, pad = BASE_64_DEFAULT_PAD) {
     const encoded = tokenize(input, TOKEN_LENGTH) // create an array of 3-letter words
         .map((i) => i.split("")) // create an array of single items
         .map((i) => i.map((k) => k.charCodeAt(0))) // map each letter to it's char code
@@ -68,7 +73,7 @@ function encode(input /* string */) {
 
     const diff = TOKEN_LENGTH - (input.length % TOKEN_LENGTH); // characters required to make string mod 3 whole
     const requiredPadding = diff === TOKEN_LENGTH ? 0 : diff; // padding is required only when the string length is not proper mod 3
-    const padded = encoded + "".padEnd(requiredPadding, "="); // pad as many = as are required to make string length mod 3
+    const padded = encoded + "".padEnd(requiredPadding, pad); // pad as many = as are required to make string length mod 3
     return padded;
 }
 
@@ -80,11 +85,11 @@ function encode(input /* string */) {
  * const decoded = decode('SGVsbG8gV29ybGQ=')
  * console.log(decoded) // Hello World
  * */
-function decode (base64 /* string */) {
+function decode (base64 /* string */, alphabet = BASE_64_DEFAULT_ALPHABET, pad = BASE_64_DEFAULT_PAD) {
   return base64
-    .replace(/=/g, '') // remove padded =
+    .replace(new RegExp(`${pad}`, "g"), '') // remove padded =
     .split('') // array of letters
-    .map(c => BASE_64_DEFAULT_ALPHABET.indexOf(c)) // get the index of each letter in the base64 alphabet
+    .map(c => alphabet.indexOf(c)) // get the index of each letter in the base64 alphabet
     .map(n => n.toString(2).padStart(6, '0'))
     .join('') // put all the 6bit binary numbers together
     .split() // this puts the string in [] so that we can map over it
