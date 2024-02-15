@@ -1,4 +1,4 @@
-const { filterReduce, foldl, foldr, take } = require("./list");
+const { filterReduce, foldl, foldr, take, takeWhile } = require("./list");
 
 describe("list", () => {
     describe("filterReduce", () => {
@@ -36,6 +36,12 @@ describe("list", () => {
     describe("take", () => {
         it("should take", () => {
             const result = take(2, [1, 2, 3, 4]);
+            expect(result).toEqual([1, 2]);
+        });
+    });
+    describe("takeWhile", () => {
+        it("should take while", () => {
+            const result = takeWhile(a => a < 3, [1, 2, 3, 4]);
             expect(result).toEqual([1, 2]);
         });
     });

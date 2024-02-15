@@ -47,6 +47,23 @@ function take(n, list) {
 }
 
 /**
+ * takeWhile :: (a -> boolean) -> [a] -> [a]
+ * @param fn {function}
+ * @param list {*[]}
+ * @return {*[]}
+ */
+function takeWhile(fn, list) {
+    if (list.length === 0) {
+        return [];
+    }
+    const [ c, ...rest ] = list;
+    if (fn(c)) {
+        return [c, ...takeWhile(fn, rest)];
+    }
+    return [];
+}
+
+/**
  * filterReduce :: (a -> boolean) -> (b -> a -> b) -> b -> [a] -> b
  * @param filterFn {function}
  * @param reduceFn {function}
@@ -62,6 +79,7 @@ module.exports = {
     filterReduce,
     foldl,
     foldr,
-    take
+    take,
+    takeWhile
 };
 
