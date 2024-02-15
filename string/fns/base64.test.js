@@ -45,11 +45,19 @@ describe("Base64", () => {
             const encoded = encode("Hello World");
             expect(encoded).toBe("SGVsbG8gV29ybGQ=");
         });
+        it("should encode with url safe alphabet", () => {
+            const encoded = encode("Hello World", URL_SAFE_BASE_64_ALPHABET);
+            expect(encoded).toBe("SGVsbG8gV29ybGQ=");
+        });
     });
 
     describe("decode", () => {
         it("should decode a base64 string", () => {
             const decoded = decode("SGVsbG8gV29ybGQ=");
+            expect(decoded).toBe("Hello World");
+        });
+        it("should decode with url safe alphabet", () => {
+            const decoded = decode("SGVsbG8gV29ybGQ=", URL_SAFE_BASE_64_ALPHABET);
             expect(decoded).toBe("Hello World");
         });
     });
