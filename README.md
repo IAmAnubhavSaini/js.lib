@@ -1,5 +1,12 @@
 # js.lib
 
+## Features
+
+- string
+  - base64
+- array/list
+  - foldr
+
 ## License
 
 MIT 
