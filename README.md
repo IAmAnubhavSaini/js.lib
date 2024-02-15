@@ -2,10 +2,15 @@
 
 ## Features
 
-- string
-  - base64
-- array/list
+- base64
+  - encode
+  - decode
+- list
+  - filterReduce
+  - foldl
   - foldr
+  - take
+
 
 ## License
 
