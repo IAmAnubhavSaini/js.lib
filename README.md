@@ -10,7 +10,10 @@
   - foldl
   - foldr
   - take
-
+  - takeWhile
+- heap
+  - number
+    - MinHeap
 
 ## License
 
