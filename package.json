@@ -1,0 +1,36 @@
+{
+    "name": "@f0c1s/js.lib",
+    "version": "0.0.1",
+    "description": "A javascript library",
+    "main": "index.js",
+    "devDependencies": {
+        "jasmine": "^5.1.0",
+        "prettier": "^3.2.5"
+    },
+    "scripts": {
+        "test": "./node_modules/.bin/jasmine"
+    },
+    "keywords": [
+        "library",
+        "javascript",
+        "js",
+        "lib",
+        "base64",
+        "string",
+        "number",
+        "array",
+        "object",
+        "date",
+        "time",
+        "utility",
+        "function",
+        "method",
+        "class",
+        "module"
+    ],
+    "author": "Anubhav Saini <iamanubhavsaini+git@gmail.com> (iamanubhavsaini)",
+    "homepage": "https://github.com/iamanubhavsaini/js.lib",
+    "readme": "https://github.com/iamanubhavsaini/js.lib/blob/main/README.md",
+    "issues": "https://github.com/iamanubhavsaini/js.lib/issues",
+    "license": "MIT"
+}
