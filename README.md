@@ -19,4 +19,4 @@
 
 MIT 
 
-copyright 2024 Anubhav Saini (iamanubhavsaini) <iamanbhavsaini+git@gmail.com>
+copyright 2024 Anubhav Saini (iamanubhavsaini)
