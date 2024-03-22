@@ -14,6 +14,10 @@
 - heap
   - number
     - MinHeap
+- node
+  - fs
+    - readFileSync
+    - writeFileSync
 
 ## License
 
