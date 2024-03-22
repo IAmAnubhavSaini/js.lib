@@ -19,6 +19,18 @@
     - readFileSync
     - writeFileSync
 
+
+## Usage
+
+```bash
+npm install @f0c1s/js.lib
+```
+
+```javascript
+const {readFileSync, writeFileSync} = require("@f0c1s/js.lib/node/fs");
+
+```
+
 ## License
 
 MIT 
