@@ -1,55 +1,3 @@
-# js.lib
-
-## Features
-
-- base64
-  - encode
-  - decode
-- list
-  - filterReduce
-  - foldl
-  - foldr
-  - take
-  - takeWhile
-- heap
-  - number
-    - MinHeap
-- node
-  - fs
-    - readFileSync
-    - writeFileSync
-- primitives
-  - string
-  - boolean
-
-
-## Usage
-
-```bash
-npm install @f0c1s/js.lib
-```
-
-```javascript
-const {readFileSync, writeFileSync} = require("@f0c1s/js.lib/node/fs");
-
-```
-
-## Coverage
-
-```bash
-
-# to cover and generate text output
-npm run cover
-# to cover and generate html output
-npm run cover-html
-
-```
-
-Refer to [coverage.txt](./coverage.txt)
-
-```bash
-npm run cover
-
 
 > @f0c1s/js.lib@0.0.7 test
 > ./node_modules/.bin/jasmine
@@ -80,13 +28,3 @@ All files    |   94.02 |    83.78 |   93.18 |   94.76 |
  string/fns  |     100 |    81.81 |     100 |     100 |                   
   base64.js  |     100 |    81.81 |     100 |     100 | 35,75             
 -------------|---------|----------|---------|---------|-------------------
-
-
-```
-
-
-## License
-
-MIT 
-
-copyright 2024 Anubhav Saini (iamanubhavsaini)
