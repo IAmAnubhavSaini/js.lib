@@ -1,4 +1,11 @@
-const { readFileSync: nodeReadFileSync, writeFileSync: nodeWriteFileSync } = require("fs");
+const {
+    readFileSync: nodeReadFileSync,
+    writeFileSync: nodeWriteFileSync,
+    readdirSync: nodeReadDirSync,
+    existsSync,
+    statSync
+} = require("fs");
+const {join} = require("path");
 
 /**
  * readFileSync reads a text file and returns the contents of the file as a string.
@@ -25,7 +32,6 @@ function readFileSync(filepath) {
 
     return { error, content };
 }
-
 
 /**
  * writeFileSync writes a string to a file.
@@ -61,7 +67,50 @@ function writeFileSync(filepath, content) {
 }
 
 
+/**
+ *
+ * @param {string} directoryPath
+ * @returns {{files: [string], directories: [string]}} an object containing list of files and directories.
+ */
+function readDirectorySync(directoryPath) {
+    let content = "";
+    let error = null;
+    if (!directoryPath) {
+        error = new Error("ERROR: The directory path is missing.");
+        return { error, content };
+    }
+    if (typeof directoryPath !== "string") {
+        error = new TypeError("ERROR: The directory path must be a string.");
+        return { error, content };
+    }
+    if(!existsSync(directoryPath)) {
+        error = new RangeError("ERROR: The directory doesn't exist.");
+        return {error, content};
+    }
+
+    try {
+        const files = [], directories =[];
+        const readContent = nodeReadDirSync(directoryPath);
+        for(const f of readContent) {
+            const newPath = join(directoryPath, f);
+            if(!existsSync(newPath)) {
+                continue;
+            }
+            if(statSync(newPath).isDirectory()) {
+                directories.push(f);
+            } else {
+                files.push(f);
+            }
+        }
+        content = {files, directories};
+    } catch (readError) {
+        error = new Error("ERROR: The directory could not be read.\n" + readError.message);
+    }
+    return { error, content };
+}
+
 module.exports = {
     readFileSync,
-    writeFileSync
+    writeFileSync,
+    readDirectorySync
 };

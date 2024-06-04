@@ -46,6 +46,24 @@ describe('StringT', function() {
         });
 
         // Tests for toLocaleLowerCase, toUpperCase, toLocaleUpperCase...
+
+        it('should convert to lower case as per locale', () => {
+            const str = new StringT('HeLLo');
+            const lowerStr = str.toLocaleLowerCase();
+            expect(lowerStr.toString()).toEqual('hello');
+        });
+
+        it('should convert to upper case', () => {
+            const str = new StringT('HeLLo');
+            const lowerStr = str.toUpperCase();
+            expect(lowerStr.toString()).toEqual('HELLO');
+        });
+
+        it('should convert to upper case as per locale', () => {
+            const str = new StringT('HeLLo');
+            const lowerStr = str.toLocaleUpperCase();
+            expect(lowerStr.toString()).toEqual('HELLO');
+        });
     });
 
     describe('Equality and Value Retrieval', function () {
@@ -148,11 +166,22 @@ describe('StringT', function() {
             const padded = str.padStart(10, " ");
             expect(padded.toString()).toEqual("     Hello");
         });
+        it("should return the correct start-padded string with default padding", () => {
+            const str = new StringT("Hello");
+            const padded = str.padStart(10);
+            expect(padded.toString()).toEqual("_____Hello");
+        });
 
         it("should return the correct end-padded string", () => {
             const str = new StringT("Hello");
             const padded = str.padEnd(10, " ");
             expect(padded.toString()).toEqual("Hello     ");
+        });
+
+        it("should return the correct end-padded string with default padding", () => {
+            const str = new StringT("Hello");
+            const padded = str.padEnd(10);
+            expect(padded.toString()).toEqual("Hello_____");
         });
 
         it("should return the correct left-padded string", () => {
@@ -161,10 +190,58 @@ describe('StringT', function() {
             expect(padded.toString()).toEqual("     Hello");
         });
 
+        it("should return the correct left-padded string with default padding", () => {
+            const str = new StringT("Hello");
+            const padded = str.padLeft(10);
+            expect(padded.toString()).toEqual("_____Hello");
+        });
+
         it("should return the correct right-padded string", () => {
             const str = new StringT("Hello");
             const padded = str.padRight(10, " ");
             expect(padded.toString()).toEqual("Hello     ");
         });
+
+        it("should return the correct right-padded string with default padding", () => {
+            const str = new StringT("Hello");
+            const padded = str.padRight(10);
+            expect(padded.toString()).toEqual("Hello_____");
+        });
     });
+
+    describe("first N", () => {
+        it("gets first N characters correctly", () => {
+            const str = new StringT("Hello, World!");
+            const actual = str.firstN(4);
+            const expected = new StringT("Hell");
+            expect(actual).toEqual(expected);
+        });
+        it("gets first N with default fill replacement", () => {
+            const str = new StringT("Hi!");
+            const actual = str.firstNWithFill(4);
+            const expected = new StringT("Hi!_");
+            expect(actual).toEqual(expected);
+        });
+        it("gets first N with given fill replacement", () => {
+            const str = new StringT("Hi!");
+            const actual = str.firstNWithFill(4, "x");
+            const expected = new StringT("Hi!x");
+            expect(actual).toEqual(expected);
+        });
+    });
+
+    describe("reverse", () => {
+        it("reverse a string like a normal program would do", () => {
+            const str = new StringT("Hello!");
+            const actual = str.reverse();
+            const expected = new StringT("!olleH");
+            expect(actual).toEqual(expected);
+        });
+        it("two reversals make no mark", () => {
+            const str = new StringT("Hello!");
+            const actual = str.reverse().reverse();
+            const expected = new StringT("Hello!");
+            expect(actual).toEqual(expected);
+        });
+    })
 });

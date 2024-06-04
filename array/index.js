@@ -2,7 +2,9 @@ const {
     filterReduce,
     foldl,
     foldr,
-    take
+    take,
+    tail,
+    head,
 } = require('./fns/list.js');
 
 
@@ -11,7 +13,8 @@ module.exports = {
         filterReduce,
         foldl,
         foldr,
-        take
+        take,
+        tail, head,
     }
 };
 

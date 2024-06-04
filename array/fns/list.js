@@ -75,11 +75,37 @@ function filterReduce(filterFn, reduceFn, initValue, list) {
     return list.filter(filterFn).reduce(reduceFn, initValue);
 }
 
+/**
+ * head returns the head of a list
+ * @param list {Array}
+ * @param n {number}
+ * @returns {Array}
+ */
+function head(list, n = 10) {
+    if(!Array.isArray(list)) return list;
+    n = Math.min(n, list.length);
+    return list.slice(0, n);
+}
+
+/**
+ * tail returns the tail of a list
+ * @param list {Array}
+ * @param n {number}
+ * @returns {Array}
+ */
+function tail(list, n = 10) {
+    if(!Array.isArray(list)) return list;
+    n = Math.max(0, list.length - n);
+    return list.slice(n);
+}
+
 module.exports = {
     filterReduce,
     foldl,
     foldr,
     take,
-    takeWhile
+    takeWhile,
+    head,
+    tail,
 };
 

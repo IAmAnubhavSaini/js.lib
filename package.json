@@ -1,11 +1,11 @@
 {
   "name": "@f0c1s/js.lib",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A javascript library",
   "main": "index.js",
   "devDependencies": {
     "jasmine": "^5.1.0",
-    "prettier": "^3.2.5"
+    "prettier": "^3.3.0"
   },
   "scripts": {
     "test": "./node_modules/.bin/jasmine",

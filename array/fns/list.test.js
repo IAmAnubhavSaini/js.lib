@@ -1,4 +1,4 @@
-const { filterReduce, foldl, foldr, take, takeWhile } = require("./list");
+const { filterReduce, foldl, foldr, take, takeWhile, head, tail} = require("./list");
 
 describe("list", () => {
     describe("filterReduce", () => {
@@ -43,6 +43,48 @@ describe("list", () => {
         it("should take while", () => {
             const result = takeWhile(a => a < 3, [1, 2, 3, 4]);
             expect(result).toEqual([1, 2]);
+        });
+    });
+
+    describe("head", () => {
+        it("should return first 10 (default) values when n is not provided", () => {
+            const input = Array(100).fill(0).map((_, i) => i+1);
+            const actual = head(input);
+            const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            expect(actual).toEqual(expected);
+        });
+        it("should return first 5 values when n is provided as 5", () => {
+            const input = Array(100).fill(0).map((_, i) => i+1);
+            const actual = head(input, 5);
+            const expected = [1, 2, 3, 4, 5];
+            expect(actual).toEqual(expected);
+        });
+        it("should return if list was not an array", () => {
+            const input = {};
+            const actual = head(input);
+            const expected = input;
+            expect(actual).toEqual(expected);
+        });
+    });
+
+    describe("tail", () => {
+        it("should return last 10 (default) values when n is not provided", () => {
+            const input = Array(100).fill(0).map((_, i) => i+1);
+            const actual = tail(input);
+            const expected = [91, 92, 93, 94, 95, 96, 97, 98, 99, 100];
+            expect(actual).toEqual(expected);
+        });
+        it("should return last 5 values when n is provided as 5", () => {
+            const input = Array(100).fill(0).map((_, i) => i+1);
+            const actual = tail(input, 5);
+            const expected = [96, 97, 98, 99, 100];
+            expect(actual).toEqual(expected);
+        });
+        it("should return if list was not an array", () => {
+            const input = {};
+            const actual = tail(input);
+            const expected = input;
+            expect(actual).toEqual(expected);
         });
     });
 });
