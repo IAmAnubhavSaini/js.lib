@@ -1,4 +1,4 @@
-const {readFileSync, writeFileSync, readDirectorySync} = require("./fs");
+const {readFileSync, writeFileSync, readDirectorySync, processFiles} = require("./fs");
 const {join, dirname} = require("path");
 
 describe("fs", () => {
@@ -85,6 +85,20 @@ describe("fs", () => {
             expect(error).toBeTruthy();
             expect(error.message).toBe("ERROR: The directory doesn't exist.");
             expect(content).toEqual({files: [], directories: []});
+        });
+    });
+
+    describe('processFiles', () => {
+        function fileProcessorFn(file) {
+            expect(typeof file).toBe("string");
+        }
+
+        function directoryProcessorFn(dir) {
+            expect(typeof dir).toBe("string");
+        }
+
+        it("should processFiles just fine", () => {
+            processFiles({directoryPath: "./tmp", fileProcessorFn, directoryProcessorFn});
         });
     });
 });
