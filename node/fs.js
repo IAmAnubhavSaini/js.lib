@@ -37,9 +37,9 @@ function readFileSync(filepath) {
  * writeFileSync writes a string to a file.
  * @param {string} filepath the absolute filepath to the file that needs to be written.
  * @param {string} content the content that needs to be written to the file.
- * @returns {{Error}} {error} Returns an object that contains the `error` object.
+ * @returns {{Error}} {error} Returns an object; that contains the `error` object.
  */
-function writeFileSync(filepath, content) {
+function writeFileSync(filepath, content = "") {
     let error = null;
     if (!filepath) {
         error = new Error("ERROR: The filepath is missing.");
@@ -70,10 +70,10 @@ function writeFileSync(filepath, content) {
 /**
  *
  * @param {string} directoryPath
- * @returns {{files: [string], directories: [string]}} an object containing list of files and directories.
+ * @returns {{error: Error | null, content: {files: string[], directories: string[]}}} an object containing list of files and directories.
  */
 function readDirectorySync(directoryPath) {
-    let content = "";
+    let content = {files: [], directories: []};
     let error = null;
     if (!directoryPath) {
         error = new Error("ERROR: The directory path is missing.");
