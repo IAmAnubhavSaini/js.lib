@@ -89,16 +89,38 @@ function reverseSortedArray(n = 10) {
     return sortedArray(n).reverse();
 }
 
+/**
+ *
+ * @param array {*[]}
+ * @param rotateBy {number}
+ * @returns {*[]}
+ */
+function rotateLeft({array, rotateBy} = {array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], rotateBy: 3}) {
+    rotateBy = rotateBy % array.length;
+    return [...array.slice(rotateBy), ...array.slice(0, rotateBy)];
+}
+
+/**
+ *
+ * @param array {*[]}
+ * @param rotateBy {number}
+ * @returns {*[]}
+ */
+function rotateRight({array, rotateBy} = {array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], rotateBy: 3}) {
+    rotateBy = rotateBy % array.length;
+    return [...array.slice(array.length - rotateBy), ...array.slice(0, (array.length - rotateBy))]
+}
+
 module.exports = {
-    list: {
-        filterReduce, foldl, foldr, take, tail, head,
-    },
+    defaultArray,
+    list: {filterReduce, foldl, foldr, take, tail, head},
     randomArray,
     randomMatrix,
-    defaultArray,
+    resetArray,
+    reverseSortedArray,
+    rotateLeft,
+    rotateRight,
+    sortedArray,
     zeroNumberArray,
     zeroStringArray,
-    resetArray,
-    sortedArray,
-    reverseSortedArray
 };

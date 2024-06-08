@@ -7,6 +7,7 @@ const {
     sortedArray,
     zeroNumberArray,
     zeroStringArray,
+    rotateLeft, rotateRight,
 } = require("./index");
 
 describe("array functions", () => {
@@ -69,5 +70,22 @@ describe("random", () => {
         const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].reverse();
         expect(actual.length).toBe(expected.length);
         expect(actual).toEqual(expected);
+    });
+
+    describe("array rotations", () => {
+        it("rotateLeft rotates an array to left", () => {
+            const rotateBy = 3;
+            const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            const actual = rotateLeft({array, rotateBy});
+            const expected = [4, 5, 6, 7, 8, 9, 10, 1, 2, 3];
+            expect(actual).toEqual(expected);
+        });
+        it("rotateRight rotates an array to right", () => {
+            const rotateBy = 3;
+            const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            const actual = rotateRight({array, rotateBy});
+            const expected = [8, 9, 10, 1, 2, 3, 4, 5, 6, 7];
+            expect(actual).toEqual(expected);
+        });
     });
 });
