@@ -1,10 +1,10 @@
-const BooleanT  = require("./boolean");
+const BooleanT = require("./boolean");
 
 describe("BooleanT", () => {
-   it("should return true", () => {
-         const bool = new BooleanT(true);
-         expect(bool.toString()).toBe("true");
-   });
+    it("should return true", () => {
+        const bool = new BooleanT(true);
+        expect(bool.toString()).toBe("true");
+    });
     it("should return false", () => {
         const bool = new BooleanT(false);
         expect(bool.toString()).toBe("false");

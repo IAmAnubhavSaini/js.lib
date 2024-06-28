@@ -85,22 +85,21 @@ function encode(input /* string */, alphabet = BASE_64_DEFAULT_ALPHABET, pad = B
  * const decoded = decode('SGVsbG8gV29ybGQ=')
  * console.log(decoded) // Hello World
  * */
-function decode (base64 /* string */, alphabet = BASE_64_DEFAULT_ALPHABET, pad = BASE_64_DEFAULT_PAD) {
-  return base64
-    .replace(new RegExp(`${pad}`, "g"), '') // remove padded =
-    .split('') // array of letters
-    .map(c => alphabet.indexOf(c)) // get the index of each letter in the base64 alphabet
-    .map(n => n.toString(2).padStart(6, '0'))
-    .join('') // put all the 6bit binary numbers together
-    .split() // this puts the string in [] so that we can map over it
-    .map(i => tokenize(i, 8)) // create 8bit binary numbers
-    .pop() // this brings the mapped content one level up // reverses split() above
-    .filter(i => i.length === 8) // remove the padded binary number which is incomplete
-    .map(i => parseInt(i, 2)) // get the number out of 8bit binary
-    .map(i => String.fromCharCode(i)) // convert to ASCII
-    .join('') // convert to string
+function decode(base64 /* string */, alphabet = BASE_64_DEFAULT_ALPHABET, pad = BASE_64_DEFAULT_PAD) {
+    return base64
+        .replace(new RegExp(`${pad}`, "g"), "") // remove padded =
+        .split("") // array of letters
+        .map((c) => alphabet.indexOf(c)) // get the index of each letter in the base64 alphabet
+        .map((n) => n.toString(2).padStart(6, "0"))
+        .join("") // put all the 6bit binary numbers together
+        .split() // this puts the string in [] so that we can map over it
+        .map((i) => tokenize(i, 8)) // create 8bit binary numbers
+        .pop() // this brings the mapped content one level up // reverses split() above
+        .filter((i) => i.length === 8) // remove the padded binary number which is incomplete
+        .map((i) => parseInt(i, 2)) // get the number out of 8bit binary
+        .map((i) => String.fromCharCode(i)) // convert to ASCII
+        .join(""); // convert to string
 }
-
 
 module.exports = {
     BASE_64_DEFAULT_ALPHABET,

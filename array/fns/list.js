@@ -9,10 +9,9 @@ function foldr(fn, initValue, list) {
     if (list.length === 0) {
         return initValue;
     }
-    const [ c, ...rest ] = list;
+    const [c, ...rest] = list;
     return fn(c, foldr(fn, initValue, rest));
 }
-
 
 /**
  * foldl :: (a -> b -> b) -> b -> [a] -> b
@@ -25,7 +24,7 @@ function foldl(fn, initValue, list) {
     if (list.length === 0) {
         return initValue;
     }
-    const [ c, ...rest ] = list;
+    const [c, ...rest] = list;
     return foldl(fn, fn(initValue, c), rest);
 }
 
@@ -39,10 +38,10 @@ function take(n, list) {
     if (n === 0 || list.length === 0) {
         return [];
     }
-    if(n > list.length) {
+    if (n > list.length) {
         return list;
     }
-    const [ c, ...rest ] = list;
+    const [c, ...rest] = list;
     return [c, ...take(n - 1, rest)];
 }
 
@@ -56,7 +55,7 @@ function takeWhile(fn, list) {
     if (list.length === 0) {
         return [];
     }
-    const [ c, ...rest ] = list;
+    const [c, ...rest] = list;
     if (fn(c)) {
         return [c, ...takeWhile(fn, rest)];
     }
@@ -82,7 +81,7 @@ function filterReduce(filterFn, reduceFn, initValue, list) {
  * @returns {Array}
  */
 function head(list, n = 10) {
-    if(!Array.isArray(list)) return list;
+    if (!Array.isArray(list)) return list;
     n = Math.min(n, list.length);
     return list.slice(0, n);
 }
@@ -94,7 +93,7 @@ function head(list, n = 10) {
  * @returns {Array}
  */
 function tail(list, n = 10) {
-    if(!Array.isArray(list)) return list;
+    if (!Array.isArray(list)) return list;
     n = Math.max(0, list.length - n);
     return list.slice(n);
 }
@@ -108,4 +107,3 @@ module.exports = {
     head,
     tail,
 };
-

@@ -19,4 +19,3 @@ module.exports = {
         URL_SAFE_BASE_64_ALPHABET,
     },
 };
-

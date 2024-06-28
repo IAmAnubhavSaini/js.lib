@@ -1,6 +1,6 @@
 {
-  "name": "@f0c1s/js.lib",
-  "version": "0.0.13",
+  "name": "@ackret/js.lib",
+  "version": "0.0.14",
   "description": "A javascript library",
   "main": "index.js",
   "devDependencies": {
@@ -31,8 +31,8 @@
     "module"
   ],
   "author": "Anubhav Saini <iamanubhavsaini+git@gmail.com> (iamanubhavsaini)",
-  "homepage": "https://github.com/f0c1s/js.lib",
-  "readme": "https://github.com/f0c1s/js.lib/blob/main/README.md",
-  "issues": "https://github.com/f0c1s/js.lib/issues",
+  "homepage": "https://github.com/ackret/js.lib",
+  "readme": "https://github.com/ackret/js.lib/blob/main/README.md",
+  "issues": "https://github.com/ackret/js.lib/issues",
   "license": "MIT"
 }

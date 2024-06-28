@@ -1,6 +1,4 @@
-const {
-    filterReduce, foldl, foldr, take, tail, head,
-} = require('./fns/list.js');
+const { filterReduce, foldl, foldr, take, tail, head } = require("./fns/list.js");
 
 /**
  *
@@ -8,8 +6,8 @@ const {
  * @param defaultValue {*}
  * @returns {*[]}
  */
-function defaultArray({length, defaultValue} = {length: 10, defaultValue: 0}) {
-    return Array.from({length}, _ => defaultValue);
+function defaultArray({ length, defaultValue } = { length: 10, defaultValue: 0 }) {
+    return Array.from({ length }, (_) => defaultValue);
 }
 
 /**
@@ -49,11 +47,11 @@ function resetArray(array) {
  * @param maxValue {number}
  * @returns {number[]}
  */
-function randomArray({length, minValue, maxValue} = {length: 10, minValue: 0, maxValue: 10}) {
+function randomArray({ length, minValue, maxValue } = { length: 10, minValue: 0, maxValue: 10 }) {
     if (maxValue < minValue) {
-        return randomArray({length: length, minValue: maxValue, maxValue: minValue});
+        return randomArray({ length: length, minValue: maxValue, maxValue: minValue });
     }
-    return Array.from({length}, _ => Math.floor(Math.random() * (maxValue - minValue + 1) + minValue));
+    return Array.from({ length }, (_) => Math.floor(Math.random() * (maxValue - minValue + 1) + minValue));
 }
 
 /**
@@ -64,11 +62,11 @@ function randomArray({length, minValue, maxValue} = {length: 10, minValue: 0, ma
  * @param maxValue {number} default 10
  * @returns {number[][]}
  */
-function randomMatrix({rows, columns, minValue, maxValue} = {rows: 3, columns: 3, minValue: 0, maxValue: 10}) {
+function randomMatrix({ rows, columns, minValue, maxValue } = { rows: 3, columns: 3, minValue: 0, maxValue: 10 }) {
     if (maxValue > minValue) {
-        return randomMatrix({rows, columns, minValue: maxValue, maxValue: minValue});
+        return randomMatrix({ rows, columns, minValue: maxValue, maxValue: minValue });
     }
-    return Array.from({length: rows}, _ => randomArray({length: columns, minValue, maxValue}));
+    return Array.from({ length: rows }, (_) => randomArray({ length: columns, minValue, maxValue }));
 }
 
 /**
@@ -77,7 +75,9 @@ function randomMatrix({rows, columns, minValue, maxValue} = {rows: 3, columns: 3
  * @returns {number[]}
  */
 function sortedArray(n = 10) {
-    return Array(n).fill(0).map((_, i) => i + 1);
+    return Array(n)
+        .fill(0)
+        .map((_, i) => i + 1);
 }
 
 /**
@@ -95,7 +95,7 @@ function reverseSortedArray(n = 10) {
  * @param rotateBy {number}
  * @returns {*[]}
  */
-function rotateLeft({array, rotateBy} = {array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], rotateBy: 3}) {
+function rotateLeft({ array, rotateBy } = { array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], rotateBy: 3 }) {
     rotateBy = rotateBy % array.length;
     return [...array.slice(rotateBy), ...array.slice(0, rotateBy)];
 }
@@ -106,14 +106,38 @@ function rotateLeft({array, rotateBy} = {array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
  * @param rotateBy {number}
  * @returns {*[]}
  */
-function rotateRight({array, rotateBy} = {array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], rotateBy: 3}) {
+function rotateRight({ array, rotateBy } = { array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], rotateBy: 3 }) {
     rotateBy = rotateBy % array.length;
-    return [...array.slice(array.length - rotateBy), ...array.slice(0, (array.length - rotateBy))]
+    return [...array.slice(array.length - rotateBy), ...array.slice(0, array.length - rotateBy)];
+}
+
+/**
+ * @param median {*[]}
+ * @returns {*[]}
+ */
+function median({ array } = { array: [] }) {
+    if (!Array.isArray(array)) {
+        return [];
+    }
+    const length = array.length;
+    if (length < 1) {
+        return [];
+    }
+    if (length < 2) {
+        return [...array];
+    }
+    const hasOddLength = length % 2 === 1;
+    if (hasOddLength) {
+        return [array[Math.floor(length / 2)]];
+    } else {
+        return [array[Math.floor(length / 2) - 1], array[Math.floor(length / 2)]];
+    }
 }
 
 module.exports = {
     defaultArray,
-    list: {filterReduce, foldl, foldr, take, tail, head},
+    list: { filterReduce, foldl, foldr, take, tail, head },
+    median,
     randomArray,
     randomMatrix,
     resetArray,

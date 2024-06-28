@@ -3,10 +3,10 @@ const {
     writeFileSync: nodeWriteFileSync,
     readdirSync: nodeReadDirSync,
     existsSync: nodeExistsSync,
-    statSync: nodeStatSync
+    statSync: nodeStatSync,
 } = require("fs");
 
-const {join: nodePathJoin} = require("path");
+const { join: nodePathJoin } = require("path");
 
 /**
  * readFileSync reads a text file and returns the contents of the file as a string.
@@ -18,11 +18,11 @@ function readFileSync(filepath) {
     let error = null;
     if (!filepath) {
         error = new Error("ERROR: The filepath is missing.");
-        return {error, content};
+        return { error, content };
     }
     if (typeof filepath !== "string") {
         error = new TypeError("ERROR: The filepath must be a string.");
-        return {error, content};
+        return { error, content };
     }
 
     try {
@@ -31,7 +31,7 @@ function readFileSync(filepath) {
         error = new Error("ERROR: The file could not be read.\n" + readError.message);
     }
 
-    return {error, content};
+    return { error, content };
 }
 
 /**
@@ -44,19 +44,19 @@ function writeFileSync(filepath, content = "") {
     let error = null;
     if (!filepath) {
         error = new Error("ERROR: The filepath is missing.");
-        return {error};
+        return { error };
     }
     if (typeof filepath !== "string") {
         error = new TypeError("ERROR: The filepath must be a string.");
-        return {error};
+        return { error };
     }
     if (!content) {
         error = new Error("ERROR: The content is missing.");
-        return {error};
+        return { error };
     }
     if (typeof content !== "string") {
         error = new TypeError("ERROR: The content must be a string.");
-        return {error};
+        return { error };
     }
 
     try {
@@ -64,9 +64,8 @@ function writeFileSync(filepath, content = "") {
     } catch (writeError) {
         error = new Error("ERROR: The file could not be written.\n" + writeError.message);
     }
-    return {error};
+    return { error };
 }
-
 
 /**
  *
@@ -74,23 +73,24 @@ function writeFileSync(filepath, content = "") {
  * @returns {{error: Error | null, content: {files: string[], directories: string[]}}} an object containing list of files and directories.
  */
 function readDirectorySync(directoryPath) {
-    let content = {files: [], directories: []};
+    let content = { files: [], directories: [] };
     let error = null;
     if (!directoryPath) {
         error = new Error("ERROR: The directory path is missing.");
-        return {error, content};
+        return { error, content };
     }
     if (typeof directoryPath !== "string") {
         error = new TypeError("ERROR: The directory path must be a string.");
-        return {error, content};
+        return { error, content };
     }
     if (!nodeExistsSync(directoryPath)) {
         error = new RangeError("ERROR: The directory doesn't exist.");
-        return {error, content};
+        return { error, content };
     }
 
     try {
-        const files = [], directories = [];
+        const files = [],
+            directories = [];
         const readContent = nodeReadDirSync(directoryPath);
         for (const f of readContent) {
             const newPath = nodePathJoin(directoryPath, f);
@@ -103,11 +103,11 @@ function readDirectorySync(directoryPath) {
                 files.push(f);
             }
         }
-        content = {files, directories};
+        content = { files, directories };
     } catch (readError) {
         error = new Error("ERROR: The directory could not be read.\n" + readError.message);
     }
-    return {error, content};
+    return { error, content };
 }
 
 /**
@@ -116,14 +116,21 @@ function readDirectorySync(directoryPath) {
  * @param fileProcessorFn {Function}
  * @param directoryProcessorFn {Function}
  */
-function processFiles({directoryPath, fileProcessorFn, directoryProcessorFn}) {
-    const {files, directories} = readDirectorySync(directoryPath).content;
-    files.forEach(file => fileProcessorFn(nodePathJoin(directoryPath, file)));
-    directories.forEach(directory => processFiles({
-        directoryPath: nodePathJoin(directoryPath, directory), fileProcessorFn, directoryProcessorFn
-    }));
+function processFiles({ directoryPath, fileProcessorFn, directoryProcessorFn }) {
+    const { files, directories } = readDirectorySync(directoryPath).content;
+    files.forEach((file) => fileProcessorFn(nodePathJoin(directoryPath, file)));
+    directories.forEach((directory) =>
+        processFiles({
+            directoryPath: nodePathJoin(directoryPath, directory),
+            fileProcessorFn,
+            directoryProcessorFn,
+        }),
+    );
 }
 
 module.exports = {
-    readFileSync, writeFileSync, readDirectorySync, processFiles
+    readFileSync,
+    writeFileSync,
+    readDirectorySync,
+    processFiles,
 };

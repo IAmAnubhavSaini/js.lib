@@ -1,9 +1,9 @@
-class StringT{
+class StringT {
     #value;
     #frequencyMap;
     #length;
     constructor(value) {
-        if(typeof value !== "string") {
+        if (typeof value !== "string") {
             return new StringT("StringT constructor ERROR: Wrong type!");
         }
         this.#value = value;
@@ -75,7 +75,7 @@ class StringT{
                 isLowerCase: this.isLowerCase(),
                 isUpperCase: this.isUpperCase(),
                 isPalindrome: this.isPalindrome(),
-            }
+            },
         };
     }
 
@@ -92,7 +92,7 @@ class StringT{
     }
 
     generateFrequencyMap() {
-        if(this.#frequencyMap) {
+        if (this.#frequencyMap) {
             return this.#frequencyMap;
         }
 
@@ -139,11 +139,11 @@ class StringT{
     }
 
     concat(other) {
-        if(!(other instanceof StringT)) {
-            if(typeof other === "string") {
+        if (!(other instanceof StringT)) {
+            if (typeof other === "string") {
                 other = new StringT(other);
             } else {
-            return new StringT("StringT concat ERROR: Wrong type!");
+                return new StringT("StringT concat ERROR: Wrong type!");
             }
         }
         return new StringT(this.#value.concat(other));
@@ -154,8 +154,8 @@ class StringT{
     }
 
     prepend(other) {
-        if(!(other instanceof StringT)) {
-            if(typeof other === "string") {
+        if (!(other instanceof StringT)) {
+            if (typeof other === "string") {
                 other = new StringT(other);
             } else {
                 return new StringT("StringT prepend ERROR: Wrong type!");
@@ -163,7 +163,6 @@ class StringT{
         }
         return new StringT(other.toValue().concat(this));
     }
-
 }
 
 module.exports = StringT;

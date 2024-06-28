@@ -1,6 +1,6 @@
-const { MinHeap } = require('./min');
+const { MinHeap } = require("./min");
 
-describe('MinHeap', () => {
+describe("MinHeap", () => {
     it("should create a default empty MinHeap", () => {
         const minHeap = new MinHeap();
         expect(minHeap.heap).toEqual([]);
@@ -41,5 +41,3 @@ describe('MinHeap', () => {
         expect(minHeap.peek()).toBe(1);
     });
 });
-
-

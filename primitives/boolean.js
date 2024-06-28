@@ -1,5 +1,5 @@
-const TrueT = require('./true');
-const FalseT = require('./false');
+const TrueT = require("./true");
+const FalseT = require("./false");
 
 class BooleanT {
     #value;
