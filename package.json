@@ -1,8 +1,8 @@
 {
   "name": "@ackret/js.lib",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "A javascript library",
-  "main": "index.js",
+  "main": "src/index.js",
   "devDependencies": {
     "@types/jasmine": "^5.1.4",
     "@types/node": "^20.0.0",

@@ -2,6 +2,18 @@
 
 ## Features
 
+- array
+  - defaultArray
+  - median
+  - randomArray
+  - randomMatrix
+  - resetArray
+  - reverseSortedArray
+  - rotateLeft
+  - rotateRight
+  - sortedArray
+  - zeroNumberArray
+  - zeroStringArray
 - base64
   - encode
   - decode
@@ -40,7 +52,7 @@ npm install @ackret/js.lib
 ```
 
 ```javascript
-const { readFileSync, writeFileSync } = require("@ackret/js.lib/node/fs");
+const { readFileSync, writeFileSync } = require("@ackret/js.lib/src/node/fs");
 ```
 
 ## Coverage

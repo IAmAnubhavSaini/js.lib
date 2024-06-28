@@ -1,10 +1,10 @@
 /**
  *
- * @param obj {Object}
+ * @param {Object} obj
  * @returns {string}
  */
 function objectToString(obj) {
-    if(obj === null || obj === undefined) {
+    if (obj === null || obj === undefined) {
         return "[]";
     }
     const keys = Object.keys(obj);
@@ -12,7 +12,7 @@ function objectToString(obj) {
     let out = "";
     for (let i = 0; i < keys.length; i += 1) {
         out += "[" + keys[i] + ":";
-        if (Array.isArray(values[i]) || typeof values[i] === 'object') {
+        if (Array.isArray(values[i]) || typeof values[i] === "object") {
             out += objectToString(values[i]);
         } else {
             out += values[i];
@@ -23,5 +23,5 @@ function objectToString(obj) {
 }
 
 module.exports = {
-    objectToString
+    objectToString,
 };
