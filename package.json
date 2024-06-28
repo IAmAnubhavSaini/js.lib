@@ -1,6 +1,6 @@
 {
   "name": "@ackret/js.lib",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "A javascript library",
   "main": "src/index.js",
   "devDependencies": {
@@ -37,5 +37,6 @@
   "readme": "https://github.com/ackret/js.lib/blob/main/README.md",
   "issues": "https://github.com/ackret/js.lib/issues",
   "license": "MIT",
-  "moduleResolution": "nodenext"
+  "moduleResolution": "nodenext",
+  "types": "types/index.d.ts"
 }
