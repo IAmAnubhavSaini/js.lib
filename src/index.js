@@ -25,6 +25,8 @@ const TrueT = require("./primitives/true");
 const { canvas } = require("./canvas");
 const Conversions = require("./conversions");
 
+const { objectToString, deepEqual, keyEqual, valueEqual, findKeys } = require("./object");
+
 module.exports = {
     base64,
     canvas,
@@ -53,5 +55,12 @@ module.exports = {
         FalseT,
         StringT,
         TrueT,
+    },
+    object: {
+        objectToString,
+        deepEqual,
+        keyEqual,
+        valueEqual,
+        findKeys,
     },
 };

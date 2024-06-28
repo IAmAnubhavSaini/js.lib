@@ -25,6 +25,11 @@ import Default = require("./primitives/default");
 import FalseT = require("./primitives/false");
 import StringT = require("./primitives/string");
 import TrueT = require("./primitives/true");
+import { objectToString } from "./object";
+import { deepEqual } from "./object";
+import { keyEqual } from "./object";
+import { valueEqual } from "./object";
+import { findKeys } from "./object";
 export declare namespace heap {
     export { number };
 }
@@ -55,5 +60,12 @@ export declare namespace primitives {
     export { FalseT };
     export { StringT };
     export { TrueT };
+}
+export declare namespace object {
+    export { objectToString };
+    export { deepEqual };
+    export { keyEqual };
+    export { valueEqual };
+    export { findKeys };
 }
 export { base64, canvas, Conversions, fs };
