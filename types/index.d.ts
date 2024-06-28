@@ -3,13 +3,13 @@ import { canvas } from "./canvas";
 import Conversions = require("./conversions");
 import { fs } from "./node/index.js";
 import { number } from "./heap/index.js";
-import { defaultArray } from "./array/index.js";
 declare const filterReduce: typeof import("./array/fns/list.js").filterReduce;
 declare const foldl: typeof import("./array/fns/list.js").foldl;
 declare const foldr: typeof import("./array/fns/list.js").foldr;
 declare const take: typeof import("./array/fns/list.js").take;
 declare const tail: typeof import("./array/fns/list.js").tail;
 declare const head: typeof import("./array/fns/list.js").head;
+import { defaultArray } from "./array/index.js";
 import { median } from "./array/index.js";
 import { randomArray } from "./array/index.js";
 import { randomMatrix } from "./array/index.js";
@@ -36,6 +36,19 @@ export declare namespace list {
     export { tail };
     export { head };
 }
+export declare namespace array {
+    export { defaultArray };
+    export { median };
+    export { randomArray };
+    export { randomMatrix };
+    export { resetArray };
+    export { reverseSortedArray };
+    export { rotateLeft };
+    export { rotateRight };
+    export { sortedArray };
+    export { zeroNumberArray };
+    export { zeroStringArray };
+}
 export declare namespace primitives {
     export { BooleanT };
     export { Default };
@@ -43,4 +56,4 @@ export declare namespace primitives {
     export { StringT };
     export { TrueT };
 }
-export { base64, canvas, Conversions, fs, defaultArray, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray };
+export { base64, canvas, Conversions, fs };
