@@ -125,6 +125,7 @@ describe("random", () => {
         it("returns empty array when the input array is undefined", () => {
             const input = {};
             const expected = [];
+            // @ts-ignore because we are testing a wrong input test case
             const actual = median(input);
             expect(actual).toEqual(expected);
         });

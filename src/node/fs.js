@@ -11,7 +11,7 @@ const { join: nodePathJoin } = require("path");
 /**
  * readFileSync reads a text file and returns the contents of the file as a string.
  * @param {string} filepath The absolute file path to the text file that needs to be read.
- * @returns {{Error, string}} Returns the error object and the file content.
+ * @returns {{error: Error, content: string}} Returns the error object and the file content.
  */
 function readFileSync(filepath) {
     let content = "";
@@ -38,7 +38,7 @@ function readFileSync(filepath) {
  * writeFileSync writes a string to a file.
  * @param {string} filepath the absolute filepath to the file that needs to be written.
  * @param {string} content the content that needs to be written to the file.
- * @returns {{Error}} {error} Returns an object; that contains the `error` object.
+ * @returns {{error: Error}} {error} Returns an object; that contains the `error` object.
  */
 function writeFileSync(filepath, content = "") {
     let error = null;
@@ -111,10 +111,12 @@ function readDirectorySync(directoryPath) {
 }
 
 /**
+ * Processes files and directories starting from a given directory path.
  *
- * @param directoryPath {string}
- * @param fileProcessorFn {Function}
- * @param directoryProcessorFn {Function}
+ * @param {Object} options - The options object.
+ * @param {string} options.directoryPath - The path to the directory to process.
+ * @param {Function} options.fileProcessorFn - Function to process each file.
+ * @param {Function} options.directoryProcessorFn - Function to process each directory.
  */
 function processFiles({ directoryPath, fileProcessorFn, directoryProcessorFn }) {
     const { files, directories } = readDirectorySync(directoryPath).content;

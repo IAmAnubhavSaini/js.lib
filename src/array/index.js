@@ -2,8 +2,9 @@ const { filterReduce, foldl, foldr, take, tail, head } = require("./fns/list.js"
 
 /**
  *
- * @param length {number}
- * @param defaultValue {*}
+ * @param {Object} options - The options object.
+ * @param {number} options.length - The length of the array.
+ * @param {*} options.defaultValue - The default value of the array.
  * @returns {*[]}
  */
 function defaultArray({ length, defaultValue } = { length: 10, defaultValue: 0 }) {
@@ -41,10 +42,10 @@ function resetArray(array) {
 }
 
 /**
- *
- * @param length {number}
- * @param minValue {number}
- * @param maxValue {number}
+ * @param {Object} options - The options object.
+ * @param options.length {number}
+ * @param options.minValue {number}
+ * @param options.maxValue {number}
  * @returns {number[]}
  */
 function randomArray({ length, minValue, maxValue } = { length: 10, minValue: 0, maxValue: 10 }) {
@@ -56,10 +57,11 @@ function randomArray({ length, minValue, maxValue } = { length: 10, minValue: 0,
 
 /**
  *
- * @param rows {number} default: 3
- * @param columns {number} default: 3
- * @param minValue {number} default 0
- * @param maxValue {number} default 10
+ * @param {Object} options - The options object.
+ * @param options.rows {number} default: 3
+ * @param options.columns {number} default: 3
+ * @param options.minValue {number} default 0
+ * @param options.maxValue {number} default 10
  * @returns {number[][]}
  */
 function randomMatrix({ rows, columns, minValue, maxValue } = { rows: 3, columns: 3, minValue: 0, maxValue: 10 }) {
@@ -91,8 +93,9 @@ function reverseSortedArray(n = 10) {
 
 /**
  *
- * @param array {*[]}
- * @param rotateBy {number}
+ * @param {Object} options - The options object.
+ * @param options.array {*[]}
+ * @param options.rotateBy {number}
  * @returns {*[]}
  */
 function rotateLeft({ array, rotateBy } = { array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], rotateBy: 3 }) {
@@ -101,9 +104,9 @@ function rotateLeft({ array, rotateBy } = { array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 1
 }
 
 /**
- *
- * @param array {*[]}
- * @param rotateBy {number}
+ * @param {Object} options - The options object.
+ * @param options.array {*[]}
+ * @param options.rotateBy {number}
  * @returns {*[]}
  */
 function rotateRight({ array, rotateBy } = { array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], rotateBy: 3 }) {
@@ -112,7 +115,8 @@ function rotateRight({ array, rotateBy } = { array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 
 }
 
 /**
- * @param median {*[]}
+ * @param {Object} options - The options object.
+ * @param {*[]} options.array
  * @returns {*[]}
  */
 function median({ array } = { array: [] }) {

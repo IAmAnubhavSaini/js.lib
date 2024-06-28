@@ -64,8 +64,8 @@ function takeWhile(fn, list) {
 
 /**
  * filterReduce :: (a -> boolean) -> (b -> a -> b) -> b -> [a] -> b
- * @param filterFn {function}
- * @param reduceFn {function}
+ * @param filterFn {(v, i, a) => boolean}
+ * @param reduceFn {(acc, cur, i, a) => cur}
  * @param initValue {*}
  * @param list {*[]}
  * @return {*}
@@ -76,24 +76,24 @@ function filterReduce(filterFn, reduceFn, initValue, list) {
 
 /**
  * head returns the head of a list
- * @param list {Array}
+ * @param list {*[]}
  * @param n {number}
- * @returns {Array}
+ * @returns {*[]}
  */
 function head(list, n = 10) {
-    if (!Array.isArray(list)) return list;
+    if (!Array.isArray(list)) return [];
     n = Math.min(n, list.length);
     return list.slice(0, n);
 }
 
 /**
  * tail returns the tail of a list
- * @param list {Array}
+ * @param list {*[]}
  * @param n {number}
- * @returns {Array}
+ * @returns {*[]}
  */
 function tail(list, n = 10) {
-    if (!Array.isArray(list)) return list;
+    if (!Array.isArray(list)) return [];
     n = Math.max(0, list.length - n);
     return list.slice(n);
 }

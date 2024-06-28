@@ -4,11 +4,13 @@ const { join, dirname } = require("path");
 describe("fs", () => {
     describe("readFileSync", () => {
         it("should return an error if the filepath is missing", () => {
+            // @ts-ignore because we are testing a wrong input test case
             const { error, content } = readFileSync();
             expect(error).toBeInstanceOf(Error);
             expect(content).toBe("");
         });
         it("should return an error if the filepath is not a string", () => {
+            // @ts-ignore because we are testing a wrong input test case
             const { error, content } = readFileSync(123);
             expect(error).toBeInstanceOf(TypeError);
             expect(content).toBe("");
@@ -30,10 +32,12 @@ describe("fs", () => {
         const filename = join(__dirname, "./test.log");
         const content = "Hello, World!";
         it("should return an error if the filepath is missing", () => {
+            // @ts-ignore because we are testing a wrong input test case
             const { error } = writeFileSync();
             expect(error).toBeInstanceOf(Error);
         });
         it("should return an error if the filepath is not a string", () => {
+            // @ts-ignore because we are testing a wrong input test case
             const { error } = writeFileSync(123);
             expect(error).toBeInstanceOf(TypeError);
         });
@@ -42,6 +46,7 @@ describe("fs", () => {
             expect(error).toBeInstanceOf(Error);
         });
         it("should return an error if the content is not a string", () => {
+            // @ts-ignore because we are testing a wrong input test case
             const { error } = writeFileSync(filename, 123);
             expect(error).toBeInstanceOf(TypeError);
         });
@@ -91,12 +96,14 @@ describe("fs", () => {
         });
 
         it("should return error and null content if directoryPath is missing", () => {
+            // @ts-ignore because we are testing a wrong input test case
             const { error, content } = readDirectorySync();
             expect(error).toBeTruthy();
             expect(error.message).toBe("ERROR: The directory path is missing.");
             expect(content).toEqual({ files: [], directories: [] });
         });
         it("should return error and null content if directoryPath is not string", () => {
+            // @ts-ignore because we are testing a wrong input test case
             const { error, content } = readDirectorySync({});
             expect(error).toBeTruthy();
             expect(error.message).toBe("ERROR: The directory path must be a string.");

@@ -65,8 +65,9 @@ describe("list", () => {
         });
         it("should return if list was not an array", () => {
             const input = {};
+            // @ts-ignore because we are testing a wrong input test case
             const actual = head(input);
-            const expected = input;
+            const expected = [];
             expect(actual).toEqual(expected);
         });
     });
@@ -90,8 +91,9 @@ describe("list", () => {
         });
         it("should return if list was not an array", () => {
             const input = {};
+            // @ts-ignore because we are testing a wrong input test case
             const actual = tail(input);
-            const expected = input;
+            const expected = [];
             expect(actual).toEqual(expected);
         });
     });

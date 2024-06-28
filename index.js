@@ -1,16 +1,16 @@
-const { base64 } = require("./string");
-const { list } = require("./array");
-const { number } = require("./heap");
-const { fs } = require("./node");
+const { base64 } = require("./src/string");
+const { list } = require("./src/array");
+const { number } = require("./src/heap");
+const { fs } = require("./src/node");
 
-const BooleanT = require("./primitives/boolean");
-const Default = require("./primitives/default");
-const FalseT = require("./primitives/false");
-const StringT = require("./primitives/string");
-const TrueT = require("./primitives/true");
+const BooleanT = require("./src/primitives/boolean");
+const Default = require("./src/primitives/default");
+const FalseT = require("./src/primitives/false");
+const StringT = require("./src/primitives/string");
+const TrueT = require("./src/primitives/true");
 
-const {canvas} = require("./canvas");
-const Conversions = require("./conversions");
+const { canvas } = require("./src/canvas");
+const Conversions = require("./src/conversions");
 
 module.exports = {
     base64,
