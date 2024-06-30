@@ -16,6 +16,13 @@ describe("array functions", () => {
     it("defaultArray returns an array", () => {
         expect(defaultArray().length).toEqual(10);
     });
+    it("defaultArray returns an array of 0s", () => {
+        expect(defaultArray().every((a) => a === 0)).toBe(true);
+    });
+    it("defaultArray returns an array of 0 if input is undefined", () => {
+        expect(defaultArray(undefined).every((a) => a === 0)).toBe(true);
+        expect(defaultArray(undefined).length).toEqual(10);
+    });
     it("zeroNumberArray zeroes a number array", () => {
         const randomArray = [1, 2, 3, 4, 5];
         zeroNumberArray(randomArray);
@@ -26,6 +33,14 @@ describe("array functions", () => {
         zeroStringArray(randomArray);
         expect(randomArray.every((a) => a === "")).toBe(true);
     });
+    it("zeroStringArray zeroes a non-string array", () => {
+        const randomArray = [1, 2, 3, 4, 5];
+        // @ts-ignore we are testing for a wrong input
+        zeroStringArray(randomArray);
+        // @ts-ignore we are testing for a wrong input
+        expect(randomArray.every((a) => a === "")).toBe(true);
+    });
+
     it("resetArray resets each array element to undefined", () => {
         const randomArray = [{ a: "asd" }, "BBC", 0, "zed"];
         resetArray(randomArray);
