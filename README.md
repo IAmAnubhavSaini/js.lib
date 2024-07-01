@@ -14,9 +14,6 @@
   - sortedArray
   - zeroNumberArray
   - zeroStringArray
-- base64
-  - encode
-  - decode
 - list
   - filterReduce
   - foldl
@@ -44,6 +41,29 @@
   - Square
   - Rectangle
 - Conversion
+- string
+  - base64
+    - BASE_64_DEFAULT_ALPHABET
+    - BASE_64_DEFAULT_PAD
+    - codePointFromBinaryString
+    - decode
+    - encode
+    - tokenize
+    - URL_SAFE_BASE_64_ALPHABET
+  - hex
+    - fromAscii
+  - ascii
+    - fromHex
+  - deleteChar
+  - deleteStr
+  - toNumber
+  - compareEnds
+  - containsChar
+  - containsStr
+  - genChar
+  - genCode
+  - runes
+  - verifyBasicMultilingualPlane
 
 ## Usage
 

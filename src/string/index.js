@@ -10,6 +10,9 @@ const {
 
 const { fromAscii } = require("./fns/hex");
 const { fromHex } = require("./fns/ascii");
+const { containsChar, containsStr } = require("./fns/contains");
+const { genChar, genCode } = require("./fns/gen");
+const { runes, verifyBasicMultilingualPlane } = require("./fns/runes");
 
 /**
  * deleteChar deletes first instance of given character from a string
@@ -97,4 +100,10 @@ module.exports = {
     deleteStr,
     toNumber,
     compareEnds,
+    containsChar,
+    containsStr,
+    genChar,
+    genCode,
+    runes,
+    verifyBasicMultilingualPlane,
 };
