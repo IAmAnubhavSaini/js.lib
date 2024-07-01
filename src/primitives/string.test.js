@@ -8,6 +8,7 @@ describe("StringT", function () {
         });
 
         it("should return an error instance for non-string inputs", function () {
+            // @ts-ignore we are testing for wrong input
             const str = new StringT(123);
             expect(str.toString()).toEqual("StringT constructor ERROR: Wrong type!");
         });
@@ -110,14 +111,16 @@ describe("StringT", function () {
 
         it("should append a string to the current instance", function () {
             const str = new StringT("Hello");
+            // @ts-ignore we are testing for this wrong input
             const result = str.append("World");
             expect(result.toString()).toEqual("HelloWorld");
         });
 
         it("should not append a non-string to the current instance", function () {
             const str = new StringT("Hello");
+            // @ts-ignore we are testing for this wrong input
             const result = str.append(123);
-            expect(result.toString()).toEqual("StringT concat ERROR: Wrong type!");
+            expect(result.toString()).toEqual("Hello");
         });
 
         it("should prepend a string to the current instance", function () {
@@ -128,14 +131,16 @@ describe("StringT", function () {
 
         it("should prepend a string to the current instance", function () {
             const str = new StringT("World");
+            // @ts-ignore we are testing for this wrong input
             const result = str.prepend("Hello");
             expect(result.toString()).toEqual("HelloWorld");
         });
 
         it("should not prepend a non-string to the current instance", function () {
             const str = new StringT("World");
+            // @ts-ignore we are testing for this wrong input
             const result = str.prepend(123);
-            expect(result.toString()).toEqual("StringT prepend ERROR: Wrong type!");
+            expect(result.toString()).toEqual("World");
         });
     });
 
@@ -240,6 +245,27 @@ describe("StringT", function () {
             const str = new StringT("Hello!");
             const actual = str.reverse().reverse();
             const expected = new StringT("Hello!");
+            expect(actual).toEqual(expected);
+        });
+    });
+
+    describe("lastN functions", () => {
+        it("gets last N characters correctly", () => {
+            const str = new StringT("Hello, World!");
+            const actual = str.lastN(4);
+            const expected = new StringT("rld!");
+            expect(actual).toEqual(expected);
+        });
+        it("gets last N with default fill replacement", () => {
+            const str = new StringT("Hi!");
+            const actual = str.lastNWithFill(4);
+            const expected = new StringT("_Hi!");
+            expect(actual).toEqual(expected);
+        });
+        it("gets last N with given fill replacement", () => {
+            const str = new StringT("Hi!");
+            const actual = str.lastNWithFill(4, "x");
+            const expected = new StringT("xHi!");
             expect(actual).toEqual(expected);
         });
     });

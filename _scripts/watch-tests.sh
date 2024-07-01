@@ -22,13 +22,20 @@ fi
 
 cd "$(pwd)/src"
 
-$TEST_COMMAND
+## || true
+# This is to prevent the script from exiting if the tests fail
+# This is useful when we are watching for changes and we don't want the script to exit
+# if the tests fail. We want to keep watching for changes and run the tests again
+# when the files change.
+
+# Run the tests once before watching for changes
+$TEST_COMMAND || true
 
 # Watching for changes in .test.js files
 inotifywait -m -e close_write,moved_to,create **/* \
     --format "%w%f" | while read FILE; do
     if [[ "$FILE" =~ \.test\.js$ ]]; then
         echo "Detected change in $FILE, running tests..."
-        $TEST_COMMAND
+        $TEST_COMMAND || true
     fi
 done
