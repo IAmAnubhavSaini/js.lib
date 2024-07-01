@@ -1,6 +1,6 @@
 import { base64 } from "./string/index.js";
-import { canvas } from "./canvas";
-import Conversions = require("./conversions");
+import { canvas } from "./canvas/canvas";
+import Conversions = require("./conversions/conversions");
 import { fs } from "./node/index.js";
 import { number } from "./heap/index.js";
 declare const filterReduce: typeof import("./array/fns/list.js").filterReduce;
@@ -25,11 +25,11 @@ import Default = require("./primitives/default");
 import FalseT = require("./primitives/false");
 import StringT = require("./primitives/string");
 import TrueT = require("./primitives/true");
-import { objectToString } from "./object";
-import { deepEqual } from "./object";
-import { keyEqual } from "./object";
-import { valueEqual } from "./object";
-import { findKeys } from "./object";
+import { objectToString } from "./object/object";
+import { deepEqual } from "./object/object";
+import { keyEqual } from "./object/object";
+import { valueEqual } from "./object/object";
+import { findKeys } from "./object/object";
 export declare namespace heap {
     export { number };
 }

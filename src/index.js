@@ -22,10 +22,10 @@ const FalseT = require("./primitives/false");
 const StringT = require("./primitives/string");
 const TrueT = require("./primitives/true");
 
-const { canvas } = require("./canvas");
-const Conversions = require("./conversions");
+const { canvas } = require("./canvas/canvas");
+const Conversions = require("./conversions/conversions");
 
-const { objectToString, deepEqual, keyEqual, valueEqual, findKeys } = require("./object");
+const { objectToString, deepEqual, keyEqual, valueEqual, findKeys } = require("./object/object");
 
 module.exports = {
     base64,
