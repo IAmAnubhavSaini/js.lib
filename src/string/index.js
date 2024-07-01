@@ -11,8 +11,8 @@ const {
 const { fromAscii } = require("./fns/hex");
 const { fromHex } = require("./fns/ascii");
 const { containsChar, containsStr } = require("./fns/contains");
-const { genChar, genCode } = require("./fns/gen");
-const { runes, verifyBasicMultilingualPlane } = require("./fns/runes");
+const { genChar, genCode, rangeAscii, rangeUnicode } = require("./fns/iterator");
+const { runes, verifyBasicMultilingualPlane, nextRune, previousRune } = require("./fns/runes");
 
 /**
  * deleteChar deletes first instance of given character from a string
@@ -106,4 +106,6 @@ module.exports = {
     genCode,
     runes,
     verifyBasicMultilingualPlane,
+    nextRune,
+    previousRune,
 };

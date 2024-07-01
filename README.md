@@ -60,10 +60,16 @@
   - compareEnds
   - containsChar
   - containsStr
-  - genChar
-  - genCode
+  - iterator
+    - genChar
+    - genCode
+    - rangeAscii
+    - rangeUnicode
   - runes
-  - verifyBasicMultilingualPlane
+    - runes
+    - verifyBasicMultilingualPlane
+    - nextRune
+    - previousRune
 
 ## Usage
 
@@ -91,4 +97,5 @@ npm run cover-html
 MIT
 
 copyright 2024 Anubhav Saini (iamanubhavsaini)
+
 copyright 2024 ackret

@@ -62,6 +62,56 @@ function runes({ input } = { input: "" }) {
 }
 
 /**
+ * Returns the next rune in a given string
+ * @param {Object} values - The values object.
+ * @param {string} values.input - The string to get the next rune from.
+ * @returns {string}
+ * Note: This function is useful for iterating over Unicode strings character by character.
+ * It correctly handles surrogate pairs, which represent characters outside the Basic Multilingual Plane (BMP).
+ * The function returns the next rune in the string, accounting for surrogate pairs if present.
+ * If the input string is empty or not a string, it returns the default rune "😊".
+ * */
+function nextRune({ input } = { input: "😊" }) {
+    input = typeof input !== "string" || input.length === 0 ? "😊" : input;
+    let i = 0;
+    const current = input.charCodeAt(i);
+    if (current >= 0xd800 && current <= 0xdbff) {
+        if (i + 1 < input.length) {
+            const next = input.charCodeAt(i + 1);
+            // Check if next is a low surrogate
+            if (next >= 0xdc00 && next <= 0xdfff) {
+                const code = (current - 0xd800) * 0x400 + (next - 0xdc00 + 0x10000) + 1;
+                return String.fromCodePoint(code);
+            }
+        }
+    }
+    return String.fromCharCode(current + 1);
+}
+
+/**
+ * Returns the previous rune in a given string
+ * @param {Object} values - The values object.
+ * @param {string} values.input - The string to get the previous rune from.
+ * @returns {string}
+ */
+function previousRune({ input } = { input: "😊" }) {
+    input = typeof input !== "string" || input.length === 0 ? "😊" : input;
+    let i = 0;
+    const current = input.charCodeAt(i);
+    if (current >= 0xd800 && current <= 0xdbff) {
+        if (i + 1 < input.length) {
+            const next = input.charCodeAt(i + 1);
+            // Check if next is a low surrogate
+            if (next >= 0xdc00 && next <= 0xdfff) {
+                const code = (current - 0xd800) * 0x400 + (next - 0xdc00 + 0x10000) - 1;
+                return String.fromCodePoint(code);
+            }
+        }
+    }
+    return input.charAt(i);
+}
+
+/**
  * Checks if the input string contains only BMP characters
  * @param {Object} values - The values object.
  * @param {string} values.input - The string to check.
@@ -90,4 +140,4 @@ function verifyBasicMultilingualPlane({ input } = { input: "" }) {
     return true;
 }
 
-module.exports = { runes, verifyBasicMultilingualPlane };
+module.exports = { runes, verifyBasicMultilingualPlane, nextRune, previousRune };

@@ -1,4 +1,4 @@
-const { runes, verifyBasicMultilingualPlane } = require("./runes");
+const { runes, verifyBasicMultilingualPlane, nextRune, previousRune } = require("./runes");
 
 describe("runes", () => {
     it("returns runes for ascii string", () => {
@@ -41,5 +41,55 @@ describe("verifyBasicMultilingualPlane", () => {
     it("returns false if the input is not a string", () => {
         // @ts-ignore Testing for failure cases
         expect(verifyBasicMultilingualPlane({ input: 123 })).toEqual(false);
+    });
+});
+
+describe("nextRune", () => {
+    it("returns the next rune in a string with surrogate pairs", () => {
+        const value = { input: "👨‍👩‍👧‍👦" };
+        const actual = nextRune(value);
+        expect(actual).toEqual("👩");
+    });
+
+    it("returns the next rune in a string without surrogate pairs", () => {
+        const value = { input: "👩" };
+        const actual = nextRune(value);
+        expect(actual).toEqual("👪");
+    });
+
+    it("returns the default rune if the input string is empty", () => {
+        expect(nextRune({ input: "" })).toEqual("😋");
+    });
+
+    it("returns the default rune if the input is not a string", () => {
+        // @ts-ignore Testing for failure cases; should return the default rune
+        expect(nextRune({ input: 123 })).toEqual("😋");
+    });
+
+    it("returns b if the input is a", () => {
+        expect(nextRune({ input: "a" })).toEqual("b");
+    });
+});
+
+describe("previousRune", () => {
+    it("returns the previous rune in a string with surrogate pairs", () => {
+        const value = { input: "👨‍👩‍👧‍👦" };
+        const actual = previousRune(value);
+        expect(actual).toEqual("👧");
+    });
+
+    it("returns the previous rune in a string without surrogate pairs", () => {
+        const value = { input: "👩" };
+        const actual = previousRune(value);
+        expect(actual).toEqual("👨");
+    });
+
+    it("returns the default rune if the input string is empty", () => {
+        expect(previousRune({ input: "" })).toEqual("😉");
+    });
+
+    it("returns the default rune if the input is not a string", () => {
+        // @ts-ignore Testing for failure cases; should return the default rune
+        expect(previousRune({ input: 123 })).toEqual("😉");
     });
 });
