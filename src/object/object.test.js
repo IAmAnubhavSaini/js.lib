@@ -1,4 +1,4 @@
-const { objectToString, deepEqual, keyEqual, valueEqual, findKeys } = require("./object");
+const { objectToString, deepEqual, keyEqual, valueEqual, findKeys, onlyObject } = require("./object");
 
 describe("objectToString", () => {
     it("should return string", () => {
@@ -241,6 +241,42 @@ describe("findKeys", () => {
         };
         const actual = findKeys({ obj, value: "a for apple" });
         const expected = ["a", "c.f.a", "c.g.0", "c.g.3"];
+        expect(actual).toEqual(expected);
+    });
+});
+describe("onlyObject", () => {
+    it("should return a plain object with owned properties", () => {
+        const obj = {
+            a: 1,
+            b: "hello",
+            c: [1, 2, 3],
+            d: { x: 10, y: 20 },
+        };
+        const actual = onlyObject(obj);
+        const expected = { a: 1, b: "hello", c: [1, 2, 3], d: { x: 10, y: 20 } };
+        expect(actual).toEqual(expected);
+    });
+
+    it("should throw a TypeError if the argument is not an object", () => {
+        const invalidArgs = [null, undefined, 123, "hello", [1, 2, 3]];
+        invalidArgs.forEach((arg) => {
+            expect(() => onlyObject(arg)).toThrowError(TypeError);
+        });
+    });
+
+    it("should return an empty object if the argument is an empty object", () => {
+        const obj = {};
+        const actual = onlyObject(obj);
+        const expected = {};
+        expect(actual).toEqual(expected);
+    });
+
+    it("should return object that had only own properties", () => {
+        const obj = { a: 1, b: 2 };
+        const proto = { c: 3 };
+        Object.setPrototypeOf(obj, proto);
+        const actual = onlyObject(obj);
+        const expected = { a: 1, b: 2 };
         expect(actual).toEqual(expected);
     });
 });

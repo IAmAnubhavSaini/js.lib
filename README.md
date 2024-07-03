@@ -70,6 +70,16 @@
     - verifyBasicMultilingualPlane
     - nextRune
     - previousRune
+- monad
+  - either
+  - future
+  - just
+  - list
+  - maybe
+  - nothing
+  - state
+
+[Read up on the implemnted monads here](./src/functional/monad.md)
 
 ## Usage
 

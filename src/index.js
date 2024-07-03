@@ -27,6 +27,8 @@ const Conversions = require("./conversions/conversions");
 
 const { objectToString, deepEqual, keyEqual, valueEqual, findKeys } = require("./object/object");
 
+const { nothing, just, maybe, either, list, future, state } = require("./functional/monad");
+
 module.exports = {
     base64,
     canvas,
@@ -62,5 +64,14 @@ module.exports = {
         keyEqual,
         valueEqual,
         findKeys,
+    },
+    monad: {
+        either,
+        future,
+        just,
+        list,
+        maybe,
+        nothing,
+        state,
     },
 };

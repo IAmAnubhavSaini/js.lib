@@ -99,20 +99,63 @@ function findKeys(options) {
     return innerFind(obj, value, separator, keys, depth);
 }
 
+/**
+ * onlyObject - Convert an object to a plain (only owned properties) object.
+ * @param {Object} obj - The object to convert to a plain object.
+ * @returns {Object} - A plain object i.e. it has only owned properties.
+ */
+function onlyObject(obj) {
+    if (!validations.isObject(obj)) {
+        throw new TypeError("ERROR: Argument (obj) must be an object.");
+    }
+    return Object.fromEntries(Object.entries(obj));
+}
+
+/**
+ * Object validation functions.
+ * @namespace validations
+ */
 const validations = {
+    /**
+     * TODO: Add more types of objects to exclude.
+     * Check if a value is an object.
+     * @memberof validations
+     * @param {*} obj - The value to check.
+     * @returns {boolean} - Returns true if the value is an object, false otherwise.
+     */
     isObject(obj) {
-        return obj !== null && typeof obj === "object";
+        return (
+            obj !== undefined &&
+            obj !== null &&
+            typeof obj === "object" &&
+            !Array.isArray(obj) &&
+            !(obj instanceof Date) &&
+            !(obj instanceof RegExp) &&
+            !(obj instanceof Error) &&
+            !(obj instanceof Map) &&
+            !(obj instanceof Set) &&
+            !(obj instanceof WeakMap) &&
+            !(obj instanceof WeakSet) &&
+            !(obj instanceof ArrayBuffer)
+        );
     },
+    /**
+     * TODO: What if there is a string containing the word "Circular"?
+     * isCircular - Check if an object is circular
+     * @param {Object} obj the object to check if it is circular
+     * @returns {boolean} true if the object is circular, false otherwise
+     */
     isCircular(obj) {
-        return objectToString(obj).includes("[Circular");
+        return objectToString(obj).includes("Circular");
     },
 };
 
 module.exports = {
-    objectToString,
     deepEqual,
-    keyEqual,
-    valueEqual,
     findKeys,
+    keyEqual,
+    objectToString,
+    onlyObject,
     validations,
+    valueEqual,
 };
