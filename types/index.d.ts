@@ -30,6 +30,13 @@ import { deepEqual } from "./object/object";
 import { keyEqual } from "./object/object";
 import { valueEqual } from "./object/object";
 import { findKeys } from "./object/object";
+import { either } from "./functional/monad";
+import { future } from "./functional/monad";
+import { just } from "./functional/monad";
+import { list_1 } from "./functional/monad";
+import { maybe } from "./functional/monad";
+import { nothing } from "./functional/monad";
+import { state } from "./functional/monad";
 export declare namespace heap {
     export { number };
 }
@@ -67,5 +74,14 @@ export declare namespace object {
     export { keyEqual };
     export { valueEqual };
     export { findKeys };
+}
+export declare namespace monad {
+    export { either };
+    export { future };
+    export { just };
+    export { list };
+    export { maybe };
+    export { nothing };
+    export { state };
 }
 export { base64, canvas, Conversions, fs };
