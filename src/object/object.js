@@ -1,25 +1,35 @@
 /**
- *
- * @param {Object} obj
- * @returns {string}
+ * objectToString - Convert an object to its string representation
+ * @param {Object} obj - The object to convert
+ * @returns {string} - The string representation of the object
  */
 function objectToString(obj) {
     if (obj === null || obj === undefined) {
         return "[]";
     }
-    const keys = Object.keys(obj);
-    const values = Object.values(obj);
-    let out = "";
-    for (let i = 0; i < keys.length; i += 1) {
-        out += "[" + keys[i] + ":";
-        if (Array.isArray(values[i]) || typeof values[i] === "object") {
-            out += objectToString(values[i]);
-        } else {
-            out += values[i];
+
+    function innerObjectToString(obj, visited, parentKey) {
+        if (visited.has(obj)) {
+            return `[Circular(${parentKey})]`;
         }
-        out += "]";
+        visited.add(obj);
+        const keys = Object.keys(obj);
+        const values = Object.values(obj);
+        let out = "";
+        for (let i = 0; i < keys.length; i += 1) {
+            out += `[${keys[i]}:`;
+            if (Array.isArray(values[i]) || typeof values[i] === "object") {
+                out += innerObjectToString(values[i], visited, keys[i]);
+            } else {
+                out += values[i];
+            }
+            out += "]";
+        }
+        visited.delete(obj);
+        return out;
     }
-    return out;
+
+    return innerObjectToString(obj, new WeakSet(), "");
 }
 
 /**
@@ -89,10 +99,20 @@ function findKeys(options) {
     return innerFind(obj, value, separator, keys, depth);
 }
 
+const validations = {
+    isObject(obj) {
+        return obj !== null && typeof obj === "object";
+    },
+    isCircular(obj) {
+        return objectToString(obj).includes("[Circular");
+    },
+};
+
 module.exports = {
     objectToString,
     deepEqual,
     keyEqual,
     valueEqual,
     findKeys,
+    validations,
 };

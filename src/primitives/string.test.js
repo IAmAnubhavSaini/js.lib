@@ -8,9 +8,8 @@ describe("StringT", function () {
         });
 
         it("should return an error instance for non-string inputs", function () {
-            // @ts-ignore we are testing for wrong input
-            const str = new StringT(123);
-            expect(str.toString()).toEqual("StringT constructor ERROR: Wrong type!");
+            const actual = new StringT(123);
+            expect(actual.toString()).toEqual("123");
         });
     });
 
@@ -268,5 +267,57 @@ describe("StringT", function () {
             const expected = new StringT("xHi!");
             expect(actual).toEqual(expected);
         });
+    });
+});
+describe("fromArray", function () {
+    it("should create a StringT object from an array", function () {
+        const array = ["H", "e", "l", "l", "o"];
+        const actual = StringT.fromArray(array);
+        const expected = "[H,e,l,l,o]";
+        expect(actual.toString()).toEqual(expected);
+    });
+    it("should be able to handle circular references in array", () => {
+        const array = ["H", "e", "l", "l", "o"];
+        // @ts-ignore we are testing for this wrong input
+        array.push(array);
+        // @ts-ignore we are testing for this wrong input
+        array.push(array);
+        const actual = StringT.fromArray(array);
+        const expected = "[H,e,l,l,o,Circular(_),Circular(_)]";
+        expect(actual.toString()).toEqual(expected);
+    });
+    it("should be able to handle more circular references in array", () => {
+        const array = ["H", "e", "l", "l", "o"];
+        // @ts-ignore we are testing for this wrong input
+        array.push(array);
+        // @ts-ignore we are testing for this wrong input
+        array.push(array);
+        const tmp = [1, 2, 3];
+        // @ts-ignore we are testing for this wrong input
+        tmp.push(tmp);
+        // @ts-ignore we are testing for this wrong input
+        array.push(tmp);
+        const actual = StringT.fromArray(array);
+        const expected = "[H,e,l,l,o,Circular(_),Circular(_),[1,2,3,Circular(_[7])]]";
+        expect(actual.toString()).toEqual(expected);
+    });
+    it("should return an error instance for non-array inputs", function () {
+        // @ts-ignore we are testing for wrong input
+        const actual = StringT.fromArray("Hello");
+        expect(actual.toString()).toEqual("StringT fromArray ERROR: Wrong type!");
+    });
+});
+
+describe("fromObject", function () {
+    it("should create a StringT object from an object", function () {
+        const obj = { 0: "H", 1: "e", 2: "l", 3: "l", 4: "o" };
+        const actual = StringT.fromObject(obj);
+        const expected = "[0:H][1:e][2:l][3:l][4:o]";
+        expect(actual.toString()).toEqual(expected);
+    });
+    it("should return an error instance for non-object inputs", function () {
+        // @ts-ignore we are testing for wrong input
+        const actual = StringT.fromObject("Hello");
+        expect(actual.toString()).toEqual("StringT fromObject ERROR: Wrong type!");
     });
 });

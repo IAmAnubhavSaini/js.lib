@@ -28,6 +28,14 @@ describe("objectToString", () => {
         const expected = "[a:absolute][b:bold][c 3:hmm][-1:[d:10][e:[0:1][1:2][2:3]]]";
         expect(actual).toEqual(expected);
     });
+    // /tests for circular references
+    it("returns proper value for a circular reference", () => {
+        const obj = { a: "absolute", b: "bold", "c 3": "hmm", "-1": { d: 10, e: [1, 2, 3] } };
+        obj["-1"].f = obj;
+        const actual = objectToString(obj);
+        const expected = "[a:absolute][b:bold][c 3:hmm][-1:[d:10][e:[0:1][1:2][2:3]][f:[Circular(f)]]]";
+        expect(actual).toEqual(expected);
+    });
 });
 
 describe("deepEqual", () => {

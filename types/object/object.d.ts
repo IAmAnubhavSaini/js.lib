@@ -1,7 +1,7 @@
 /**
- *
- * @param {Object} obj
- * @returns {string}
+ * objectToString - Convert an object to its string representation
+ * @param {Object} obj - The object to convert
+ * @returns {string} - The string representation of the object
  */
 export function objectToString(obj: any): string;
 /**
@@ -43,3 +43,7 @@ export function findKeys(options: {
     keys?: string[];
     depth?: number;
 }): string[];
+export namespace validations {
+    function isObject(obj: any): boolean;
+    function isCircular(obj: any): boolean;
+}

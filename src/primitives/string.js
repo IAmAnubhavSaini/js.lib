@@ -1,10 +1,8 @@
+const { objectToString } = require("../object/object");
+const { arrayToString } = require("../array/fns/array");
+
 /**
- * StringT class
- * @class
- * @classdesc StringT class to handle string operations
- */
-/**
- * Represents a custom string class.
+ * Represents a custom string class with various string manipulation methods.
  * @class
  */
 class StringT {
@@ -15,15 +13,54 @@ class StringT {
     /**
      * StringT constructor
      * @constructor
-     * @param {string} value - The string value
+     * @param {string | number | [] | {}} value - The value that can be converted to string
      */
     constructor(value) {
+        if (typeof value === "undefined") {
+            return new StringT("StringT constructor ERROR: Undefined value!");
+        }
+        if (value === null) {
+            return new StringT("StringT constructor ERROR: Null value!");
+        }
+        if (Array.isArray(value)) {
+            return StringT.fromArray(value);
+        }
+        if (typeof value === "object") {
+            return StringT.fromObject(value);
+        }
+        if (typeof value === "number") {
+            return new StringT(String(Number(value)));
+        }
         if (typeof value !== "string") {
             return new StringT("StringT constructor ERROR: Wrong type!");
         }
         this.#value = value;
         this.#length = value.length;
         this.#frequencyMap = null;
+    }
+
+    /**
+     * Creates a StringT object from an array.
+     * @param {Array} value - The array to create the StringT object from.
+     * @returns {StringT} The created StringT object.
+     */
+    static fromArray(value) {
+        if (!Array.isArray(value)) {
+            return new StringT("StringT fromArray ERROR: Wrong type!");
+        }
+        return new StringT(arrayToString({ array: value }, { separator: "," }));
+    }
+
+    /**
+     * Creates a new StringT instance from an object.
+     * @param {any} value - The value to convert to a string.
+     * @returns {StringT} - The new StringT instance.
+     */
+    static fromObject(value) {
+        if (typeof value !== "object") {
+            return new StringT("StringT fromObject ERROR: Wrong type!");
+        }
+        return new StringT(objectToString(value));
     }
 
     /**
@@ -40,6 +77,7 @@ class StringT {
 
     /**
      * Check if the string is ASCII
+     * @memberof StringT
      */
     isAscii() {
         return /^[\x00-\x7F]*$/.test(this.#value);
@@ -47,6 +85,7 @@ class StringT {
 
     /**
      * Check if the string is alphabetic
+     * @memberof StringT
      */
     isAlphabetic() {
         return /^[a-zA-Z]*$/.test(this.#value);
@@ -54,6 +93,7 @@ class StringT {
 
     /**
      * Check if the string is numeric i.e. numbers only
+     * @memberof StringT
      */
     isNumeric() {
         return /^[0-9]*$/.test(this.#value);
@@ -61,6 +101,7 @@ class StringT {
 
     /**
      * Check if the string is alphanumeric
+     * @memberof StringT
      */
     isAlphaNumeric() {
         return /^[a-zA-Z0-9]*$/.test(this.#value);
@@ -68,6 +109,7 @@ class StringT {
 
     /**
      * Check if the string is lowercase
+     * @memberof StringT
      */
     isLowerCase() {
         return /^[a-z]*$/.test(this.#value);
@@ -75,6 +117,7 @@ class StringT {
 
     /**
      * Check if the string is uppercase
+     * @memberof StringT
      */
     isUpperCase() {
         return /^[A-Z]*$/.test(this.#value);
@@ -82,6 +125,7 @@ class StringT {
 
     /**
      * Convert the string to lowercase
+     * @memberof StringT
      */
     toLowerCase() {
         return new StringT(this.#value.toLowerCase());
@@ -89,6 +133,7 @@ class StringT {
 
     /**
      * Convert the string to uppercase
+     * @memberof StringT
      */
     toLocaleLowerCase() {
         return new StringT(this.#value.toLocaleLowerCase());
@@ -96,6 +141,7 @@ class StringT {
 
     /**
      * Convert the string to uppercase
+     * @memberof StringT
      */
     toUpperCase() {
         return new StringT(this.#value.toUpperCase());
@@ -104,6 +150,7 @@ class StringT {
     /**
      * Convert the string to uppercase using locale
      * @returns {StringT} - The uppercase string
+     * @memberof StringT
      * */
     toLocaleUpperCase() {
         return new StringT(this.#value.toLocaleUpperCase());
@@ -167,6 +214,12 @@ class StringT {
         return this.firstN(n).toValue() === other.firstN(n).toValue();
     }
 
+    /**
+     * Checks if the last `n` characters of the current string are equal to the last `n` characters of another string.
+     * @param {StringT|string} other - The other string to compare with.
+     * @param {number} n - The number of characters to compare from the end of the strings.
+     * @returns {boolean} - `true` if the last `n` characters are equal, `false` otherwise.
+     */
     isEqualLastN(other, n) {
         other = other instanceof StringT ? other : typeof other === "string" ? new StringT(other) : new StringT("");
         n = typeof n !== "number" ? 10 : Math.min(n, this.#length);
@@ -295,6 +348,7 @@ class StringT {
      * @param {number} n - The number of characters to pad
      * @param {string} fill - The fill character
      * @returns {StringT} - The padded string
+     * @memberof StringT
      */
     padStart(n, fill = "_") {
         n = typeof n !== "number" ? 10 : n;
@@ -307,6 +361,8 @@ class StringT {
      * @param {number} n - The number of characters to pad
      * @param {string} fill - The fill character
      * @returns {StringT} - The padded string
+     * @function padLeft
+     * @memberof StringT
      */
     padLeft(n, fill = "_") {
         n = typeof n !== "number" ? 10 : n;
@@ -318,6 +374,8 @@ class StringT {
      * concat - Concatenate two strings
      * @param {StringT} other - The other string to concatenate
      * @returns {StringT} - The concatenated string
+     * @function concat
+     * @memberof StringT
      * */
     concat(other) {
         if (!(other instanceof StringT)) {
@@ -334,6 +392,8 @@ class StringT {
      * append - Append a string to another string
      * @param {StringT} other - The string to append
      * @returns {StringT} - The appended string
+     * @function append
+     * @memberof StringT
      * */
     append(other) {
         other = other instanceof StringT ? other : typeof other === "string" ? new StringT(other) : new StringT("");
@@ -344,6 +404,8 @@ class StringT {
      * prepend - Prepend a string to another string
      * @param {StringT} other - The string to prepend
      * @returns {StringT} - The prepended string
+     * @function prepend
+     * @memberof StringT
      */
     prepend(other) {
         other = other instanceof StringT ? other : typeof other === "string" ? new StringT(other) : new StringT("");
