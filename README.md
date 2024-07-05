@@ -104,8 +104,8 @@ npm run cover-html
 
 ## License
 
-MIT
+[MIT](./LICENSE)
 
-copyright 2024 Anubhav Saini (iamanubhavsaini)
+Copyright (&copy;) 2024 Anubhav Saini
 
-copyright 2024 ackret
+Copyright (&copy;) 2024 Ackret Solutions
