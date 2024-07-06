@@ -14,6 +14,8 @@ const { containsChar, containsStr } = require("./fns/contains");
 const { genChar, genCode, rangeAscii, rangeUnicode } = require("./fns/iterator");
 const { runes, verifyBasicMultilingualPlane, nextRune, previousRune } = require("./fns/runes");
 
+const { getHashTags, hashtagFrequency } = require("./fns/hashtag");
+
 /**
  * deleteChar deletes first instance of given character from a string
  * @param {Object} options - The options object.
@@ -80,6 +82,9 @@ function compareEnds({ input, str } = { input: "", str: "" }, { i, n } = { i: fa
 }
 
 module.exports = {
+    ascii: {
+        fromHex,
+    },
     base64: {
         BASE_64_DEFAULT_ALPHABET,
         BASE_64_DEFAULT_PAD,
@@ -89,23 +94,24 @@ module.exports = {
         tokenize,
         URL_SAFE_BASE_64_ALPHABET,
     },
+    hashtags: {
+        getHashTags,
+        hashtagFrequency,
+    },
     hex: {
         fromAscii,
     },
-    ascii: {
-        fromHex,
-    },
 
-    deleteChar,
-    deleteStr,
-    toNumber,
     compareEnds,
     containsChar,
     containsStr,
+    deleteChar,
+    deleteStr,
     genChar,
     genCode,
-    runes,
-    verifyBasicMultilingualPlane,
     nextRune,
     previousRune,
+    runes,
+    toNumber,
+    verifyBasicMultilingualPlane,
 };
