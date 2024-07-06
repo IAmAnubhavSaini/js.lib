@@ -37,6 +37,11 @@ import { list_1 } from "./functional/monad";
 import { maybe } from "./functional/monad";
 import { nothing } from "./functional/monad";
 import { state } from "./functional/monad";
+import { headingToHTML } from "./markdown/markdown.js";
+import { sanitize } from "./markdown/markdown.js";
+import { verifyHeading1 } from "./markdown/markdown.js";
+import { verifyHeading2 } from "./markdown/markdown.js";
+import { verifyHeading3 } from "./markdown/markdown.js";
 export declare namespace heap {
     export { number };
 }
@@ -83,5 +88,12 @@ export declare namespace monad {
     export { maybe };
     export { nothing };
     export { state };
+}
+export declare namespace markdown {
+    export { headingToHTML };
+    export { sanitize };
+    export { verifyHeading1 };
+    export { verifyHeading2 };
+    export { verifyHeading3 };
 }
 export { base64, canvas, Conversions, fs };

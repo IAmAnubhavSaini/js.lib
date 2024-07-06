@@ -28,6 +28,7 @@ const Conversions = require("./conversions/conversions");
 const { objectToString, deepEqual, keyEqual, valueEqual, findKeys } = require("./object/object");
 
 const { nothing, just, maybe, either, list, future, state } = require("./functional/monad");
+const { headingToHTML, sanitize, verifyHeading1, verifyHeading2, verifyHeading3 } = require("./markdown/markdown.js");
 
 module.exports = {
     base64,
@@ -73,5 +74,12 @@ module.exports = {
         maybe,
         nothing,
         state,
+    },
+    markdown: {
+        headingToHTML,
+        sanitize,
+        verifyHeading1,
+        verifyHeading2,
+        verifyHeading3,
     },
 };
