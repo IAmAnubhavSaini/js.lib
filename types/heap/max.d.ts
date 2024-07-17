@@ -64,12 +64,12 @@ export class MaxHeap {
      * */
     swap(index1: number, index2: number): void;
     /**
-     * Get the smallest item from the heap
+     * Get the biggest item from the heap
      * @return {number}
      * */
     peek(): number;
     /**
-     * Poll the smallest item from the heap
+     * Poll the biggest item from the heap
      * @return {number}
      * */
     poll(): number;

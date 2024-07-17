@@ -96,7 +96,7 @@ class MaxHeap {
     }
 
     /**
-     * Get the smallest item from the heap
+     * Get the biggest item from the heap
      * @return {number}
      * */
     peek() {
@@ -105,7 +105,7 @@ class MaxHeap {
     }
 
     /**
-     * Poll the smallest item from the heap
+     * Poll the biggest item from the heap
      * @return {number}
      * */
     poll() {
