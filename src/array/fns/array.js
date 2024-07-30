@@ -185,9 +185,28 @@ function isArraylike(obj) {
     return typeof obj === "object" && obj !== null && typeof obj.length === "number";
 }
 
+/**
+ * intersperse puts given withit after each item in list except the last one
+ * @param {*[]} list an array of anytype of items
+ * @param {*} withit anything that you need to be interspersed in the given list
+ * @returns {*[]}
+ */
+function intersperse(list, withit) {
+    if (list.length <= 1) {
+        return list;
+    }
+    const out = [list[0]];
+    for (let i = 1; i < list.length; i += 1) {
+        out.push(withit);
+        out.push(list[i]);
+    }
+    return out;
+}
+
 module.exports = {
     arrayToString,
     defaultArray,
+    intersperse,
     isArray,
     isArraylike,
     randomArray,

@@ -1,6 +1,7 @@
 const {
     arrayToString,
     defaultArray,
+    intersperse,
     isArray,
     isArraylike,
     median,
@@ -252,5 +253,41 @@ describe("isArray", () => {
         const input = undefined;
         const actual = isArray(input);
         expect(actual).toBe(false);
+    });
+});
+
+describe("intersperse", () => {
+    it("should return the same list if it's length is less than or equal to 1", () => {
+        expect(intersperse([], "a")).toEqual([]);
+        expect(intersperse(["foo"], "bar")).toEqual(["foo"]);
+    });
+
+    it("should intersperse with given item after each element except the last one", () => {
+        expect(intersperse(["a", "b", "c"], "x")).toEqual(["a", "x", "b", "x", "c"]);
+        expect(intersperse([1, 2, 3], ", ")).toEqual([1, ", ", 2, ", ", 3]);
+    });
+
+    it("should handle different types of elements in the list", () => {
+        expect(intersperse([{ a: 1 }, { b: 2 }], null)).toEqual([{ a: 1 }, null, { b: 2 }]);
+        expect(intersperse(["foo", "bar"], 0)).toEqual(["foo", 0, "bar"]);
+    });
+
+    it("should handle empty list and withit correctly", () => {
+        expect(intersperse([], "a")).toEqual([]);
+        expect(intersperse(["foo"], "bar")).toEqual(["foo"]);
+    });
+
+    it("should intersperse correctly even if the list contains multiple elements of withit", () => {
+        expect(intersperse(["x", "x", "x"], "x")).toEqual(["x", "x", "x", "x", "x"]);
+        expect(intersperse([1, 2, 3], 2)).toEqual([1, 2, 2, 2, 3]);
+    });
+
+    it("should handle large lists efficiently", () => {
+        const largeList = Array.from({ length: 100 }, (_, i) => `item${i}`);
+        const interspersedList = intersperse(largeList, "-");
+        expect(interspersedList.length).toEqual(2 * largeList.length - 1);
+        for (let i = 0; i < largeList.length - 1; i++) {
+            expect(interspersedList[2 * i + 1]).toEqual("-");
+        }
     });
 });

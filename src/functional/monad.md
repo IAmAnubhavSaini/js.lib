@@ -161,4 +161,4 @@ l = list([1, 2, 3, 4, 5])
 
 ## State monad
 
-Read the test cases and break your head to understand the state monad. It's aweful when you don't get it, but when you get it, you are a genius. Then you try to explain it to someone else and you realize you don't get it. It's a cycle. And by-product of which is a little bit of understanding, and a lot of frustration and headache. But then you start to get it, your grey matter expands and you evolve. Now the hurt gets real. You couldn't even understand the simple code, and now you are writing code that is beyond your understanding. You are a genius now. You are a state monad. Welcome to pain bud.
+It is just a state monad, that manages states.

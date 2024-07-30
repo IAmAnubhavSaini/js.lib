@@ -24,6 +24,13 @@ export function defaultArray({ length, defaultValue }?: {
     defaultValue: any;
 }): any[];
 /**
+ * intersperse puts given withit after each item in list except the last one
+ * @param {*[]} list an array of anytype of items
+ * @param {*} withit anything that you need to be interspersed in the given list
+ * @returns {*[]}
+ */
+export function intersperse(list: any[], withit: any): any[];
+/**
  * Checks if the given value is an array.
  *
  * @param {*} obj - The value to check.

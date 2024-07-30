@@ -42,6 +42,7 @@ import { sanitize } from "./markdown/markdown.js";
 import { verifyHeading1 } from "./markdown/markdown.js";
 import { verifyHeading2 } from "./markdown/markdown.js";
 import { verifyHeading3 } from "./markdown/markdown.js";
+import coinChange = require("./misc/coinChange");
 export declare namespace heap {
     export { number };
 }
@@ -95,5 +96,8 @@ export declare namespace markdown {
     export { verifyHeading1 };
     export { verifyHeading2 };
     export { verifyHeading3 };
+}
+export declare namespace miscellaneous {
+    export { coinChange };
 }
 export { base64, canvas, Conversions, fs };

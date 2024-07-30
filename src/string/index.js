@@ -81,6 +81,26 @@ function compareEnds({ input, str } = { input: "", str: "" }, { i, n } = { i: fa
     return input.startsWith(str) && input.endsWith(str);
 }
 
+/**
+ * intersperse adds `withit` after each letter in input string except the last one
+ * @param {string} str input string
+ * @param {*} withit something that can be converted to a string usefully
+ * @returns String
+ */
+function intersperse(str, withit) {
+    return str.split("").join(String(withit));
+}
+
+/**
+ * intercalate puts `withit` between list of strings and then returns one single string.
+ * @param {string[]} strings
+ * @param {*} withit
+ * @returns
+ */
+function intercalate(strings, withit) {
+    return strings.join(String(withit));
+}
+
 module.exports = {
     ascii: {
         fromHex,
@@ -109,6 +129,8 @@ module.exports = {
     deleteStr,
     genChar,
     genCode,
+    intercalate,
+    intersperse,
     nextRune,
     previousRune,
     runes,

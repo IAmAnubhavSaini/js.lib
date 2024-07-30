@@ -53,6 +53,20 @@ export function deleteStr({ input, str }?: {
 }): string;
 import { genChar } from "./fns/iterator";
 import { genCode } from "./fns/iterator";
+/**
+ * intercalate puts `withit` between list of strings and then returns one single string.
+ * @param {string[]} strings
+ * @param {*} withit
+ * @returns
+ */
+export function intercalate(strings: string[], withit: any): string;
+/**
+ * intersperse adds `withit` after each letter in input string except the last one
+ * @param {string} str input string
+ * @param {*} withit something that can be converted to a string usefully
+ * @returns String
+ */
+export function intersperse(str: string, withit: any): string;
 import { nextRune } from "./fns/runes";
 import { previousRune } from "./fns/runes";
 import { runes } from "./fns/runes";

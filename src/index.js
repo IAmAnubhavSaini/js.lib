@@ -30,6 +30,8 @@ const { objectToString, deepEqual, keyEqual, valueEqual, findKeys } = require(".
 const { nothing, just, maybe, either, list, future, state } = require("./functional/monad");
 const { headingToHTML, sanitize, verifyHeading1, verifyHeading2, verifyHeading3 } = require("./markdown/markdown.js");
 
+const coinChange = require("./misc/coinChange");
+
 module.exports = {
     base64,
     canvas,
@@ -81,5 +83,8 @@ module.exports = {
         verifyHeading1,
         verifyHeading2,
         verifyHeading3,
+    },
+    miscellaneous: {
+        coinChange,
     },
 };

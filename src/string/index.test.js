@@ -1,4 +1,4 @@
-const { deleteChar, deleteStr, toNumber, compareEnds } = require("./index");
+const { deleteChar, deleteStr, toNumber, compareEnds, intercalate, intersperse } = require("./index");
 
 describe("string functions", () => {
     it("deleteChar deletes a character from a string", () => {
@@ -110,5 +110,46 @@ describe("string functions", () => {
             const endTime = performance.now();
             expect(endTime - startTime).toBeLessThan(100); // Example threshold, adjust based on requirements
         });
+    });
+});
+
+describe("intersperse", () => {
+    it("should intersperse with given item after each character in the string except the last one", () => {
+        expect(intersperse("abc", "x")).toEqual("axbxc");
+        expect(intersperse("foo", "-")).toEqual("f-o-o");
+    });
+
+    it("should convert withit to a string if necessary", () => {
+        expect(intersperse("abc", 1)).toEqual("a1b1c");
+        expect(intersperse("def", null)).toEqual("dnullenullf");
+    });
+
+    it("should handle empty strings correctly", () => {
+        expect(intersperse("", "x")).toEqual("");
+        expect(intersperse("", "")).toEqual("");
+    });
+
+    it("should intersperse correctly even if the string contains multiple instances of withit", () => {
+        expect(intersperse("xxx", "x")).toEqual("xxxxx");
+        expect(intersperse("---", "-")).toEqual("-----");
+    });
+});
+
+describe("intercalate", () => {
+    it('should insert "withit" between each string in the list', () => {
+        expect(intercalate(["a", "b", "c"], "withit")).toEqual("awithitbwithitc");
+    });
+
+    it("should handle an empty list gracefully", () => {
+        expect(intercalate([], "withit")).toEqual("");
+    });
+
+    it("should convert withit to a string if it is not already a string", () => {
+        expect(intercalate(["a", "b", "c"], 123)).toEqual("a123b123c");
+    });
+
+    it("should handle null or undefined values gracefully", () => {
+        expect(intercalate(["abc", "bbc", "cbc"], null)).toEqual("abcnullbbcnullcbc");
+        expect(intercalate(["a", "b", "c"], undefined)).toEqual("aundefinedbundefinedc");
     });
 });
