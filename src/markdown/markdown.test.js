@@ -89,6 +89,11 @@ describe("verifyHeading3", () => {
 });
 
 describe("sanitize", () => {
+
+    it("should escape html escape string", () => {
+        expect(sanitize("<!--script>")).toBe("");
+    });
+
     it("should escape < to &lt;", function () {
         expect(sanitize("<")).toBe("&lt;");
     });
@@ -109,12 +114,41 @@ describe("sanitize", () => {
         expect(sanitize("<script>")).toBe("");
     });
 
+    
+    it("should escape <<<<<script> to ''", function () {
+        expect(sanitize("<<<<<script>")).toBe("");
+    });
+
+    it("should escape <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<script> to ''", function () {
+        expect(sanitize("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<script>")).toBe("");
+    });
+
+    it("should escape <<<<<<<<<<<<<<<<<<s<c<r<i<p<t<<<<<<<script> to ''", function () {
+        expect(sanitize("<<<<<<<<<<<<<<<<<<s<c<r<i<p<t<<<<<<<script>")).toBe("");
+    });
+
+    it("should escape <SCRIPT> to ''", function () {
+        expect(sanitize("<SCRIPT>")).toBe("");
+    });
+
     it("should escape </script> to ''", function () {
         expect(sanitize("</script>")).toBe("");
     });
 
+    it("should escape <<<<<<<<<<<<<<<<<<<<</script> to ''", function () {
+        expect(sanitize("<<<<<<<<<<<<<<<<<<<<</script>")).toBe("");
+    });
+
     it("should escape <style> to ''", function () {
         expect(sanitize("<style>")).toBe("");
+    });
+
+    it("should escape <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<style> to ''", function () {
+        expect(sanitize("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<style>")).toBe("");
+    });
+
+    it("should escape <<<<SCRIPT<<<STYLE<<<<<<<<<<<<<<<<<<<<<<<<script<<<<<<<<<<style> to ''", function () {
+        expect(sanitize("<<<<SCRIPT<<<STYLE<<<<<<<<<<<<<<<<<<<<<<<<script<<<<<<<<<<style>")).toBe("");
     });
 
     it("should escape </style> to ''", function () {
