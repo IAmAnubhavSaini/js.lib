@@ -37,6 +37,7 @@ module.exports = {
     canvas,
     Conversions,
     fs,
+    hash256,
     heap: {
         number,
     },

@@ -2,6 +2,7 @@ import { base64 } from "./string/index.js";
 import { canvas } from "./canvas/canvas";
 import Conversions = require("./conversions/conversions");
 import { fs } from "./node/index.js";
+import { hash256 } from "./node/index.js";
 import { number } from "./heap/index.js";
 declare const filterReduce: typeof import("./array/fns/list.js").filterReduce;
 declare const foldl: typeof import("./array/fns/list.js").foldl;
@@ -100,4 +101,4 @@ export declare namespace markdown {
 export declare namespace miscellaneous {
     export { coinChange };
 }
-export { base64, canvas, Conversions, fs };
+export { base64, canvas, Conversions, fs, hash256 };
