@@ -1,7 +1,7 @@
 const { base64 } = require("./string/index.js");
 const {
     defaultArray,
-    list: { filterReduce, foldl, foldr, take, tail, head },
+    list,
     median,
     randomArray,
     randomMatrix,
@@ -27,7 +27,7 @@ const Conversions = require("./conversions/conversions");
 
 const { objectToString, deepEqual, keyEqual, valueEqual, findKeys } = require("./object/object");
 
-const { nothing, just, maybe, either, list, future, state } = require("./functional/monad");
+const { nothing, just, maybe, either, list: monad_list, future, state } = require("./functional/monad");
 const { headingToHTML, sanitize, verifyHeading1, verifyHeading2, verifyHeading3 } = require("./markdown/markdown.js");
 
 const coinChange = require("./misc/coinChange");
@@ -41,7 +41,6 @@ module.exports = {
     heap: {
         number,
     },
-    list: { filterReduce, foldl, foldr, take, tail, head },
     array: {
         defaultArray,
         median,
@@ -55,25 +54,13 @@ module.exports = {
         zeroNumberArray,
         zeroStringArray,
     },
-    primitives: {
-        BooleanT,
-        Default,
-        FalseT,
-        StringT,
-        TrueT,
-    },
-    object: {
-        objectToString,
-        deepEqual,
-        keyEqual,
-        valueEqual,
-        findKeys,
-    },
+
+    list,
     monad: {
         either,
         future,
         just,
-        list,
+        list: monad_list,
         maybe,
         nothing,
         state,
@@ -87,5 +74,20 @@ module.exports = {
     },
     miscellaneous: {
         coinChange,
+    },
+
+    object: {
+        objectToString,
+        deepEqual,
+        keyEqual,
+        valueEqual,
+        findKeys,
+    },
+    primitives: {
+        BooleanT,
+        Default,
+        FalseT,
+        StringT,
+        TrueT,
     },
 };
