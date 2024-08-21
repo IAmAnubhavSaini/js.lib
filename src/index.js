@@ -14,7 +14,7 @@ const {
     zeroStringArray,
 } = require("./array/index.js");
 const { number } = require("./heap/index.js");
-const { fs } = require("./node/index.js");
+const { fs, hash256 } = require("./node/index.js");
 
 const BooleanT = require("./primitives/boolean");
 const Default = require("./primitives/default");
