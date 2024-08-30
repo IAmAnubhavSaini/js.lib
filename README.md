@@ -88,7 +88,10 @@ npm install @ackret/js.lib
 ```
 
 ```javascript
-const { readFileSync, writeFileSync } = require("@ackret/js.lib/src/node/fs");
+const { fs } = require("@ackret/js.lib");
+
+// log all files with full path
+fs.processFiles({ directoryPath: "src", fileProcessorFn: console.log });
 ```
 
 ## Coverage

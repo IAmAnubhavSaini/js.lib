@@ -120,14 +120,19 @@ function readDirectorySync(directoryPath) {
  */
 function processFiles({ directoryPath, fileProcessorFn, directoryProcessorFn }) {
     const { files, directories } = readDirectorySync(directoryPath).content;
-    files.forEach((file) => fileProcessorFn(nodePathJoin(directoryPath, file)));
-    directories.forEach((directory) =>
+    if (fileProcessorFn) {
+        files.forEach((file) => fileProcessorFn(nodePathJoin(directoryPath, file)));
+    }
+    directories.forEach((directory) => {
+        if (directoryProcessorFn) {
+            directoryProcessorFn(directory);
+        }
         processFiles({
             directoryPath: nodePathJoin(directoryPath, directory),
             fileProcessorFn,
             directoryProcessorFn,
-        }),
-    );
+        });
+    });
 }
 
 module.exports = {
