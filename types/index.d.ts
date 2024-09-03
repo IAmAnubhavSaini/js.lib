@@ -1,4 +1,4 @@
-import { fs, hash256, hash512, platform, osname, isLinux, isWindows, isMac } from "./node/index";
+import { fs, hash256, hash512, platform, osname, isLinux, isWindows, isMac, readStream } from "./node/index";
 import { Result } from "./types/Result";
 declare const base64: any;
 declare const defaultArray: any, list: any, median: any, randomArray: any, randomMatrix: any, resetArray: any, reverseSortedArray: any, rotateLeft: any, rotateRight: any, sortedArray: any, zeroNumberArray: any, zeroStringArray: any;
@@ -14,5 +14,5 @@ declare const objectToString: any, deepEqual: any, keyEqual: any, valueEqual: an
 declare const nothing: any, just: any, maybe: any, either: any, monad_list: any, future: any, state: any;
 declare const headingToHTML: any, sanitize: any, verifyHeading1: any, verifyHeading2: any, verifyHeading3: any;
 declare const coinChange: any;
-export { base64, canvas, Conversions, fs, hash256, hash512, platform, osname, isLinux, isWindows, isMac, NumberMinHeap, NumberMaxHeap, defaultArray, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, list, either, future, just, monad_list, maybe, nothing, state, headingToHTML, sanitize, verifyHeading1, verifyHeading2, verifyHeading3, coinChange, objectToString, deepEqual, keyEqual, valueEqual, findKeys, BooleanT, Default, FalseT, StringT, TrueT, };
+export { base64, canvas, Conversions, fs, hash256, hash512, platform, osname, isLinux, isWindows, isMac, readStream, NumberMinHeap, NumberMaxHeap, defaultArray, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, list, either, future, just, monad_list, maybe, nothing, state, headingToHTML, sanitize, verifyHeading1, verifyHeading2, verifyHeading3, coinChange, objectToString, deepEqual, keyEqual, valueEqual, findKeys, BooleanT, Default, FalseT, StringT, TrueT, };
 export type { Result };
