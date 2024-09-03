@@ -11,6 +11,4 @@ function hash256({ content } = { content: "" }) {
     return createHash("sha256").update(content).digest().toString("hex");
 }
 
-module.exports = {
-    hash256,
-};
+export { hash256 };

@@ -7,7 +7,9 @@
     "emitDeclarationOnly": true, // Only emit .d.ts files, no JS output
     "outDir": "./types", // Directory to output .d.ts files
     "noEmit": false, // Ensure we're emitting files,
-    "types": ["node", "jasmine"] // Include node types
+    "types": ["node", "jasmine"], // Include node types
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
   },
   "include": [
     "./src/**/*" // Adjust this path to where your JS files are located

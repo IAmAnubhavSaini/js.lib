@@ -8,7 +8,7 @@ export class TimeTickerCallback {
     constructor(duration: any);
     duration: any;
     listeners: any[];
-    intervalId: NodeJS.Timer;
+    intervalId: NodeJS.Timeout;
     listen(callback: any): number;
     stopListening(id: any): void;
     destroy(): void;
@@ -17,6 +17,6 @@ export class TimeTickerList {
     constructor(duration: any);
     duration: any;
     ticks: any[];
-    intervalId: NodeJS.Timer;
+    intervalId: NodeJS.Timeout;
     destroy(): void;
 }

@@ -4,6 +4,7 @@
  * @param {string} options.content - The content to hash
  * @return {string} - The hash
  */
-export function hash256({ content }?: {
+declare function hash256({ content }?: {
     content: string;
-}): string;
+}): any;
+export { hash256 };

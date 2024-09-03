@@ -1,3 +1,8 @@
+import { Result } from "../types/Result";
+
+const { spawn } = require("child_process");
+const { once } = require("events");
+
 const {
     readFileSync: nodeReadFileSync,
     writeFileSync: nodeWriteFileSync,
@@ -135,9 +140,35 @@ function processFiles({ directoryPath, fileProcessorFn, directoryProcessorFn }) 
     });
 }
 
-module.exports = {
-    readFileSync,
-    writeFileSync,
-    readDirectorySync,
-    processFiles,
-};
+/**
+ * root directories for windows
+ * @returns {Promise<Result<string>>}
+ */
+async function windowsRoot(): Promise<Result<string>> {
+    const wmic = spawn("wmic", ["logicaldisk", "get", "name"]);
+    const [first] = await Promise.race([once(wmic.stdout, "data"), once(wmic.stderr, "data"), once(wmic, "error")]);
+    if (first instanceof Error) {
+        return { error: first.message, ok: false };
+    } else {
+        return {
+            ok: true,
+            result: first
+                .toString()
+                .replace("Name", "")
+                .replace(/\r/g, "")
+                .replace(/ /g, "")
+                .split("\n")
+                .filter((i) => i),
+        };
+    }
+}
+
+/**
+ *  linuxRoot returns the root of a linux filesystem
+ * @returns {Promise<Result<string>>}
+ */
+async function linuxRoot(): Promise<Result<string>> {
+    return { ok: true, result: ["/"] };
+}
+
+export { readFileSync, writeFileSync, readDirectorySync, processFiles, linuxRoot, windowsRoot };

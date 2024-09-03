@@ -1,10 +1,11 @@
+import { Result } from "../types/Result";
 /**
  * readFileSync reads a text file and returns the contents of the file as a string.
  * @param {string} filepath The absolute file path to the text file that needs to be read.
  * @returns {{error: Error, content: string}} Returns the error object and the file content.
  */
-export function readFileSync(filepath: string): {
-    error: Error;
+declare function readFileSync(filepath: any): {
+    error: any;
     content: string;
 };
 /**
@@ -13,19 +14,19 @@ export function readFileSync(filepath: string): {
  * @param {string} content the content that needs to be written to the file.
  * @returns {{error: Error}} {error} Returns an object; that contains the `error` object.
  */
-export function writeFileSync(filepath: string, content?: string): {
-    error: Error;
+declare function writeFileSync(filepath: any, content?: string): {
+    error: any;
 };
 /**
  *
  * @param {string} directoryPath
  * @returns {{error: Error | null, content: {files: string[], directories: string[]}}} an object containing list of files and directories.
  */
-export function readDirectorySync(directoryPath: string): {
-    error: Error | null;
+declare function readDirectorySync(directoryPath: any): {
+    error: any;
     content: {
-        files: string[];
-        directories: string[];
+        files: any[];
+        directories: any[];
     };
 };
 /**
@@ -36,8 +37,19 @@ export function readDirectorySync(directoryPath: string): {
  * @param {Function} options.fileProcessorFn - Function to process each file.
  * @param {Function} options.directoryProcessorFn - Function to process each directory.
  */
-export function processFiles({ directoryPath, fileProcessorFn, directoryProcessorFn }: {
-    directoryPath: string;
-    fileProcessorFn: Function;
-    directoryProcessorFn: Function;
+declare function processFiles({ directoryPath, fileProcessorFn, directoryProcessorFn }: {
+    directoryPath: any;
+    fileProcessorFn: any;
+    directoryProcessorFn: any;
 }): void;
+/**
+ * root directories for windows
+ * @returns {Promise<Result<string>>}
+ */
+declare function windowsRoot(): Promise<Result<string>>;
+/**
+ *  linuxRoot returns the root of a linux filesystem
+ * @returns {Promise<Result<string>>}
+ */
+declare function linuxRoot(): Promise<Result<string>>;
+export { readFileSync, writeFileSync, readDirectorySync, processFiles, linuxRoot, windowsRoot };

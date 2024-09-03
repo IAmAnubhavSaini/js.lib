@@ -1,3 +1,6 @@
+import { fs, hash256 } from "./node/index";
+import { Result } from "./types/Result";
+
 const { base64 } = require("./string/index.js");
 const {
     defaultArray,
@@ -14,7 +17,6 @@ const {
     zeroStringArray,
 } = require("./array/index.js");
 const { number } = require("./heap/index.js");
-const { fs, hash256 } = require("./node/index.js");
 
 const BooleanT = require("./primitives/boolean");
 const Default = require("./primitives/default");
@@ -91,3 +93,5 @@ module.exports = {
         TrueT,
     },
 };
+
+export type { Result };
