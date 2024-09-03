@@ -52,4 +52,9 @@ declare function windowsRoot(): Promise<Result<string>>;
  * @returns {Promise<Result<string>>}
  */
 declare function linuxRoot(): Promise<Result<string>>;
-export { readFileSync, writeFileSync, readDirectorySync, processFiles, linuxRoot, windowsRoot };
+/**
+ *  macRoot returns the root of a mac filesystem
+ * @returns {Promise<Result<string>>}
+ */
+declare function macRoot(): Promise<Result<string>>;
+export { readFileSync, writeFileSync, readDirectorySync, processFiles, linuxRoot, windowsRoot, macRoot };

@@ -1,8 +1,10 @@
-type Result<T> = {
+type ValueType<T> = {
     ok: true;
     result: T[];
-} | {
+};
+type ErrorType = {
     ok: false;
     error: string;
 };
-export type { Result };
+type Result<T> = ValueType<T> | ErrorType;
+export type { Result, ValueType, ErrorType };

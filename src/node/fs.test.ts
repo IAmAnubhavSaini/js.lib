@@ -1,5 +1,8 @@
-const { readFileSync, writeFileSync, readDirectorySync, processFiles } = require("./fs");
-const { join, dirname } = require("path");
+import { ErrorType, Result, ValueType } from "../types/Result";
+import { isLinux, isMac, isWindows } from "./info";
+
+import { readFileSync, writeFileSync, readDirectorySync, processFiles, linuxRoot, windowsRoot, macRoot } from "./fs";
+const { join } = require("path");
 
 describe("fs", () => {
     describe("readFileSync", () => {
@@ -128,6 +131,51 @@ describe("fs", () => {
 
         it("should processFiles just fine", () => {
             processFiles({ directoryPath: "./tmp", fileProcessorFn, directoryProcessorFn });
+        });
+    });
+
+    describe("macRoot", () => {
+        it("returns correct value", async () => {
+            if (isMac) {
+                const { ok, result } = (await macRoot()) as ValueType<string>;
+                const expected = ["/"];
+                expect(result).toEqual(expected);
+                expect(ok).toBeTrue();
+            } else {
+                const { ok, error } = (await macRoot()) as ErrorType;
+                const expected = "ERROR: Not mac.";
+                expect(error).toEqual(expected);
+                expect(ok).toBeFalse();
+            }
+        });
+    });
+    describe("linuxRoot", () => {
+        it("returns correct value", async () => {
+            if (isLinux) {
+                const { ok, result } = (await linuxRoot()) as ValueType<string>;
+                const expected = ["/"];
+                expect(result).toEqual(expected);
+                expect(ok).toBeTrue();
+            } else {
+                const { ok, error } = (await linuxRoot()) as ErrorType;
+                const expected = "ERROR: Not linux.";
+                expect(error).toEqual(expected);
+                expect(ok).toBeFalse();
+            }
+        });
+    });
+
+    describe("windowsRoot", () => {
+        it("returns correct value", async () => {
+            if (isWindows) {
+                const { ok, result } = (await windowsRoot()) as ValueType<string>;
+                expect(ok).toBeTrue();
+                expect(result.length > 0).toBeTrue();
+            } else {
+                const { ok, error } = (await windowsRoot()) as ErrorType;
+                expect(ok).toBeFalse();
+                expect(error).toBe("ERROR: Not windows.");
+            }
         });
     });
 });

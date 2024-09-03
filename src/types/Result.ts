@@ -1,3 +1,5 @@
-type Result<T> = { ok: true; result: T[] } | { ok: false; error: string };
+type ValueType<T> = { ok: true; result: T[] };
+type ErrorType = { ok: false; error: string };
+type Result<T> = ValueType<T> | ErrorType;
 
-export type { Result };
+export type { Result, ValueType, ErrorType };

@@ -1,4 +1,5 @@
-import { Result } from "../types/Result";
+import { ErrorType, Result, ValueType } from "../types/Result";
+import { isLinux, isMac, isWindows } from "./info";
 
 const { spawn } = require("child_process");
 const { once } = require("events");
@@ -145,10 +146,13 @@ function processFiles({ directoryPath, fileProcessorFn, directoryProcessorFn }) 
  * @returns {Promise<Result<string>>}
  */
 async function windowsRoot(): Promise<Result<string>> {
+    if (!isWindows) {
+        return { ok: false, error: "ERROR: Not windows." } as ErrorType;
+    }
     const wmic = spawn("wmic", ["logicaldisk", "get", "name"]);
     const [first] = await Promise.race([once(wmic.stdout, "data"), once(wmic.stderr, "data"), once(wmic, "error")]);
     if (first instanceof Error) {
-        return { error: first.message, ok: false };
+        return { ok: false, error: first.message } as ErrorType;
     } else {
         return {
             ok: true,
@@ -159,7 +163,7 @@ async function windowsRoot(): Promise<Result<string>> {
                 .replace(/ /g, "")
                 .split("\n")
                 .filter((i) => i),
-        };
+        } as ValueType<string>;
     }
 }
 
@@ -168,7 +172,21 @@ async function windowsRoot(): Promise<Result<string>> {
  * @returns {Promise<Result<string>>}
  */
 async function linuxRoot(): Promise<Result<string>> {
-    return { ok: true, result: ["/"] };
+    if (!isLinux) {
+        return { ok: false, error: "ERROR: Not linux." } as ErrorType;
+    }
+    return { ok: true, result: ["/"] } as ValueType<string>;
 }
 
-export { readFileSync, writeFileSync, readDirectorySync, processFiles, linuxRoot, windowsRoot };
+/**
+ *  macRoot returns the root of a mac filesystem
+ * @returns {Promise<Result<string>>}
+ */
+async function macRoot(): Promise<Result<string>> {
+    if (!isMac) {
+        return { ok: false, error: "ERROR: Not mac." } as ErrorType;
+    }
+    return { ok: true, result: ["/"] } as ValueType<string>;
+}
+
+export { readFileSync, writeFileSync, readDirectorySync, processFiles, linuxRoot, windowsRoot, macRoot };

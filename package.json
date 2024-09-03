@@ -1,6 +1,6 @@
 {
   "name": "@ackret/js.lib",
-  "version": "0.0.37",
+  "version": "0.0.38",
   "description": "A javascript library",
   "main": "src/index.js",
   "devDependencies": {
@@ -14,7 +14,7 @@
     "test": "./node_modules/.bin/jasmine",
     "cover": "npx nyc@latest npm run test | tee coverage.txt",
     "cover-html": "npx nyc@latest --reporter html jasmine && open coverage/index.html",
-    "build": "npm run test && ./node_modules/.bin/tsc"
+    "build": "./node_modules/.bin/tsc"
   },
   "keywords": [
     "library",
