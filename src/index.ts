@@ -1,4 +1,4 @@
-import { fs, hash256 } from "./node/index";
+import { fs, hash256, hash512 } from "./node/index";
 import { Result } from "./types/Result";
 
 const { base64 } = require("./string/index.js");
@@ -40,6 +40,7 @@ module.exports = {
     Conversions,
     fs,
     hash256,
+    hash512,
     heap: {
         number,
     },
