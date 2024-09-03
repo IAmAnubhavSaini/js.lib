@@ -714,5 +714,3 @@ pnpm-debug.log*
 
 dist-ssr/
 *.local
-
-types/**/*.js

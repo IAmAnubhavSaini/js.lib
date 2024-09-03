@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.isMac = exports.isWindows = exports.isLinux = exports.osname = exports.platform = void 0;
+const node_os_1 = require("node:os");
+const platform = process.platform;
+exports.platform = platform;
+const osname = (0, node_os_1.type)().toLocaleLowerCase();
+exports.osname = osname;
+const isLinux = platform === "linux";
+exports.isLinux = isLinux;
+const isWindows = platform === "win32";
+exports.isWindows = isWindows;
+const isMac = platform === "darwin";
+exports.isMac = isMac;
