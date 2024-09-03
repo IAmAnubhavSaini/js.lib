@@ -1,4 +1,4 @@
-import { fs, hash256, hash512 } from "./node/index";
+import { fs, hash256, hash512, platform, osname, isLinux, isWindows, isMac } from "./node/index";
 import { Result } from "./types/Result";
 
 const { base64 } = require("./string/index.js");
@@ -16,7 +16,7 @@ const {
     zeroNumberArray,
     zeroStringArray,
 } = require("./array/index.js");
-const { number } = require("./heap/index.js");
+const { NumberMinHeap, NumberMaxHeap } = require("./heap/index.js");
 
 const BooleanT = require("./primitives/boolean");
 const Default = require("./primitives/default");
@@ -34,65 +34,55 @@ const { headingToHTML, sanitize, verifyHeading1, verifyHeading2, verifyHeading3 
 
 const coinChange = require("./misc/coinChange");
 
-module.exports = {
+export {
     base64,
     canvas,
     Conversions,
     fs,
     hash256,
     hash512,
-    heap: {
-        number,
-    },
-    array: {
-        defaultArray,
-        median,
-        randomArray,
-        randomMatrix,
-        resetArray,
-        reverseSortedArray,
-        rotateLeft,
-        rotateRight,
-        sortedArray,
-        zeroNumberArray,
-        zeroStringArray,
-    },
-
+    platform,
+    osname,
+    isLinux,
+    isWindows,
+    isMac,
+    NumberMinHeap,
+    NumberMaxHeap,
+    defaultArray,
+    median,
+    randomArray,
+    randomMatrix,
+    resetArray,
+    reverseSortedArray,
+    rotateLeft,
+    rotateRight,
+    sortedArray,
+    zeroNumberArray,
+    zeroStringArray,
     list,
-    monad: {
-        either,
-        future,
-        just,
-        list: monad_list,
-        maybe,
-        nothing,
-        state,
-    },
-    markdown: {
-        headingToHTML,
-        sanitize,
-        verifyHeading1,
-        verifyHeading2,
-        verifyHeading3,
-    },
-    miscellaneous: {
-        coinChange,
-    },
-
-    object: {
-        objectToString,
-        deepEqual,
-        keyEqual,
-        valueEqual,
-        findKeys,
-    },
-    primitives: {
-        BooleanT,
-        Default,
-        FalseT,
-        StringT,
-        TrueT,
-    },
+    either,
+    future,
+    just,
+    monad_list,
+    maybe,
+    nothing,
+    state,
+    headingToHTML,
+    sanitize,
+    verifyHeading1,
+    verifyHeading2,
+    verifyHeading3,
+    coinChange,
+    objectToString,
+    deepEqual,
+    keyEqual,
+    valueEqual,
+    findKeys,
+    BooleanT,
+    Default,
+    FalseT,
+    StringT,
+    TrueT,
 };
 
 export type { Result };
