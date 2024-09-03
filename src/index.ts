@@ -1,5 +1,5 @@
 import { fs, hash256, hash512, platform, osname, isLinux, isWindows, isMac, readStream } from "./node/index";
-import { Result } from "./types/Result";
+import { Result, ErrorType, ValueType, Result2 } from "./types/Result";
 
 const { base64 } = require("./string/index.js");
 const {
@@ -15,13 +15,14 @@ const {
     sortedArray,
     zeroNumberArray,
     zeroStringArray,
+    arrayMayGet,
 } = require("./array/index.js");
 const { NumberMinHeap, NumberMaxHeap } = require("./heap/index.js");
 
 const BooleanT = require("./primitives/boolean");
 const Default = require("./primitives/default");
 const FalseT = require("./primitives/false");
-const StringT = require("./primitives/string");
+import StringT from "./primitives/string";
 const TrueT = require("./primitives/true");
 
 const { canvas } = require("./canvas/canvas");
@@ -49,6 +50,7 @@ export {
     readStream,
     NumberMinHeap,
     NumberMaxHeap,
+    arrayMayGet,
     defaultArray,
     median,
     randomArray,
@@ -86,4 +88,4 @@ export {
     TrueT,
 };
 
-export type { Result };
+export type { Result, ErrorType, ValueType, Result2 };

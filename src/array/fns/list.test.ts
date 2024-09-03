@@ -1,4 +1,4 @@
-const { filterReduce, foldl, foldr, take, takeWhile, head, tail } = require("./list");
+import { filterReduce, foldl, foldr, take, takeWhile, head, tail } from "./list";
 
 describe("list", () => {
     describe("filterReduce", () => {

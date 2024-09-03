@@ -1,4 +1,4 @@
-const {
+import {
     arrayToString,
     defaultArray,
     intersperse,
@@ -14,7 +14,8 @@ const {
     sortedArray,
     zeroNumberArray,
     zeroStringArray,
-} = require("./array");
+    arrayMayGet,
+} from "./array";
 
 describe("array functions", () => {
     it("defaultArray returns an array", () => {
@@ -289,5 +290,32 @@ describe("intersperse", () => {
         for (let i = 0; i < largeList.length - 1; i++) {
             expect(interspersedList[2 * i + 1]).toEqual("-");
         }
+    });
+
+    describe("arrayMayGet", () => {
+        it("should return proper value if index is in the range", () => {
+            const out = arrayMayGet<number>([1, 2, 3, 4, 5], 3);
+            if (out.ok) {
+                expect(out.result[0]).toBeLessThan(5);
+            } else {
+                expect(out.errors[0]).toBe("ERROR: index out of range.");
+            }
+        });
+        it("should return error if index is lower than 0", () => {
+            const { ok, result, errors } = arrayMayGet<number>([1, 2, 3, 4, 5], -1);
+            if (ok) {
+                expect(result[0]).toBeLessThan(5);
+            } else {
+                expect(errors[0]).toBe("ERROR: index out of range.");
+            }
+        });
+        it("should return error if index is greater than array.length", () => {
+            const { ok, result, errors } = arrayMayGet<number>([1, 2, 3, 4, 5], 6);
+            if (ok) {
+                expect(result[0]).toBeLessThan(5);
+            } else {
+                expect(errors[0]).toBe("ERROR: index out of range.");
+            }
+        });
     });
 });

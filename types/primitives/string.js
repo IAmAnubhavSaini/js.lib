@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const { objectToString } = require("../object/object");
 const { arrayToString } = require("../array/fns/array");
 /**
@@ -377,4 +378,4 @@ class StringT {
         return new StringT(other.toValue().concat(this.#value));
     }
 }
-module.exports = StringT;
+exports.default = StringT;

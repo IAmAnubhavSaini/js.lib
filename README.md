@@ -2,9 +2,45 @@
 
 ## Types
 
-This library will be moving to a `{ok: true|false, result: *[], error: ""}` type for all functions possible.
+This library will be moving to a `{ok: true|false, result?: *[], errors?: []}` type for all functions possible.
 
 ```typescript
+// USE Result2
+import { Result2 } from "@ackret/js.lib";
+function mayDivide(a, b): Result2<number> {
+    if (b !== 0) {
+        return { ok: true, result: [a / b] };
+    } else {
+        return { ok: false, errors: ["ERROR: Cannot divide by 0."] };
+    }
+}
+const { ok, result, errors } = mayDivide(10, 20);
+
+// OR
+/**
+ * arrayMayGet may get a value or fetch an error if index is out of bounds.
+ * @param {Array<T>} array
+ * @param {number} index
+ * @returns {Result2<T, string}}
+ */
+function arrayMayGet<T>(array: Array<T>, index: number): Result2<T, string> {
+    if (index >= 0 && index < array.length) {
+        return { ok: true, result: [array[index]] };
+    } else {
+        return { ok: false, errors: ["ERROR: index out of range."] };
+    }
+}
+it("should return error if index is greater than array.length", () => {
+    const { ok, result, errors } = arrayMayGet<number>([1, 2, 3, 4, 5], 6);
+    if (ok) {
+        expect(result[0]).toBeLessThan(5);
+    } else {
+        expect(errors[0]).toBe("ERROR: index out of range.");
+    }
+});
+
+// OLD Result
+
 import { Result, ValueType, ErrorType } from "@ackret/js.lib";
 
 // You can use these types as shown in following example:
@@ -19,6 +55,10 @@ function mayDivide(a, b): Result<number> {
 
 ## Features
 
+-   Result<T>
+-   ValueType<T>
+-   ErrorType
+-   Result2<T, E>
 -   array
     -   defaultArray
     -   median
@@ -31,6 +71,7 @@ function mayDivide(a, b): Result<number> {
     -   sortedArray
     -   zeroNumberArray
     -   zeroStringArray
+    -   arrayMayGet<T>
 -   list
     -   filterReduce
     -   foldl

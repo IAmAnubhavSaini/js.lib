@@ -1,4 +1,21 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.arrayToString = arrayToString;
+exports.defaultArray = defaultArray;
+exports.intersperse = intersperse;
+exports.isArray = isArray;
+exports.isArraylike = isArraylike;
+exports.randomArray = randomArray;
+exports.randomMatrix = randomMatrix;
+exports.resetArray = resetArray;
+exports.reverseSortedArray = reverseSortedArray;
+exports.rotateLeft = rotateLeft;
+exports.rotateRight = rotateRight;
+exports.sortedArray = sortedArray;
+exports.zeroNumberArray = zeroNumberArray;
+exports.zeroStringArray = zeroStringArray;
+exports.median = median;
+exports.arrayMayGet = arrayMayGet;
 /**
  *
  * @param {Object} options - The options object.
@@ -189,20 +206,17 @@ function intersperse(list, withit) {
     }
     return out;
 }
-module.exports = {
-    arrayToString,
-    defaultArray,
-    intersperse,
-    isArray,
-    isArraylike,
-    randomArray,
-    randomMatrix,
-    resetArray,
-    reverseSortedArray,
-    rotateLeft,
-    rotateRight,
-    sortedArray,
-    zeroNumberArray,
-    zeroStringArray,
-    median,
-};
+/**
+ * arrayMayGet may get a value or fetch an error if index is out of bounds.
+ * @param {Array<T>} array
+ * @param {number} index
+ * @returns {Result2<T, string}}
+ */
+function arrayMayGet(array, index) {
+    if (index >= 0 && index < array.length) {
+        return { ok: true, result: [array[index]] };
+    }
+    else {
+        return { ok: false, errors: ["ERROR: index out of range."] };
+    }
+}

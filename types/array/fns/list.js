@@ -1,4 +1,12 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.filterReduce = filterReduce;
+exports.foldl = foldl;
+exports.foldr = foldr;
+exports.take = take;
+exports.takeWhile = takeWhile;
+exports.head = head;
+exports.tail = tail;
 /**
  * foldr :: (a -> b -> b) -> b -> [a] -> b
  * @param fn {function}
@@ -94,12 +102,3 @@ function tail(list, n = 10) {
     n = Math.max(0, list.length - n);
     return list.slice(n);
 }
-module.exports = {
-    filterReduce,
-    foldl,
-    foldr,
-    take,
-    takeWhile,
-    head,
-    tail,
-};

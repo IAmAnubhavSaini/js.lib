@@ -1,4 +1,4 @@
-const StringT = require("./string");
+import StringT from "./string";
 
 describe("StringT", function () {
     describe("constructor", function () {

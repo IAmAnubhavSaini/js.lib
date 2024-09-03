@@ -1,6 +1,9 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TrueT = exports.StringT = exports.FalseT = exports.Default = exports.BooleanT = exports.findKeys = exports.valueEqual = exports.keyEqual = exports.deepEqual = exports.objectToString = exports.coinChange = exports.verifyHeading3 = exports.verifyHeading2 = exports.verifyHeading1 = exports.sanitize = exports.headingToHTML = exports.state = exports.nothing = exports.maybe = exports.monad_list = exports.just = exports.future = exports.either = exports.list = exports.zeroStringArray = exports.zeroNumberArray = exports.sortedArray = exports.rotateRight = exports.rotateLeft = exports.reverseSortedArray = exports.resetArray = exports.randomMatrix = exports.randomArray = exports.median = exports.defaultArray = exports.NumberMaxHeap = exports.NumberMinHeap = exports.readStream = exports.isMac = exports.isWindows = exports.isLinux = exports.osname = exports.platform = exports.hash512 = exports.hash256 = exports.fs = exports.Conversions = exports.canvas = exports.base64 = void 0;
+exports.TrueT = exports.StringT = exports.FalseT = exports.Default = exports.BooleanT = exports.findKeys = exports.valueEqual = exports.keyEqual = exports.deepEqual = exports.objectToString = exports.coinChange = exports.verifyHeading3 = exports.verifyHeading2 = exports.verifyHeading1 = exports.sanitize = exports.headingToHTML = exports.state = exports.nothing = exports.maybe = exports.monad_list = exports.just = exports.future = exports.either = exports.list = exports.zeroStringArray = exports.zeroNumberArray = exports.sortedArray = exports.rotateRight = exports.rotateLeft = exports.reverseSortedArray = exports.resetArray = exports.randomMatrix = exports.randomArray = exports.median = exports.defaultArray = exports.arrayMayGet = exports.NumberMaxHeap = exports.NumberMinHeap = exports.readStream = exports.isMac = exports.isWindows = exports.isLinux = exports.osname = exports.platform = exports.hash512 = exports.hash256 = exports.fs = exports.Conversions = exports.canvas = exports.base64 = void 0;
 const index_1 = require("./node/index");
 Object.defineProperty(exports, "fs", { enumerable: true, get: function () { return index_1.fs; } });
 Object.defineProperty(exports, "hash256", { enumerable: true, get: function () { return index_1.hash256; } });
@@ -13,7 +16,7 @@ Object.defineProperty(exports, "isMac", { enumerable: true, get: function () { r
 Object.defineProperty(exports, "readStream", { enumerable: true, get: function () { return index_1.readStream; } });
 const { base64 } = require("./string/index.js");
 exports.base64 = base64;
-const { defaultArray, list, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, } = require("./array/index.js");
+const { defaultArray, list, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, arrayMayGet, } = require("./array/index.js");
 exports.defaultArray = defaultArray;
 exports.list = list;
 exports.median = median;
@@ -26,6 +29,7 @@ exports.rotateRight = rotateRight;
 exports.sortedArray = sortedArray;
 exports.zeroNumberArray = zeroNumberArray;
 exports.zeroStringArray = zeroStringArray;
+exports.arrayMayGet = arrayMayGet;
 const { NumberMinHeap, NumberMaxHeap } = require("./heap/index.js");
 exports.NumberMinHeap = NumberMinHeap;
 exports.NumberMaxHeap = NumberMaxHeap;
@@ -35,8 +39,8 @@ const Default = require("./primitives/default");
 exports.Default = Default;
 const FalseT = require("./primitives/false");
 exports.FalseT = FalseT;
-const StringT = require("./primitives/string");
-exports.StringT = StringT;
+const string_1 = __importDefault(require("./primitives/string"));
+exports.StringT = string_1.default;
 const TrueT = require("./primitives/true");
 exports.TrueT = TrueT;
 const { canvas } = require("./canvas/canvas");

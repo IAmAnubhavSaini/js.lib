@@ -413,4 +413,4 @@ class StringT {
     }
 }
 
-module.exports = StringT;
+export default StringT;

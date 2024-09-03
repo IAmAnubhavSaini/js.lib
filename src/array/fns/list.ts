@@ -98,12 +98,4 @@ function tail(list, n = 10) {
     return list.slice(n);
 }
 
-module.exports = {
-    filterReduce,
-    foldl,
-    foldr,
-    take,
-    takeWhile,
-    head,
-    tail,
-};
+export { filterReduce, foldl, foldr, take, takeWhile, head, tail };

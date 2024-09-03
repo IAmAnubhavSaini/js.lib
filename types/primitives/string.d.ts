@@ -1,15 +1,21 @@
-export = StringT;
 /**
  * Represents a custom string class with various string manipulation methods.
  * @class
  */
 declare class StringT {
+    #private;
+    /**
+     * StringT constructor
+     * @constructor
+     * @param {string | number | [] | {}} value - The value that can be converted to string
+     */
+    constructor(value: any);
     /**
      * Creates a StringT object from an array.
      * @param {Array} value - The array to create the StringT object from.
      * @returns {StringT} The created StringT object.
      */
-    static fromArray(value: any[]): StringT;
+    static fromArray(value: any): StringT;
     /**
      * Creates a new StringT instance from an object.
      * @param {any} value - The value to convert to a string.
@@ -21,13 +27,7 @@ declare class StringT {
      * @returns {StringT} - The empty string
      * */
     static empty(): StringT;
-    /**
-     * StringT constructor
-     * @constructor
-     * @param {string | number | [] | {}} value - The value that can be converted to string
-     */
-    constructor(value: string | number | [] | {});
-    get length(): number;
+    get length(): any;
     /**
      * Check if the string is ASCII
      * @memberof StringT
@@ -83,37 +83,49 @@ declare class StringT {
      * Convert the string to a js string
      * @returns {string} - The string value
      * */
-    toString(): string;
+    toString(): any;
     /**
      * Convert the string to a js string
      * @returns {string} - The string value
      */
-    toValue(): string;
+    toValue(): any;
     /**
      * Convert the string to an object
      * @returns {Object} - The StringT object
      */
-    toObject(): any;
+    toObject(): {
+        StringT: {
+            value: any;
+            length: any;
+            isAscii: boolean;
+            isAlphabetic: boolean;
+            isNumeric: boolean;
+            isAlphaNumeric: boolean;
+            isLowerCase: boolean;
+            isUpperCase: boolean;
+            isPalindrome: boolean;
+        };
+    };
     /**
      * Check if the string is equal to another string
      * @param {StringT} other - The other StringT to compare
      * @returns {boolean} - True if the strings are equal, false otherwise
      */
-    isEqual(other: StringT): boolean;
+    isEqual(other: any): boolean;
     /**
      * Check if the string is equal to another string for the first n characters
      * @param {StringT} other - The other StringT to compare
      * @param {number} n - The number of characters to compare
      * @returns {boolean} - True if the strings are equal for the first n characters, false otherwise
      */
-    isEqualFirstN(other: StringT, n?: number): boolean;
+    isEqualFirstN(other: any, n?: number): boolean;
     /**
      * Checks if the last `n` characters of the current string are equal to the last `n` characters of another string.
      * @param {StringT|string} other - The other string to compare with.
      * @param {number} n - The number of characters to compare from the end of the strings.
      * @returns {boolean} - `true` if the last `n` characters are equal, `false` otherwise.
      */
-    isEqualLastN(other: StringT | string, n: number): boolean;
+    isEqualLastN(other: any, n: any): boolean;
     /**
      * firstN - Get the first n characters of the string
      * @param {number} n - The number of characters to get
@@ -150,7 +162,7 @@ declare class StringT {
      * @param {string} char - The character to get the frequency of
      * @returns {number} - The frequency of the character in the string
      * */
-    frequency(char?: string): number;
+    frequency(char?: string): any;
     /**
      * reverse - Reverses the string
      * @returns {StringT} - The reversed string
@@ -174,7 +186,7 @@ declare class StringT {
      * @param {string} fill - The fill character
      * @returns {StringT} - The padded string
      * */
-    padRight(n: number, fill?: string): StringT;
+    padRight(n: any, fill?: string): StringT;
     /**
      * padStart - Pad the string from the start
      * @param {number} n - The number of characters to pad
@@ -182,7 +194,7 @@ declare class StringT {
      * @returns {StringT} - The padded string
      * @memberof StringT
      */
-    padStart(n: number, fill?: string): StringT;
+    padStart(n: any, fill?: string): StringT;
     /**
      * padLeft - Pad the string from the start
      * @param {number} n - The number of characters to pad
@@ -191,7 +203,7 @@ declare class StringT {
      * @function padLeft
      * @memberof StringT
      */
-    padLeft(n: number, fill?: string): StringT;
+    padLeft(n: any, fill?: string): StringT;
     /**
      * concat - Concatenate two strings
      * @param {StringT} other - The other string to concatenate
@@ -199,7 +211,7 @@ declare class StringT {
      * @function concat
      * @memberof StringT
      * */
-    concat(other: StringT): StringT;
+    concat(other: any): StringT;
     /**
      * append - Append a string to another string
      * @param {StringT} other - The string to append
@@ -207,7 +219,7 @@ declare class StringT {
      * @function append
      * @memberof StringT
      * */
-    append(other: StringT): StringT;
+    append(other: any): StringT;
     /**
      * prepend - Prepend a string to another string
      * @param {StringT} other - The string to prepend
@@ -215,6 +227,6 @@ declare class StringT {
      * @function prepend
      * @memberof StringT
      */
-    prepend(other: StringT): StringT;
-    #private;
+    prepend(other: any): StringT;
 }
+export default StringT;

@@ -1,5 +1,5 @@
 const { filterReduce, foldl, foldr, take, tail, head } = require("./fns/list.js");
-const {
+import {
     arrayToString,
     defaultArray,
     isArray,
@@ -14,14 +14,15 @@ const {
     sortedArray,
     zeroNumberArray,
     zeroStringArray,
-} = require("./fns/array.js");
+} from "./fns/array.js";
 
-module.exports = {
+const list = { filterReduce, foldl, foldr, take, tail, head };
+
+export {
     arrayToString,
     defaultArray,
     isArray,
     isArraylike,
-    list: { filterReduce, foldl, foldr, take, tail, head },
     median,
     randomArray,
     randomMatrix,
@@ -32,4 +33,5 @@ module.exports = {
     sortedArray,
     zeroNumberArray,
     zeroStringArray,
+    list,
 };

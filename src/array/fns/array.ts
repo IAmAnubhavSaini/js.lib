@@ -1,3 +1,5 @@
+import { Result2 } from "../../types/Result";
+
 /**
  *
  * @param {Object} options - The options object.
@@ -203,7 +205,21 @@ function intersperse(list, withit) {
     return out;
 }
 
-module.exports = {
+/**
+ * arrayMayGet may get a value or fetch an error if index is out of bounds.
+ * @param {Array<T>} array
+ * @param {number} index
+ * @returns {Result2<T, string}}
+ */
+function arrayMayGet<T>(array: Array<T>, index: number): Result2<T, string> {
+    if (index >= 0 && index < array.length) {
+        return { ok: true, result: [array[index]] };
+    } else {
+        return { ok: false, errors: ["ERROR: index out of range."] };
+    }
+}
+
+export {
     arrayToString,
     defaultArray,
     intersperse,
@@ -219,4 +235,5 @@ module.exports = {
     zeroNumberArray,
     zeroStringArray,
     median,
+    arrayMayGet,
 };
