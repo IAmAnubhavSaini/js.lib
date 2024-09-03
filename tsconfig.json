@@ -4,7 +4,7 @@
     "allowJs": true, // Allow processing of JS files
     "checkJs": true, // Enable type checking for JS files
     "declaration": true, // Emit .d.ts files
-    "emitDeclarationOnly": true, // Only emit .d.ts files, no JS output
+    "emitDeclarationOnly": false, // Only emit .d.ts files, no JS output
     "outDir": "./types", // Directory to output .d.ts files
     "noEmit": false, // Ensure we're emitting files,
     "types": ["node", "jasmine"], // Include node types
