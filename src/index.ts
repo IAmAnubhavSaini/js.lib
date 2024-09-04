@@ -1,4 +1,15 @@
-import { fs, hash256, hash512, platform, osname, isLinux, isWindows, isMac, readStream } from "./node/index";
+import {
+    fs,
+    hash256,
+    hash512,
+    platform,
+    osname,
+    isLinux,
+    isWindows,
+    isMac,
+    readStream,
+    LinuxDirectoryNode,
+} from "./node/index";
 import { Result, ErrorType, ValueType, Result2 } from "./types/Result";
 
 const { base64 } = require("./string/index.js");
@@ -47,6 +58,7 @@ export {
     isLinux,
     isWindows,
     isMac,
+    LinuxDirectoryNode,
     readStream,
     NumberMinHeap,
     NumberMaxHeap,

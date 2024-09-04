@@ -1,6 +1,6 @@
 {
   "name": "@ackret/js.lib",
-  "version": "0.0.44",
+  "version": "0.0.45",
   "description": "A javascript library",
   "main": "types/index.js",
   "devDependencies": {

@@ -92,6 +92,7 @@ function mayDivide(a, b): Result<number> {
         -   windowsRoot
         -   linuxRoot
         -   macRoot
+        -   LinuxDirectoryNode
     -   info
         -   platform
         -   osname
