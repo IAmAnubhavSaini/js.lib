@@ -9,6 +9,9 @@ import {
     isMac,
     readStream,
     LinuxDirectoryNode,
+    int,
+    posint,
+    negint,
 } from "./node/index";
 import { Result, ErrorType, ValueType, Result2 } from "./types/Result";
 
@@ -59,6 +62,9 @@ export {
     isWindows,
     isMac,
     LinuxDirectoryNode,
+    int,
+    posint,
+    negint,
     readStream,
     NumberMinHeap,
     NumberMaxHeap,

@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LinuxDirectoryNode = exports.readStream = exports.isMac = exports.isWindows = exports.isLinux = exports.osname = exports.platform = exports.hash512 = exports.hash256 = exports.fs = void 0;
+exports.negint = exports.posint = exports.int = exports.LinuxDirectoryNode = exports.readStream = exports.isMac = exports.isWindows = exports.isLinux = exports.osname = exports.platform = exports.hash512 = exports.hash256 = exports.fs = void 0;
 const fs = __importStar(require("./fs"));
 exports.fs = fs;
 const hash_1 = require("./hash");
@@ -39,3 +39,7 @@ const read_1 = require("./stream/read");
 Object.defineProperty(exports, "readStream", { enumerable: true, get: function () { return read_1.readStream; } });
 const directory_1 = require("./directory");
 Object.defineProperty(exports, "LinuxDirectoryNode", { enumerable: true, get: function () { return directory_1.LinuxDirectoryNode; } });
+const random_1 = require("./random");
+Object.defineProperty(exports, "int", { enumerable: true, get: function () { return random_1.int; } });
+Object.defineProperty(exports, "posint", { enumerable: true, get: function () { return random_1.posint; } });
+Object.defineProperty(exports, "negint", { enumerable: true, get: function () { return random_1.negint; } });
