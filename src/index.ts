@@ -15,6 +15,8 @@ import {
 } from "./node/index";
 import { Result, ErrorType, ValueType, Result2 } from "./types/Result";
 
+import { isString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf } from "./checks/type";
+
 const { base64 } = require("./string/index.js");
 const {
     defaultArray,
@@ -48,6 +50,8 @@ const { nothing, just, maybe, either, list: monad_list, future, state } = requir
 const { headingToHTML, sanitize, verifyHeading1, verifyHeading2, verifyHeading3 } = require("./markdown/markdown.js");
 
 const coinChange = require("./misc/coinChange");
+
+const checks = { type: { isString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf } };
 
 export {
     base64,
@@ -104,6 +108,7 @@ export {
     FalseT,
     StringT,
     TrueT,
+    checks,
 };
 
 export type { Result, ErrorType, ValueType, Result2 };

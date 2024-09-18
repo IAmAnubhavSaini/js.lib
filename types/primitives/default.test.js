@@ -56,9 +56,10 @@ describe("Default", () => {
             expect(actual).toEqual(expected);
         });
         it("just check some weird things", () => {
-            expect(Default.equals([], [])).toBeFalsy();
-            expect(Default.equals([], true)).toBeFalsy();
-            expect(Default.equals(![], false)).toBeTruthy();
+            let actual = [];
+            expect(Default.equals(actual, [])).toBeFalsy();
+            expect(Default.equals(actual, true)).toBeFalsy();
+            expect(Default.equals(!actual, false)).toBeTruthy();
         });
     });
 });

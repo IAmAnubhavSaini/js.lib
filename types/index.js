@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BooleanT = exports.findKeys = exports.valueEqual = exports.keyEqual = exports.deepEqual = exports.objectToString = exports.coinChange = exports.verifyHeading3 = exports.verifyHeading2 = exports.verifyHeading1 = exports.sanitize = exports.headingToHTML = exports.state = exports.nothing = exports.maybe = exports.monad_list = exports.just = exports.future = exports.either = exports.list = exports.zeroStringArray = exports.zeroNumberArray = exports.sortedArray = exports.rotateRight = exports.rotateLeft = exports.reverseSortedArray = exports.resetArray = exports.randomMatrix = exports.randomArray = exports.median = exports.defaultArray = exports.arrayMayGet = exports.NumberMaxHeap = exports.NumberMinHeap = exports.readStream = exports.negint = exports.posint = exports.int = exports.LinuxDirectoryNode = exports.isMac = exports.isWindows = exports.isLinux = exports.osname = exports.platform = exports.hash512 = exports.hash256 = exports.fs = exports.Conversions = exports.canvas = exports.base64 = void 0;
-exports.TrueT = exports.StringT = exports.FalseT = exports.Default = void 0;
+exports.checks = exports.TrueT = exports.StringT = exports.FalseT = exports.Default = void 0;
 const index_1 = require("./node/index");
 Object.defineProperty(exports, "fs", { enumerable: true, get: function () { return index_1.fs; } });
 Object.defineProperty(exports, "hash256", { enumerable: true, get: function () { return index_1.hash256; } });
@@ -19,6 +19,7 @@ Object.defineProperty(exports, "LinuxDirectoryNode", { enumerable: true, get: fu
 Object.defineProperty(exports, "int", { enumerable: true, get: function () { return index_1.int; } });
 Object.defineProperty(exports, "posint", { enumerable: true, get: function () { return index_1.posint; } });
 Object.defineProperty(exports, "negint", { enumerable: true, get: function () { return index_1.negint; } });
+const type_1 = require("./checks/type");
 const { base64 } = require("./string/index.js");
 exports.base64 = base64;
 const { defaultArray, list, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, arrayMayGet, } = require("./array/index.js");
@@ -74,3 +75,5 @@ exports.verifyHeading2 = verifyHeading2;
 exports.verifyHeading3 = verifyHeading3;
 const coinChange = require("./misc/coinChange");
 exports.coinChange = coinChange;
+const checks = { type: { isString: type_1.isString, isEmptyOrNullString: type_1.isEmptyOrNullString, isUndefinedOrNull: type_1.isUndefinedOrNull, isPrimitive: type_1.isPrimitive, isArrayOf: type_1.isArrayOf } };
+exports.checks = checks;

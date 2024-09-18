@@ -178,6 +178,14 @@ npm run cover-html
 
 ```
 
+## Development
+
+```bash
+npm install --save-dev jasmine@latest prettier@latest typescript@latest @types/jasmine@latest @types/node@latest
+
+npm run build && npm run test
+```
+
 ## License
 
 [MIT](./LICENSE)

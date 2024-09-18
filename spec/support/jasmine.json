@@ -1,8 +1,8 @@
 {
-    "spec_files": ["**/*test.?(m)js"],
-    "helpers": ["helpers/**/*.?(m)js"],
-    "env": {
-        "stopSpecOnExpectationFailure": false,
-        "random": true
-    }
+  "spec_files": ["**/*test.?(m)js"],
+  "helpers": ["helpers/**/*.?(m)js"],
+  "env": {
+    "stopSpecOnExpectationFailure": true,
+    "random": false
+  }
 }
