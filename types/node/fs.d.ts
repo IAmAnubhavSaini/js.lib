@@ -29,6 +29,26 @@ declare function readDirectorySync(directoryPath: any): {
         directories: any[];
     };
 };
+type InfoItem = {
+    path: string;
+    parent: string;
+    name: string;
+    isDirectory: boolean;
+    isBlockDevice: boolean;
+    isCharacterDevice: boolean;
+    isSymbolicLink: boolean;
+    isFIFO: boolean;
+    isSocket: boolean;
+};
+declare class DirInfo {
+    path: string;
+    info: InfoItem[];
+    constructor(path: string);
+    toJson(): string;
+    toPrettyJson(): string;
+    get directories(): InfoItem[];
+    get files(): InfoItem[];
+}
 /**
  * Processes files and directories starting from a given directory path.
  *
@@ -57,4 +77,4 @@ declare function linuxRoot(): Promise<Result<string>>;
  * @returns {Promise<Result<string>>}
  */
 declare function macRoot(): Promise<Result<string>>;
-export { readFileSync, writeFileSync, readDirectorySync, processFiles, linuxRoot, windowsRoot, macRoot };
+export { readFileSync, writeFileSync, readDirectorySync, processFiles, linuxRoot, windowsRoot, macRoot, DirInfo };

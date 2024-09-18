@@ -1,5 +1,6 @@
 import {
     fs,
+    DirInfo,
     hash256,
     hash512,
     platform,
@@ -14,8 +15,8 @@ import {
     negint,
 } from "./node/index";
 import { Result, ErrorType, ValueType, Result2 } from "./types/Result";
-
-import { isString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf } from "./checks/type";
+import { Option, Some, None } from "./types/Option";
+import { isString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf, isEmptyString } from "./checks/type";
 
 const { base64 } = require("./string/index.js");
 const {
@@ -51,13 +52,14 @@ const { headingToHTML, sanitize, verifyHeading1, verifyHeading2, verifyHeading3 
 
 const coinChange = require("./misc/coinChange");
 
-const checks = { type: { isString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf } };
+const checks = { type: { isString, isEmptyString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf } };
 
 export {
     base64,
     canvas,
     Conversions,
     fs,
+    DirInfo,
     hash256,
     hash512,
     platform,
@@ -109,6 +111,15 @@ export {
     StringT,
     TrueT,
     checks,
+    isString,
+    isEmptyString,
+    isEmptyOrNullString,
+    isUndefinedOrNull,
+    isPrimitive,
+    isArrayOf,
+    Option,
+    Some,
+    None,
 };
 
 export type { Result, ErrorType, ValueType, Result2 };

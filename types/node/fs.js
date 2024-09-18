@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DirInfo = void 0;
 exports.readFileSync = readFileSync;
 exports.writeFileSync = writeFileSync;
 exports.readDirectorySync = readDirectorySync;
@@ -10,7 +11,7 @@ exports.macRoot = macRoot;
 const info_1 = require("./info");
 const { spawn } = require("child_process");
 const { once } = require("events");
-const { readFileSync: nodeReadFileSync, writeFileSync: nodeWriteFileSync, readdirSync: nodeReadDirSync, existsSync: nodeExistsSync, statSync: nodeStatSync, } = require("fs");
+const node_fs_1 = require("node:fs");
 const { join: nodePathJoin } = require("path");
 /**
  * readFileSync reads a text file and returns the contents of the file as a string.
@@ -29,7 +30,7 @@ function readFileSync(filepath) {
         return { error, content };
     }
     try {
-        content = nodeReadFileSync(filepath, "utf8");
+        content = (0, node_fs_1.readFileSync)(filepath, "utf8");
     }
     catch (readError) {
         error = new Error("ERROR: The file could not be read.\n" + readError.message);
@@ -61,7 +62,7 @@ function writeFileSync(filepath, content = "") {
         return { error };
     }
     try {
-        nodeWriteFileSync(filepath, content, "utf8");
+        (0, node_fs_1.writeFileSync)(filepath, content, "utf8");
     }
     catch (writeError) {
         error = new Error("ERROR: The file could not be written.\n" + writeError.message);
@@ -84,19 +85,19 @@ function readDirectorySync(directoryPath) {
         error = new TypeError("ERROR: The directory path must be a string.");
         return { error, content };
     }
-    if (!nodeExistsSync(directoryPath)) {
+    if (!(0, node_fs_1.existsSync)(directoryPath)) {
         error = new RangeError("ERROR: The directory doesn't exist.");
         return { error, content };
     }
     try {
         const files = [], directories = [];
-        const readContent = nodeReadDirSync(directoryPath);
+        const readContent = (0, node_fs_1.readdirSync)(directoryPath);
         for (const f of readContent) {
             const newPath = nodePathJoin(directoryPath, f);
-            if (!nodeExistsSync(newPath)) {
+            if (!(0, node_fs_1.existsSync)(newPath)) {
                 continue;
             }
-            if (nodeStatSync(newPath).isDirectory()) {
+            if ((0, node_fs_1.statSync)(newPath).isDirectory()) {
                 directories.push(f);
             }
             else {
@@ -110,6 +111,56 @@ function readDirectorySync(directoryPath) {
     }
     return { error, content };
 }
+class DirInfo {
+    path;
+    info = [];
+    constructor(path) {
+        this.path = path;
+        this.info = [];
+        if (!(0, node_fs_1.existsSync)(path)) {
+            return this;
+        }
+        try {
+            const readContent = (0, node_fs_1.readdirSync)(path);
+            for (const f of readContent) {
+                const newPath = nodePathJoin(path, f);
+                if (!(0, node_fs_1.existsSync)(newPath)) {
+                    continue;
+                }
+                const stat = (0, node_fs_1.statSync)(newPath);
+                this.info.push({
+                    ...stat,
+                    path: newPath,
+                    parent: path,
+                    name: f,
+                    isDirectory: stat.isDirectory(),
+                    isBlockDevice: stat.isBlockDevice(),
+                    isCharacterDevice: stat.isCharacterDevice(),
+                    isSymbolicLink: stat.isSymbolicLink(),
+                    isFIFO: stat.isFIFO(),
+                    isSocket: stat.isSocket(),
+                });
+            }
+        }
+        catch (e) {
+            console.error(e);
+            this.info = [];
+        }
+    }
+    toJson() {
+        return JSON.stringify({ path: this.path, info: this.info });
+    }
+    toPrettyJson() {
+        return JSON.stringify({ path: this.path, info: this.info }, null, 4);
+    }
+    get directories() {
+        return this.info.filter((i) => i.isDirectory);
+    }
+    get files() {
+        return this.info.filter((i) => !i.isDirectory);
+    }
+}
+exports.DirInfo = DirInfo;
 /**
  * Processes files and directories starting from a given directory path.
  *

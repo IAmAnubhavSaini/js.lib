@@ -6,6 +6,10 @@ function isEmptyOrNullString(value: string) {
     return value === null || (isString(value) && value.length === 0);
 }
 
+function isEmptyString(value: string) {
+    return isString(value) && value.length === 0;
+}
+
 function isUndefinedOrNull(value: unknown) {
     return value === undefined || value === null;
 }
@@ -31,4 +35,4 @@ function isArrayOf(type: string, array: Array<unknown>) {
     return Array.isArray(array) && array.reduce((t, current) => t && typeof current === type, true);
 }
 
-export { isString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf };
+export { isString, isEmptyString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf };

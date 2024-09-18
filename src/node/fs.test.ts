@@ -1,7 +1,16 @@
 import { ErrorType, Result, ValueType } from "../types/Result";
 import { isLinux, isMac, isWindows } from "./info";
 
-import { readFileSync, writeFileSync, readDirectorySync, processFiles, linuxRoot, windowsRoot, macRoot } from "./fs";
+import {
+    readFileSync,
+    writeFileSync,
+    readDirectorySync,
+    processFiles,
+    linuxRoot,
+    windowsRoot,
+    macRoot,
+    DirInfo,
+} from "./fs";
 const { join } = require("path");
 
 describe("fs", () => {
@@ -177,5 +186,16 @@ describe("fs", () => {
                 expect(error).toBe("ERROR: Not windows.");
             }
         });
+    });
+});
+
+describe("DirInfo", () => {
+    it("generates list of files and directories for a valid path", () => {
+        const dirinfo = new DirInfo("./src/node");
+        const files = dirinfo.files;
+        const directories = dirinfo.directories;
+        // console.log({ files, directories, info: dirinfo.info, dirinfo });
+        expect(files.some((f) => f.name.includes("fs.ts"))).toBeTrue();
+        expect(directories.some((d) => d.name.includes("stream"))).toBeTrue();
     });
 });

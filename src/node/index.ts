@@ -5,8 +5,11 @@ import { readStream } from "./stream/read";
 import { LinuxDirectoryNode } from "./directory";
 import { int, posint, negint } from "./random";
 
+const { DirInfo } = fs;
+
 export {
     fs,
+    DirInfo,
     hash256,
     hash512,
     platform,

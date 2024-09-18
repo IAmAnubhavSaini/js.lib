@@ -1,5 +1,6 @@
 declare function isString(value: unknown): boolean;
 declare function isEmptyOrNullString(value: string): boolean;
+declare function isEmptyString(value: string): boolean;
 declare function isUndefinedOrNull(value: unknown): boolean;
 /**
  * isPrimitive checks if the given value is of primitive type
@@ -16,4 +17,4 @@ declare function isPrimitive(value: unknown): boolean;
  * @returns boolean Whether all elements in the array are of the specified type.
  */
 declare function isArrayOf(type: string, array: Array<unknown>): unknown;
-export { isString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf };
+export { isString, isEmptyString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf };

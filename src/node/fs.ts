@@ -1,16 +1,16 @@
-import { ErrorType, Result, ValueType } from "../types/Result";
+import { ErrorType, Result, ValueType, Result2 } from "../types/Result";
 import { isLinux, isMac, isWindows } from "./info";
 
 const { spawn } = require("child_process");
 const { once } = require("events");
 
-const {
-    readFileSync: nodeReadFileSync,
-    writeFileSync: nodeWriteFileSync,
-    readdirSync: nodeReadDirSync,
-    existsSync: nodeExistsSync,
-    statSync: nodeStatSync,
-} = require("fs");
+import {
+    readFileSync as nodeReadFileSync,
+    writeFileSync as nodeWriteFileSync,
+    readdirSync as nodeReadDirSync,
+    existsSync as nodeExistsSync,
+    statSync as nodeStatSync,
+} from "node:fs";
 
 const { join: nodePathJoin } = require("path");
 
@@ -116,6 +116,64 @@ function readDirectorySync(directoryPath) {
     return { error, content };
 }
 
+type InfoItem = {
+    path: string;
+    parent: string;
+    name: string;
+    isDirectory: boolean;
+    isBlockDevice: boolean;
+    isCharacterDevice: boolean;
+    isSymbolicLink: boolean;
+    isFIFO: boolean;
+    isSocket: boolean;
+};
+class DirInfo {
+    public info: InfoItem[] = [];
+    constructor(public path: string) {
+        this.info = [];
+        if (!nodeExistsSync(path)) {
+            return this;
+        }
+        try {
+            const readContent = nodeReadDirSync(path);
+            for (const f of readContent) {
+                const newPath = nodePathJoin(path, f);
+                if (!nodeExistsSync(newPath)) {
+                    continue;
+                }
+                const stat = nodeStatSync(newPath);
+                this.info.push({
+                    ...stat,
+                    path: newPath,
+                    parent: path,
+                    name: f,
+                    isDirectory: stat.isDirectory(),
+                    isBlockDevice: stat.isBlockDevice(),
+                    isCharacterDevice: stat.isCharacterDevice(),
+                    isSymbolicLink: stat.isSymbolicLink(),
+                    isFIFO: stat.isFIFO(),
+                    isSocket: stat.isSocket(),
+                });
+            }
+        } catch (e) {
+            console.error(e);
+            this.info = [];
+        }
+    }
+    toJson() {
+        return JSON.stringify({ path: this.path, info: this.info });
+    }
+    toPrettyJson() {
+        return JSON.stringify({ path: this.path, info: this.info }, null, 4);
+    }
+    get directories() {
+        return this.info.filter((i) => i.isDirectory);
+    }
+    get files() {
+        return this.info.filter((i) => !i.isDirectory);
+    }
+}
+
 /**
  * Processes files and directories starting from a given directory path.
  *
@@ -189,4 +247,4 @@ async function macRoot(): Promise<Result<string>> {
     return { ok: true, result: ["/"] } as ValueType<string>;
 }
 
-export { readFileSync, writeFileSync, readDirectorySync, processFiles, linuxRoot, windowsRoot, macRoot };
+export { readFileSync, writeFileSync, readDirectorySync, processFiles, linuxRoot, windowsRoot, macRoot, DirInfo };

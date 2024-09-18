@@ -173,3 +173,13 @@ describe("fs", () => {
         });
     });
 });
+describe("DirInfo", () => {
+    it("generates list of files and directories for a valid path", () => {
+        const dirinfo = new fs_1.DirInfo("./src/node");
+        const files = dirinfo.files;
+        const directories = dirinfo.directories;
+        // console.log({ files, directories, info: dirinfo.info, dirinfo });
+        expect(files.some((f) => f.name.includes("fs.ts"))).toBeTrue();
+        expect(directories.some((d) => d.name.includes("stream"))).toBeTrue();
+    });
+});

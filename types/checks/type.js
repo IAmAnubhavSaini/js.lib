@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isString = isString;
+exports.isEmptyString = isEmptyString;
 exports.isEmptyOrNullString = isEmptyOrNullString;
 exports.isUndefinedOrNull = isUndefinedOrNull;
 exports.isPrimitive = isPrimitive;
@@ -10,6 +11,9 @@ function isString(value) {
 }
 function isEmptyOrNullString(value) {
     return value === null || (isString(value) && value.length === 0);
+}
+function isEmptyString(value) {
+    return isString(value) && value.length === 0;
 }
 function isUndefinedOrNull(value) {
     return value === undefined || value === null;
