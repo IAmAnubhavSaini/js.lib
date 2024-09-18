@@ -59,6 +59,9 @@ function mayDivide(a, b): Result<number> {
 -   ValueType<T>
 -   ErrorType
 -   Result2<T, E>
+-   Option<T>
+-   Some<T>
+-   None
 -   array
     -   defaultArray
     -   median
@@ -72,6 +75,13 @@ function mayDivide(a, b): Result<number> {
     -   zeroNumberArray
     -   zeroStringArray
     -   arrayMayGet<T>
+-   checks
+    -   isString
+    -   isEmptyString
+    -   isEmptyOrNullString
+    -   isUndefinedOrNull
+    -   isPrimitive
+    -   isArrayOf
 -   list
     -   filterReduce
     -   foldl
@@ -93,6 +103,7 @@ function mayDivide(a, b): Result<number> {
         -   linuxRoot
         -   macRoot
         -   LinuxDirectoryNode
+        -   DirInfo
     -   info
         -   platform
         -   osname
@@ -102,6 +113,13 @@ function mayDivide(a, b): Result<number> {
     -   hash
         -   hash256
         -   hash512
+-   markdown
+    -   headingToHTML
+    -   sanitize
+    -   verifyHeading1
+    -   verifyHeading2
+    -   verifyHeading3
+    -   markdownTableToJson
 -   primitives
     -   boolean: class BooleanT
     -   default: class Default

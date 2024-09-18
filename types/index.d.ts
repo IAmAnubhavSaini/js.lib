@@ -14,7 +14,7 @@ declare const canvas: any;
 declare const Conversions: any;
 declare const objectToString: any, deepEqual: any, keyEqual: any, valueEqual: any, findKeys: any;
 declare const nothing: any, just: any, maybe: any, either: any, monad_list: any, future: any, state: any;
-declare const headingToHTML: any, sanitize: any, verifyHeading1: any, verifyHeading2: any, verifyHeading3: any;
+declare const headingToHTML: any, sanitize: any, verifyHeading1: any, verifyHeading2: any, verifyHeading3: any, markdownTableToJson: any;
 declare const coinChange: any;
 declare const checks: {
     type: {
@@ -26,5 +26,5 @@ declare const checks: {
         isArrayOf: typeof isArrayOf;
     };
 };
-export { base64, canvas, Conversions, fs, DirInfo, hash256, hash512, platform, osname, isLinux, isWindows, isMac, LinuxDirectoryNode, int, posint, negint, readStream, NumberMinHeap, NumberMaxHeap, arrayMayGet, defaultArray, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, list, either, future, just, monad_list, maybe, nothing, state, headingToHTML, sanitize, verifyHeading1, verifyHeading2, verifyHeading3, coinChange, objectToString, deepEqual, keyEqual, valueEqual, findKeys, BooleanT, Default, FalseT, StringT, TrueT, checks, isString, isEmptyString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf, Option, Some, None, };
+export { base64, canvas, Conversions, fs, DirInfo, hash256, hash512, platform, osname, isLinux, isWindows, isMac, LinuxDirectoryNode, int, posint, negint, readStream, NumberMinHeap, NumberMaxHeap, arrayMayGet, defaultArray, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, list, either, future, just, monad_list, maybe, nothing, state, headingToHTML, sanitize, verifyHeading1, verifyHeading2, verifyHeading3, markdownTableToJson, coinChange, objectToString, deepEqual, keyEqual, valueEqual, findKeys, BooleanT, Default, FalseT, StringT, TrueT, checks, isString, isEmptyString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf, Option, Some, None, };
 export type { Result, ErrorType, ValueType, Result2 };

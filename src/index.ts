@@ -48,7 +48,14 @@ const Conversions = require("./conversions/conversions");
 const { objectToString, deepEqual, keyEqual, valueEqual, findKeys } = require("./object/object");
 
 const { nothing, just, maybe, either, list: monad_list, future, state } = require("./functional/monad");
-const { headingToHTML, sanitize, verifyHeading1, verifyHeading2, verifyHeading3 } = require("./markdown/markdown.js");
+const {
+    headingToHTML,
+    sanitize,
+    verifyHeading1,
+    verifyHeading2,
+    verifyHeading3,
+    markdownTableToJson,
+} = require("./markdown/markdown.js");
 
 const coinChange = require("./misc/coinChange");
 
@@ -99,6 +106,7 @@ export {
     verifyHeading1,
     verifyHeading2,
     verifyHeading3,
+    markdownTableToJson,
     coinChange,
     objectToString,
     deepEqual,

@@ -1,4 +1,11 @@
-const { headingToHTML, verifyHeading1, verifyHeading2, verifyHeading3, sanitize } = require("./markdown");
+const {
+    headingToHTML,
+    verifyHeading1,
+    verifyHeading2,
+    verifyHeading3,
+    sanitize,
+    markdownTableToJson,
+} = require("./markdown");
 
 describe("headingToHTML", () => {
     it("converts heading level 1 to HTML", () => {
@@ -89,7 +96,6 @@ describe("verifyHeading3", () => {
 });
 
 describe("sanitize", () => {
-
     it("should escape html escape string", () => {
         expect(sanitize("<!--script>")).toBe("");
     });
@@ -114,7 +120,6 @@ describe("sanitize", () => {
         expect(sanitize("<script>")).toBe("");
     });
 
-    
     it("should escape <<<<<script> to ''", function () {
         expect(sanitize("<<<<<script>")).toBe("");
     });
@@ -268,5 +273,64 @@ describe("sanitize", () => {
         const input = '<img src="test" onerror="alert(1)">';
         const expectedOutput = "";
         expect(sanitize(input)).toBe(expectedOutput);
+    });
+});
+
+describe("markdownTableToJson", () => {
+    it("should correctly parse a markdown table with headers and rows", () => {
+        const markdownTable = `
+| Header 1 | Header 2 | Header 3 |
+|----------|----------|----------|
+| Data 1   | Data 2   | Data 3   |
+| Data 4   | Data 5   | Data 6   |
+`;
+        const actual = markdownTableToJson(markdownTable);
+        const expected = {
+            headers: ["Header 1", "Header 2", "Header 3"],
+            separators: ["----------", "----------", "----------"],
+            data: [
+                { "Header 1": "Data 1", "Header 2": "Data 2", "Header 3": "Data 3" },
+                { "Header 1": "Data 4", "Header 2": "Data 5", "Header 3": "Data 6" },
+            ],
+        };
+        expect(actual).toEqual(expected);
+    });
+
+    it("should correctly parse a markdown table with headers and rows and with given separators", () => {
+        const markdownTable = `
+| Header 1 | Header 2 | Header 3 |
+|----------:|:----------|:----------:|
+| Data 1   | Data 2   | Data 3   |
+| Data 4   | Data 5   | Data 6   |
+`;
+        const actual = markdownTableToJson(markdownTable);
+        const expected = {
+            headers: ["Header 1", "Header 2", "Header 3"],
+            separators: ["----------:", ":----------", ":----------:"],
+            data: [
+                { "Header 1": "Data 1", "Header 2": "Data 2", "Header 3": "Data 3" },
+                { "Header 1": "Data 4", "Header 2": "Data 5", "Header 3": "Data 6" },
+            ],
+        };
+        expect(actual).toEqual(expected);
+    });
+
+    it("should correctly parse a markdown table with headers and rows and with given separators", () => {
+        const markdownTable = `
+| Header 1 | Header 2 | Header 3 |
+|----------:|:----------|:----------:|
+| 1   | 2   | 3   |
+| Data 4   | Data 5   | Data 6   |
+`;
+        const actual = markdownTableToJson(markdownTable);
+        const expected = {
+            headers: ["Header 1", "Header 2", "Header 3"],
+            separators: ["----------:", ":----------", ":----------:"],
+            data: [
+                { "Header 1": "1", "Header 2": "2", "Header 3": "3" },
+                { "Header 1": "Data 4", "Header 2": "Data 5", "Header 3": "Data 6" },
+            ],
+        };
+        expect(actual).toEqual(expected);
     });
 });

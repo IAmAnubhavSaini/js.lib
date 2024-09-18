@@ -44,28 +44,51 @@ function headingToHTML(line) {
  */
 function sanitize(page) {
     return page
-        .replace(/<[^>]*>/ig, "")
-        .replace(/<!--[^>]*-->/ig, "")
-        .replace(/</ig, "&lt;")
-        .replace(/>/ig, "&gt;")
-        .replace(/"/ig, "&quot;")
-        .replace(/'/ig, "&#039;")
-        .replace(/!/ig, "&#33;")
-        .replace(/<script>/ig, "&lt;script&gt;")
-        .replace(/<\/script>/ig, "&lt;/script&gt;")
-        .replace(/<style>/ig, "&lt;style&gt;")
-        .replace(/<\/style>/ig, "&lt;/style&gt;")
-        .replace(/`/ig, "&#96;")
-        .replace(/\*/ig, "&#42;")
-        .replace(/~/ig, "&#126;")
-        .replace(/\[/ig, "&#91;")
-        .replace(/\]/ig, "&#93;")
-        .replace(/\(/ig, "&#40;")
-        .replace(/\)/ig, "&#41;")
-        .replace(/\{/ig, "&#123;")
-        .replace(/\}/ig, "&#125;")
-        .replace(/\+/ig, "&#43;")
-        .replace(/\./ig, "&#46;")
-        .replace(/src=/ig, "src&#61;");
+        .replace(/<[^>]*>/gi, "")
+        .replace(/<!--[^>]*-->/gi, "")
+        .replace(/</gi, "&lt;")
+        .replace(/>/gi, "&gt;")
+        .replace(/"/gi, "&quot;")
+        .replace(/'/gi, "&#039;")
+        .replace(/!/gi, "&#33;")
+        .replace(/<script>/gi, "&lt;script&gt;")
+        .replace(/<\/script>/gi, "&lt;/script&gt;")
+        .replace(/<style>/gi, "&lt;style&gt;")
+        .replace(/<\/style>/gi, "&lt;/style&gt;")
+        .replace(/`/gi, "&#96;")
+        .replace(/\*/gi, "&#42;")
+        .replace(/~/gi, "&#126;")
+        .replace(/\[/gi, "&#91;")
+        .replace(/\]/gi, "&#93;")
+        .replace(/\(/gi, "&#40;")
+        .replace(/\)/gi, "&#41;")
+        .replace(/\{/gi, "&#123;")
+        .replace(/\}/gi, "&#125;")
+        .replace(/\+/gi, "&#43;")
+        .replace(/\./gi, "&#46;")
+        .replace(/src=/gi, "src&#61;");
 }
-module.exports = { verifyHeading1, verifyHeading2, verifyHeading3, headingToHTML, sanitize };
+function markdownTableToJson(markdownTable) {
+    const rows = markdownTable
+        .trim()
+        .split("\n")
+        .map((/** @type {string} */ row) => row
+        .split("|")
+        .map((cell) => cell.trim())
+        .filter((cell) => cell));
+    const headers = rows[0];
+    const separators = rows[1];
+    const dataRows = rows.slice(2);
+    const jsonObject = { headers: [], data: [] };
+    jsonObject.headers = headers;
+    jsonObject.separators = separators;
+    dataRows.forEach((/** @type {any[]} */ row) => {
+        const entry = {};
+        row.forEach((cell, index) => {
+            entry[jsonObject.headers[index]] = cell;
+        });
+        jsonObject.data.push(entry);
+    });
+    return jsonObject;
+}
+module.exports = { verifyHeading1, verifyHeading2, verifyHeading3, headingToHTML, sanitize, markdownTableToJson };

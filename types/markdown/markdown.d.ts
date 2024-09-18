@@ -24,3 +24,7 @@ export function headingToHTML(line: string): string;
  * forward slash, hyphen, underscore, ampersand and hashtag.
  */
 export function sanitize(page: string): string;
+export function markdownTableToJson(markdownTable: any): {
+    headers: any[];
+    data: any[];
+};
