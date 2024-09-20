@@ -2,6 +2,7 @@ import { fs, DirInfo, hash256, hash512, platform, osname, isLinux, isWindows, is
 import { Result, ErrorType, ValueType, Result2 } from "./types/Result";
 import { Option, Some, None } from "./types/Option";
 import { isString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf, isEmptyString } from "./checks/type";
+import { filterOutKeysFromObject, filterInKeysFromObject } from "./object/filter";
 declare const base64: any;
 declare const defaultArray: any, list: any, median: any, randomArray: any, randomMatrix: any, resetArray: any, reverseSortedArray: any, rotateLeft: any, rotateRight: any, sortedArray: any, zeroNumberArray: any, zeroStringArray: any, arrayMayGet: any;
 declare const NumberMinHeap: any, NumberMaxHeap: any;
@@ -26,5 +27,9 @@ declare const checks: {
         isArrayOf: typeof isArrayOf;
     };
 };
-export { base64, canvas, Conversions, fs, DirInfo, hash256, hash512, platform, osname, isLinux, isWindows, isMac, LinuxDirectoryNode, int, posint, negint, readStream, NumberMinHeap, NumberMaxHeap, arrayMayGet, defaultArray, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, list, either, future, just, monad_list, maybe, nothing, state, headingToHTML, sanitize, verifyHeading1, verifyHeading2, verifyHeading3, markdownTableToJson, coinChange, objectToString, deepEqual, keyEqual, valueEqual, findKeys, BooleanT, Default, FalseT, StringT, TrueT, checks, isString, isEmptyString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf, Option, Some, None, };
+declare const object: {
+    filterOutKeysFromObject: typeof filterOutKeysFromObject;
+    filterInKeysFromObject: typeof filterInKeysFromObject;
+};
+export { base64, canvas, Conversions, fs, DirInfo, hash256, hash512, platform, osname, isLinux, isWindows, isMac, LinuxDirectoryNode, int, posint, negint, readStream, NumberMinHeap, NumberMaxHeap, arrayMayGet, defaultArray, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, list, either, future, just, monad_list, maybe, nothing, state, headingToHTML, sanitize, verifyHeading1, verifyHeading2, verifyHeading3, markdownTableToJson, coinChange, objectToString, deepEqual, keyEqual, valueEqual, findKeys, BooleanT, Default, FalseT, StringT, TrueT, checks, isString, isEmptyString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf, Option, Some, None, object, filterOutKeysFromObject, filterInKeysFromObject, };
 export type { Result, ErrorType, ValueType, Result2 };

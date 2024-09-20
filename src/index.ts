@@ -17,6 +17,7 @@ import {
 import { Result, ErrorType, ValueType, Result2 } from "./types/Result";
 import { Option, Some, None } from "./types/Option";
 import { isString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf, isEmptyString } from "./checks/type";
+import { filterOutKeysFromObject, filterInKeysFromObject } from "./object/filter";
 
 const { base64 } = require("./string/index.js");
 const {
@@ -60,6 +61,11 @@ const {
 const coinChange = require("./misc/coinChange");
 
 const checks = { type: { isString, isEmptyString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf } };
+
+const object = {
+    filterOutKeysFromObject,
+    filterInKeysFromObject,
+};
 
 export {
     base64,
@@ -128,6 +134,9 @@ export {
     Option,
     Some,
     None,
+    object,
+    filterOutKeysFromObject,
+    filterInKeysFromObject,
 };
 
 export type { Result, ErrorType, ValueType, Result2 };
