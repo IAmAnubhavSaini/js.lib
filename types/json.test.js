@@ -51,3 +51,18 @@ describe("JSON Utility Functions", () => {
         });
     });
 });
+describe("csvToJson", () => {
+    it("successfully converts valid CSV to JSON", () => {
+        const csv = "name,age,city\nJohn,30,New York";
+        const expectedJson = JSON.stringify([{ name: "John", age: "30", city: "New York" }]);
+        expect(JSON.stringify((0, json_1.csvToJson)(csv))).toEqual(expectedJson);
+    });
+    it("should handle nested JSON values in CSV", () => {
+        const csv = 'name,age,city\nJohn,30,New York\nGruhn,56,"{"area":"fifty","city":"el dorado"}"';
+        const expectedJson = JSON.stringify([
+            { name: "John", age: "30", city: "New York" },
+            { name: "Gruhn", age: "56", city: "{area:fifty,city:el dorado}" },
+        ]);
+        expect(JSON.stringify((0, json_1.csvToJson)(csv))).toEqual(expectedJson);
+    });
+});

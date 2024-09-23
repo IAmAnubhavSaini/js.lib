@@ -22,4 +22,5 @@ declare function jsonToCsv(json: JsonObject, joiner?: string): string;
  * @returns {string | null} - The CSV representation of the JSON object, or null if the input is invalid or contains circular references.
  */
 declare function validateJsonAndConvertToCsv(jsonString: string): string | null;
-export { detectCircularity, jsonToCsv, validateJsonAndConvertToCsv };
+declare function csvToJson(csv: string): JsonObject[];
+export { detectCircularity, jsonToCsv, validateJsonAndConvertToCsv, csvToJson };

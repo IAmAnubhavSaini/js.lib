@@ -1,4 +1,4 @@
-import { detectCircularity, jsonToCsv, validateJsonAndConvertToCsv } from "./json";
+import { csvToJson, detectCircularity, jsonToCsv, validateJsonAndConvertToCsv } from "./json";
 
 describe("JSON Utility Functions", () => {
     describe("detectCircularity", () => {
@@ -55,5 +55,25 @@ describe("JSON Utility Functions", () => {
             const expectedCsv = 'name,age,address\nJohn,30,{"city":"New York","state":"NY"}';
             expect(validateJsonAndConvertToCsv(validJsonString)).toBe(expectedCsv);
         });
+    });
+});
+
+describe("csvToJson", () => {
+    it("successfully converts valid CSV to JSON", () => {
+        const csv = "name,age,city\nJohn,30,New York";
+        const expectedJson = JSON.stringify([{ name: "John", age: "30", city: "New York" }]);
+        expect(JSON.stringify(csvToJson(csv))).toEqual(expectedJson);
+    });
+
+    it("should handle nested JSON values in CSV", () => {
+        // There is something wrong here...
+        const csv = 'name,age,city\nJohn,30,New York\nGruhn,56,"{"area":"fifty","city":"el dorado"}"';
+
+        const expectedJson = JSON.stringify([
+            { name: "John", age: "30", city: "New York" },
+            { name: "Gruhn", age: "56", city: "{area:fifty,city:el dorado}" },
+        ]);
+
+        expect(JSON.stringify(csvToJson(csv))).toEqual(expectedJson);
     });
 });

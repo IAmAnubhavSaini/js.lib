@@ -77,5 +77,43 @@ function validateJsonAndConvertToCsv(jsonString: string): string | null {
         return null;
     }
 }
+function csvToJson(csv: string): JsonObject[] {
+    const lines = csv.trim().split("\n");
+    const headers = lines[0].split(",").map((header) => header.trim());
 
-export { detectCircularity, jsonToCsv, validateJsonAndConvertToCsv };
+    const jsonArray: JsonObject[] = lines.slice(1).reduce((acc: JsonObject[], line) => {
+        const values: string[] = [];
+        let current = "";
+        let insideQuotes = false;
+
+        for (const char of line) {
+            if (char === '"' && (current.length === 0 || current[current.length - 1] !== "\\")) {
+                insideQuotes = !insideQuotes; // Toggle the insideQuotes flag
+            } else if (char === "," && !insideQuotes) {
+                values.push(current.trim());
+                current = ""; // Reset for the next value
+            } else {
+                current += char; // Accumulate characters
+            }
+        }
+        // Push the last value
+        values.push(current.trim());
+
+        // Only process lines that have the same number of values as headers
+        if (values.length === headers.length) {
+            const jsonObject: JsonObject = {};
+
+            headers.forEach((header, index) => {
+                jsonObject[header] = values[index];
+            });
+
+            acc.push(jsonObject);
+        }
+
+        return acc;
+    }, []);
+
+    return jsonArray;
+}
+
+export { detectCircularity, jsonToCsv, validateJsonAndConvertToCsv, csvToJson };
