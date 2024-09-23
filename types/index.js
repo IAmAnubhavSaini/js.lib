@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.valueEqual = exports.keyEqual = exports.deepEqual = exports.objectToString = exports.coinChange = exports.markdownTableToJson = exports.verifyHeading3 = exports.verifyHeading2 = exports.verifyHeading1 = exports.sanitize = exports.headingToHTML = exports.state = exports.nothing = exports.maybe = exports.monad_list = exports.just = exports.future = exports.either = exports.list = exports.zeroStringArray = exports.zeroNumberArray = exports.sortedArray = exports.rotateRight = exports.rotateLeft = exports.reverseSortedArray = exports.resetArray = exports.randomMatrix = exports.randomArray = exports.median = exports.defaultArray = exports.arrayMayGet = exports.NumberMaxHeap = exports.NumberMinHeap = exports.readStream = exports.negint = exports.posint = exports.int = exports.LinuxDirectoryNode = exports.isMac = exports.isWindows = exports.isLinux = exports.osname = exports.platform = exports.hash512 = exports.hash256 = exports.DirInfo = exports.fs = exports.Conversions = exports.canvas = exports.base64 = void 0;
-exports.filterInKeysFromObject = exports.filterOutKeysFromObject = exports.object = exports.None = exports.Some = exports.isArrayOf = exports.isPrimitive = exports.isUndefinedOrNull = exports.isEmptyOrNullString = exports.isEmptyString = exports.isString = exports.checks = exports.TrueT = exports.StringT = exports.FalseT = exports.Default = exports.BooleanT = exports.findKeys = void 0;
+exports.validateJsonAndConvertToCsv = exports.detectCircularity = exports.jsonToCsv = exports.json = exports.filterInKeysFromObject = exports.filterOutKeysFromObject = exports.object = exports.None = exports.Some = exports.isArrayOf = exports.isPrimitive = exports.isUndefinedOrNull = exports.isEmptyOrNullString = exports.isEmptyString = exports.isString = exports.checks = exports.TrueT = exports.StringT = exports.FalseT = exports.Default = exports.BooleanT = exports.findKeys = void 0;
 const index_1 = require("./node/index");
 Object.defineProperty(exports, "fs", { enumerable: true, get: function () { return index_1.fs; } });
 Object.defineProperty(exports, "DirInfo", { enumerable: true, get: function () { return index_1.DirInfo; } });
@@ -33,6 +33,10 @@ Object.defineProperty(exports, "isEmptyString", { enumerable: true, get: functio
 const filter_1 = require("./object/filter");
 Object.defineProperty(exports, "filterOutKeysFromObject", { enumerable: true, get: function () { return filter_1.filterOutKeysFromObject; } });
 Object.defineProperty(exports, "filterInKeysFromObject", { enumerable: true, get: function () { return filter_1.filterInKeysFromObject; } });
+const json_1 = require("./json");
+Object.defineProperty(exports, "jsonToCsv", { enumerable: true, get: function () { return json_1.jsonToCsv; } });
+Object.defineProperty(exports, "detectCircularity", { enumerable: true, get: function () { return json_1.detectCircularity; } });
+Object.defineProperty(exports, "validateJsonAndConvertToCsv", { enumerable: true, get: function () { return json_1.validateJsonAndConvertToCsv; } });
 const { base64 } = require("./string/index.js");
 exports.base64 = base64;
 const { defaultArray, list, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, arrayMayGet, } = require("./array/index.js");
@@ -96,3 +100,5 @@ const object = {
     filterInKeysFromObject: filter_1.filterInKeysFromObject,
 };
 exports.object = object;
+const json = { jsonToCsv: json_1.jsonToCsv, detectCircularity: json_1.detectCircularity, validateJsonAndConvertToCsv: json_1.validateJsonAndConvertToCsv };
+exports.json = json;

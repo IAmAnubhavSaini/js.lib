@@ -18,6 +18,7 @@ import { Result, ErrorType, ValueType, Result2 } from "./types/Result";
 import { Option, Some, None } from "./types/Option";
 import { isString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf, isEmptyString } from "./checks/type";
 import { filterOutKeysFromObject, filterInKeysFromObject } from "./object/filter";
+import { jsonToCsv, detectCircularity, validateJsonAndConvertToCsv } from "./json";
 
 const { base64 } = require("./string/index.js");
 const {
@@ -66,6 +67,8 @@ const object = {
     filterOutKeysFromObject,
     filterInKeysFromObject,
 };
+
+const json = { jsonToCsv, detectCircularity, validateJsonAndConvertToCsv };
 
 export {
     base64,
@@ -137,6 +140,10 @@ export {
     object,
     filterOutKeysFromObject,
     filterInKeysFromObject,
+    json,
+    jsonToCsv,
+    detectCircularity,
+    validateJsonAndConvertToCsv,
 };
 
 export type { Result, ErrorType, ValueType, Result2 };
