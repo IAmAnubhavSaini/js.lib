@@ -204,7 +204,7 @@ function processFiles({ directoryPath, fileProcessorFn, directoryProcessorFn }) 
  * @returns {Promise<Result<string>>}
  */
 async function windowsRoot(): Promise<Result<string>> {
-    if (!isWindows) {
+    if (!isWindows()) {
         return { ok: false, error: "ERROR: Not windows." } as ErrorType;
     }
     const wmic = spawn("wmic", ["logicaldisk", "get", "name"]);
@@ -230,7 +230,7 @@ async function windowsRoot(): Promise<Result<string>> {
  * @returns {Promise<Result<string>>}
  */
 async function linuxRoot(): Promise<Result<string>> {
-    if (!isLinux) {
+    if (!isLinux()) {
         return { ok: false, error: "ERROR: Not linux." } as ErrorType;
     }
     return { ok: true, result: ["/"] } as ValueType<string>;
@@ -241,7 +241,7 @@ async function linuxRoot(): Promise<Result<string>> {
  * @returns {Promise<Result<string>>}
  */
 async function macRoot(): Promise<Result<string>> {
-    if (!isMac) {
+    if (!isMac()) {
         return { ok: false, error: "ERROR: Not mac." } as ErrorType;
     }
     return { ok: true, result: ["/"] } as ValueType<string>;

@@ -145,7 +145,7 @@ describe("fs", () => {
 
     describe("macRoot", () => {
         it("returns correct value", async () => {
-            if (isMac) {
+            if (isMac()) {
                 const { ok, result } = (await macRoot()) as ValueType<string>;
                 const expected = ["/"];
                 expect(result).toEqual(expected);
@@ -160,7 +160,7 @@ describe("fs", () => {
     });
     describe("linuxRoot", () => {
         it("returns correct value", async () => {
-            if (isLinux) {
+            if (isLinux()) {
                 const { ok, result } = (await linuxRoot()) as ValueType<string>;
                 const expected = ["/"];
                 expect(result).toEqual(expected);
@@ -176,7 +176,7 @@ describe("fs", () => {
 
     describe("windowsRoot", () => {
         it("returns correct value", async () => {
-            if (isWindows) {
+            if (isWindows()) {
                 const { ok, result } = (await windowsRoot()) as ValueType<string>;
                 expect(ok).toBeTrue();
                 expect(result.length > 0).toBeTrue();
