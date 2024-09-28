@@ -1,20 +1,21 @@
 {
   "name": "@ackret/js.lib",
-  "version": "0.0.54",
+  "version": "0.0.55",
   "description": "A javascript library",
   "main": "types/index.js",
   "devDependencies": {
     "@types/jasmine": "^5.1.4",
-    "@types/node": "^22.5.5",
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.7.4",
     "jasmine": "^5.3.0",
     "prettier": "^3.3.3",
     "typescript": "^5.6.2"
   },
   "scripts": {
-    "test": "./node_modules/.bin/jasmine",
+    "test": "jasmine",
     "cover": "npx nyc@latest npm run test | tee coverage.txt",
     "cover-html": "npx nyc@latest --reporter html jasmine && open coverage/index.html",
-    "build": "./node_modules/.bin/tsc"
+    "build": "tsc"
   },
   "keywords": [
     "library",
@@ -40,5 +41,8 @@
   "issues": "https://github.com/ackret/js.lib/issues",
   "license": "MIT",
   "moduleResolution": "nodenext",
-  "types": "types/index.d.ts"
+  "types": "types/index.d.ts",
+  "dependencies": {
+    "jsdom": "^25.0.1"
+  }
 }

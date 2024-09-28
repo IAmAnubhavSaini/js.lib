@@ -42,6 +42,7 @@ const BooleanT = require("./primitives/boolean");
 const Default = require("./primitives/default");
 const FalseT = require("./primitives/false");
 import StringT from "./primitives/string";
+import { htmlTableToMarkdown, htmlTableToMarkdownDOM } from "./markdown/markdown";
 const TrueT = require("./primitives/true");
 
 const { canvas } = require("./canvas/canvas");
@@ -116,6 +117,8 @@ export {
     verifyHeading2,
     verifyHeading3,
     markdownTableToJson,
+    htmlTableToMarkdownDOM,
+    htmlTableToMarkdown,
     coinChange,
     objectToString,
     deepEqual,
@@ -144,6 +147,7 @@ export {
     jsonToCsv,
     detectCircularity,
     validateJsonAndConvertToCsv,
+
 };
 
 export type { Result, ErrorType, ValueType, Result2 };

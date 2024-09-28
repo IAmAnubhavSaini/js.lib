@@ -137,6 +137,17 @@ const { fs } = require("@ackret/js.lib");
 fs.processFiles({ directoryPath: "src", fileProcessorFn: console.log });
 ```
 
+
+## Development
+
+```bash
+npm add jsdom@latest
+
+npm add --save-dev jasmine@latest prettier@latest typescript@latest @types/jasmine@latest @types/node@latest @types/jsdom
+
+npm run build && npm run test
+```
+
 ## Coverage
 
 ```bash
@@ -146,14 +157,6 @@ npm run cover
 # to cover and generate html output
 npm run cover-html
 
-```
-
-## Development
-
-```bash
-npm install --save-dev jasmine@latest prettier@latest typescript@latest @types/jasmine@latest @types/node@latest
-
-npm run build && npm run test
 ```
 
 ## License

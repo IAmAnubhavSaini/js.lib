@@ -1,4 +1,14 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.verifyHeading1 = verifyHeading1;
+exports.verifyHeading2 = verifyHeading2;
+exports.verifyHeading3 = verifyHeading3;
+exports.headingToHTML = headingToHTML;
+exports.sanitize = sanitize;
+exports.markdownTableToJson = markdownTableToJson;
+exports.htmlTableToMarkdownDOM = htmlTableToMarkdownDOM;
+exports.htmlTableToMarkdown = htmlTableToMarkdown;
+const jsdom_1 = require("jsdom");
 /**
  * @param {string} line
  */
@@ -79,7 +89,7 @@ function markdownTableToJson(markdownTable) {
     const headers = rows[0];
     const separators = rows[1];
     const dataRows = rows.slice(2);
-    const jsonObject = { headers: [], data: [] };
+    const jsonObject = { headers: [], data: [], separators: [] };
     jsonObject.headers = headers;
     jsonObject.separators = separators;
     dataRows.forEach((/** @type {any[]} */ row) => {
@@ -91,4 +101,54 @@ function markdownTableToJson(markdownTable) {
     });
     return jsonObject;
 }
-module.exports = { verifyHeading1, verifyHeading2, verifyHeading3, headingToHTML, sanitize, markdownTableToJson };
+function extractTableFromDocument(doc) {
+    // Extract the table element
+    const table = doc.querySelector("table");
+    if (!table) {
+        return "";
+    }
+    let markdown = "";
+    // Extract the table rows
+    const rows = table.querySelectorAll("tr");
+    rows.forEach((row, rowIndex) => {
+        const cells = row.querySelectorAll("th, td");
+        let rowMarkdown = "| ";
+        cells.forEach((cell) => {
+            rowMarkdown += cell.textContent.trim() + " | ";
+        });
+        markdown += rowMarkdown.trim() + "\n";
+        // Add separator after the header row
+        if (rowIndex === 0) {
+            markdown += "| " + "--- | ".repeat(cells.length).trim() + "\n";
+        }
+    });
+    return markdown.trim();
+}
+/**
+ * htmlTableToMarkdownDOM converts an HTML table to a markdown table.
+ * @param html {string} The HTML table to convert
+ * @returns {string}    The markdown table
+ * Note: This function works with DOMParser, which is not available in Node.js.
+ * Note: This function is not perfect and may not work with all HTML tables.
+ * This should work with ../misc/calendar.ts#generateCalendar function though.
+ */
+function htmlTableToMarkdownDOM(html) {
+    // Create a DOM parser
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html.trim(), "text/html");
+    return extractTableFromDocument(doc);
+}
+/**
+ * htmlTableToMarkdown converts an HTML table to a markdown table.
+ * @param html {string} The HTML table to convert
+ * @returns {string}    The markdown table
+ * Note: This function works with jsdom, which is available in Node.js.
+ * Note: This function is not perfect and may not work with all HTML tables.
+ * This should work with ../misc/calendar.ts#generateCalendar function though.
+ */
+function htmlTableToMarkdown(html) {
+    // Create a DOM parser using jsdom
+    const dom = new jsdom_1.JSDOM(html.trim());
+    const doc = dom.window.document;
+    return extractTableFromDocument(doc);
+}

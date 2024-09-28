@@ -5,6 +5,7 @@ const {
     verifyHeading3,
     sanitize,
     markdownTableToJson,
+    htmlTableToMarkdown,
 } = require("./markdown");
 
 describe("headingToHTML", () => {
@@ -331,6 +332,34 @@ describe("markdownTableToJson", () => {
                 { "Header 1": "Data 4", "Header 2": "Data 5", "Header 3": "Data 6" },
             ],
         };
+        expect(actual).toEqual(expected);
+    });
+});
+
+describe("htmlTableToMarkdown", () => {
+    it("should convert an HTML table to a markdown table", () => {
+        const htmlTable = `<table>
+    <tr>
+        <th>Header 1 Row 1</th>
+        <th>Header 2 Row 1</th>
+        <th>Header 3 Row 1</th>
+    </tr>
+    <tr>
+        <td>Data 1 Row 2</td>
+        <td>Data 2 Row 2</td>
+        <td>Data 3 Row 2</td>
+    </tr>
+    <tr>
+        <td>Data 4 Row 3</td>
+        <td>Data 5 Row 3</td>
+        <td>Data 6 Row 3</td>
+    </tr>
+</table>`;
+        const actual = htmlTableToMarkdown(htmlTable);
+        const expected = `| Header 1 Row 1 | Header 2 Row 1 | Header 3 Row 1 |
+| --- | --- | --- |
+| Data 1 Row 2 | Data 2 Row 2 | Data 3 Row 2 |
+| Data 4 Row 3 | Data 5 Row 3 | Data 6 Row 3 |`;
         expect(actual).toEqual(expected);
     });
 });
