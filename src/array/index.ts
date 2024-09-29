@@ -1,4 +1,4 @@
-const { filterReduce, foldl, foldr, take, tail, head } = require("./fns/list.js");
+import { filterReduce, foldl, foldr, take, tail, head } from "./fns/list.js";
 import {
     arrayToString,
     defaultArray,

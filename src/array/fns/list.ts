@@ -1,11 +1,11 @@
 /**
  * foldr :: (a -> b -> b) -> b -> [a] -> b
  * @param fn {function}
- * @param initValue {*}
- * @param list {*[]}
- * @return {*}
+ * @param initValue {T}
+ * @param list {T[]}
+ * @return {T}
  */
-function foldr(fn, initValue, list) {
+function foldr<T>(fn: (c: T, fn: any) => T, initValue: T, list: T[]): T {
     if (list.length === 0) {
         return initValue;
     }
@@ -63,14 +63,22 @@ function takeWhile(fn, list) {
 }
 
 /**
- * filterReduce :: (a -> boolean) -> (b -> a -> b) -> b -> [a] -> b
- * @param filterFn {(v, i, a) => boolean}
- * @param reduceFn {(acc, cur, i, a) => cur}
- * @param initValue {*}
- * @param list {*[]}
- * @return {*}
+ * * filterReduce :: (a -> boolean) -> (b -> a -> b) -> b -> [a] -> b
+ * Applies a filter function and a reduce function to a list, returning the reduced value.
+ *
+ * @template T - The type of elements in the list.
+ * @param {(v, i, a) => boolean} filterFn - The filter function to apply to the list.
+ * @param {(acc, cur, i, a) => cur} reduceFn - The reduce function to apply to the filtered list.
+ * @param {T} initValue - The initial value for the reduce operation.
+ * @param {T[]} list - The list of elements to filter and reduce.
+ * @returns {T} - The reduced value.
  */
-function filterReduce(filterFn, reduceFn, initValue, list) {
+function filterReduce<T>(
+    filterFn: (v: T, i: number, a: T[]) => boolean,
+    reduceFn: (acc: T, cur: T, i: number, a: T[]) => T,
+    initValue: T,
+    list: T[],
+): T {
     return list.filter(filterFn).reduce(reduceFn, initValue);
 }
 
@@ -88,12 +96,14 @@ function head(list, n = 10) {
 
 /**
  * tail returns the tail of a list
- * @param list {*[]}
+ * @param list {T[]}
  * @param n {number}
- * @returns {*[]}
+ * @returns {T[]}
  */
-function tail(list, n = 10) {
-    if (!Array.isArray(list)) return [];
+function tail<T>(list: T[], n: number = 10): T[] {
+    if (!Array.isArray(list)) {
+        return [];
+    }
     n = Math.max(0, list.length - n);
     return list.slice(n);
 }
