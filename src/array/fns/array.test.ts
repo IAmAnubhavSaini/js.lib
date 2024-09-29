@@ -19,6 +19,7 @@ import {
     filterIn,
     inplaceFilterIn,
     inplaceFilterOut,
+    chunk,
 } from "./array";
 
 describe("array functions", () => {
@@ -324,7 +325,6 @@ describe("intersperse", () => {
     });
 });
 
-
 describe("filterOut", () => {
     it("should filter out elements that satisfy the predicate", () => {
         const input = [1, 2, 3, 4, 5];
@@ -458,5 +458,94 @@ describe("inplaceFilterOut", () => {
         const actual = inplaceFilterOut(input, predicate);
         const expected: number[] = [];
         expect(actual).toEqual(expected);
+    });
+});
+
+describe("chunk", () => {
+    it("should return an empty array if the input array is empty", async () => {
+        const input = [];
+        const actual = await chunk(input, 2);
+        const expected = [];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should return an empty array if the input array is undefined", async () => {
+        try {
+            // @ts-ignore because we are testing a wrong input test case
+            await chunk(undefined, 2);
+        } catch (e) {
+            expect(e).toEqual(new Error("Array is null or undefined"));
+        }
+    });
+
+    it("should return an empty array if the size is less than 1", async () => {
+        const input = [1, 2, 3, 4, 5];
+        const actual = await chunk(input, 0);
+        const expected = [[], [], [], [], []];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should return the same array if the size is greater than or equal to the array length", async () => {
+        const input = [1, 2, 3, 4, 5];
+        const actual = await chunk(input, 5);
+        const expected = [input];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should return the array chunked into subarrays of the given size", async () => {
+        const input = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        const actual = await chunk(input, 3);
+        const expected = [
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9],
+        ];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should return the array chunked into subarrays of the given size, with the last chunk having fewer elements", async () => {
+        const input = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        const actual = await chunk(input, 4);
+        const expected = [[1, 2, 3, 4], [5, 6, 7, 8], [9]];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should reject with an error if the array length is negative", async () => {
+        const input = [];
+        try {
+            await chunk(input, -1);
+        } catch (e) {
+            expect(e.message).toEqual("Size is negative");
+        }
+    });
+
+    it("should reject with an error if the array length is zero and size is not a number", async () => {
+        const input = [];
+        try {
+            // @ts-ignore because we are testing a wrong input test case
+            await chunk(input, "foo");
+        } catch (e) {
+            expect(e.message).toEqual("Size is not an integer");
+        }
+    });
+
+    it("should reject with an error if the array length is not a number", async () => {
+        const input = { length: "foo", 0: 1, 1: 2, 2: 3 };
+        try {
+            // @ts-ignore because we are testing a wrong input test case
+            await chunk(input, 1);
+        } catch (e) {
+            expect(e.message).toEqual("Input is not an array");
+        }
+    });
+
+    it("should reject with an error if the array length is negative", async () => {
+        const input = { length: -1, 0: 1, 1: 2, 2: 3 };
+        try {
+            // @ts-ignore because we are testing a wrong input test case
+            await chunk(input, 1);
+        } catch (e) {
+            expect(e.message).toEqual("Array length is negative");
+        }
     });
 });

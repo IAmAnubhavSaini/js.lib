@@ -17,7 +17,8 @@ import {
     filterOut,
     filterIn,
     inplaceFilterOut,
-    inplaceFilterIn
+    inplaceFilterIn,
+    chunk
 } from "./fns/array.js";
 
 const list = { filterReduce, foldl, foldr, take, tail, head };
@@ -41,5 +42,6 @@ export {
     filterIn,
     inplaceFilterOut,
     inplaceFilterIn,
+    chunk,
     list,
 };

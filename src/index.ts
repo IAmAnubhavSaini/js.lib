@@ -35,6 +35,7 @@ const {
     zeroNumberArray,
     zeroStringArray,
     arrayMayGet,
+    chunk,
 } = require("./array/index.js");
 const { NumberMinHeap, NumberMaxHeap } = require("./heap/index.js");
 
@@ -109,6 +110,7 @@ export {
     filterIn,
     inplaceFilterOut,
     inplaceFilterIn,
+    chunk,
     list,
     either,
     future,

@@ -20,6 +20,7 @@ exports.filterOut = filterOut;
 exports.filterIn = filterIn;
 exports.inplaceFilterOut = inplaceFilterOut;
 exports.inplaceFilterIn = inplaceFilterIn;
+exports.chunk = chunk;
 /**
  *
  * @param {Object} options - The options object.
@@ -281,4 +282,43 @@ function inplaceFilterIn(array, predicate) {
     }
     array.length = j;
     return array;
+}
+async function chunk(array, size) {
+    return new Promise((resolve, reject) => {
+        try {
+            if (!Number.isInteger(size)) {
+                return reject(new Error("Size is not an integer"));
+            }
+            if (size < 0) {
+                return reject(new Error("Size is negative"));
+            }
+            if (!array) {
+                return reject(new Error("Array is null or undefined"));
+            }
+            const len = array.length;
+            if (len < 0) {
+                return reject(new Error("Array length is negative"));
+            }
+            if (!len) {
+                return resolve([]);
+            }
+            if (size < 1) {
+                return resolve(array.map(_ => []));
+            }
+            if (size >= len) {
+                return resolve([array]);
+            }
+            if (!Array.isArray(array)) {
+                return reject(new Error("Input is not an array"));
+            }
+            const result = [];
+            for (let i = 0; i < len; i += size) {
+                result.push(array.slice(i, i + size));
+            }
+            return resolve(result);
+        }
+        catch (error) {
+            return reject(error);
+        }
+    });
 }
