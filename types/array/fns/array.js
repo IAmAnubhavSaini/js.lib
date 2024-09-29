@@ -1,10 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.arrayMayGet = arrayMayGet;
 exports.arrayToString = arrayToString;
+exports.chunk = chunk;
 exports.defaultArray = defaultArray;
+exports.filterIn = filterIn;
+exports.filterInStream = filterInStream;
+exports.filterOut = filterOut;
+exports.filterOutStream = filterOutStream;
+exports.inplaceFilterIn = inplaceFilterIn;
+exports.inplaceFilterOut = inplaceFilterOut;
 exports.intersperse = intersperse;
 exports.isArray = isArray;
 exports.isArraylike = isArraylike;
+exports.median = median;
 exports.randomArray = randomArray;
 exports.randomMatrix = randomMatrix;
 exports.resetArray = resetArray;
@@ -14,13 +23,6 @@ exports.rotateRight = rotateRight;
 exports.sortedArray = sortedArray;
 exports.zeroNumberArray = zeroNumberArray;
 exports.zeroStringArray = zeroStringArray;
-exports.median = median;
-exports.arrayMayGet = arrayMayGet;
-exports.filterOut = filterOut;
-exports.filterIn = filterIn;
-exports.inplaceFilterOut = inplaceFilterOut;
-exports.inplaceFilterIn = inplaceFilterIn;
-exports.chunk = chunk;
 /**
  *
  * @param {Object} options - The options object.
@@ -321,4 +323,18 @@ async function chunk(array, size) {
             return reject(error);
         }
     });
+}
+function* filterOutStream(array, predicate) {
+    for (const item of array) {
+        if (!predicate(item)) {
+            yield item;
+        }
+    }
+}
+function* filterInStream(array, predicate) {
+    for (const item of array) {
+        if (predicate(item)) {
+            yield item;
+        }
+    }
 }

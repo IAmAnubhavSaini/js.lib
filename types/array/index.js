@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.list = exports.inplaceFilterIn = exports.inplaceFilterOut = exports.filterIn = exports.filterOut = exports.zeroStringArray = exports.zeroNumberArray = exports.sortedArray = exports.rotateRight = exports.rotateLeft = exports.reverseSortedArray = exports.resetArray = exports.randomMatrix = exports.randomArray = exports.median = exports.isArraylike = exports.isArray = exports.defaultArray = exports.arrayToString = void 0;
+exports.zeroStringArray = exports.zeroNumberArray = exports.sortedArray = exports.rotateRight = exports.rotateLeft = exports.reverseSortedArray = exports.resetArray = exports.randomMatrix = exports.randomArray = exports.median = exports.list = exports.isArraylike = exports.isArray = exports.inplaceFilterOut = exports.inplaceFilterIn = exports.filterOutStream = exports.filterOut = exports.filterInStream = exports.filterIn = exports.defaultArray = exports.chunk = exports.arrayToString = void 0;
 const { filterReduce, foldl, foldr, take, tail, head } = require("./fns/list.js");
 const array_js_1 = require("./fns/array.js");
 Object.defineProperty(exports, "arrayToString", { enumerable: true, get: function () { return array_js_1.arrayToString; } });
@@ -21,5 +21,8 @@ Object.defineProperty(exports, "filterOut", { enumerable: true, get: function ()
 Object.defineProperty(exports, "filterIn", { enumerable: true, get: function () { return array_js_1.filterIn; } });
 Object.defineProperty(exports, "inplaceFilterOut", { enumerable: true, get: function () { return array_js_1.inplaceFilterOut; } });
 Object.defineProperty(exports, "inplaceFilterIn", { enumerable: true, get: function () { return array_js_1.inplaceFilterIn; } });
+Object.defineProperty(exports, "chunk", { enumerable: true, get: function () { return array_js_1.chunk; } });
+Object.defineProperty(exports, "filterInStream", { enumerable: true, get: function () { return array_js_1.filterInStream; } });
+Object.defineProperty(exports, "filterOutStream", { enumerable: true, get: function () { return array_js_1.filterOutStream; } });
 const list = { filterReduce, foldl, foldr, take, tail, head };
 exports.list = list;

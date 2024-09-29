@@ -496,3 +496,63 @@ describe("chunk", () => {
         }
     });
 });
+describe("filterOutStream", () => {
+    it("should filter out elements that satisfy the predicate", () => {
+        const input = [1, 2, 3, 4, 5];
+        const predicate = (item) => item % 2 === 0;
+        const actual = Array.from((0, array_1.filterOutStream)(input, predicate));
+        const expected = [1, 3, 5];
+        expect(actual).toEqual(expected);
+    });
+    it("should return the same list if no element satisfies the predicate", () => {
+        const input = [1, 3, 5];
+        const predicate = (item) => item % 2 === 0;
+        const actual = Array.from((0, array_1.filterOutStream)(input, predicate));
+        const expected = [1, 3, 5];
+        expect(actual).toEqual(expected);
+    });
+    it("should return an empty list if all elements satisfy the predicate", () => {
+        const input = [2, 4, 6];
+        const predicate = (item) => item % 2 === 0;
+        const actual = Array.from((0, array_1.filterOutStream)(input, predicate));
+        const expected = [];
+        expect(actual).toEqual(expected);
+    });
+    it("should handle empty list correctly", () => {
+        const input = [];
+        const predicate = (item) => item % 2 === 0;
+        const actual = Array.from((0, array_1.filterOutStream)(input, predicate));
+        const expected = [];
+        expect(actual).toEqual(expected);
+    });
+});
+describe("filterInStream", () => {
+    it("should filter in elements that satisfy the predicate", () => {
+        const input = [1, 2, 3, 4, 5];
+        const predicate = (item) => item % 2 === 0;
+        const actual = Array.from((0, array_1.filterInStream)(input, predicate));
+        const expected = [2, 4];
+        expect(actual).toEqual(expected);
+    });
+    it("should return the same list if no element satisfies the predicate", () => {
+        const input = [1, 3, 5];
+        const predicate = (item) => item % 2 === 0;
+        const actual = Array.from((0, array_1.filterInStream)(input, predicate));
+        const expected = [];
+        expect(actual).toEqual(expected);
+    });
+    it("should return an empty list if all elements satisfy the predicate", () => {
+        const input = [2, 4, 6];
+        const predicate = (item) => item % 2 === 0;
+        const actual = Array.from((0, array_1.filterInStream)(input, predicate));
+        const expected = [2, 4, 6];
+        expect(actual).toEqual(expected);
+    });
+    it("should handle empty list correctly", () => {
+        const input = [];
+        const predicate = (item) => item % 2 === 0;
+        const actual = Array.from((0, array_1.filterInStream)(input, predicate));
+        const expected = [];
+        expect(actual).toEqual(expected);
+    });
+});

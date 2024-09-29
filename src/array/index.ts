@@ -18,16 +18,26 @@ import {
     filterIn,
     inplaceFilterOut,
     inplaceFilterIn,
-    chunk
+    chunk,
+    filterInStream,
+    filterOutStream
 } from "./fns/array.js";
 
 const list = { filterReduce, foldl, foldr, take, tail, head };
 
 export {
     arrayToString,
+    chunk,
     defaultArray,
+    filterIn,
+    filterInStream,
+    filterOut,
+    filterOutStream,
+    inplaceFilterIn,
+    inplaceFilterOut,
     isArray,
     isArraylike,
+    list,
     median,
     randomArray,
     randomMatrix,
@@ -38,10 +48,4 @@ export {
     sortedArray,
     zeroNumberArray,
     zeroStringArray,
-    filterOut,
-    filterIn,
-    inplaceFilterOut,
-    inplaceFilterIn,
-    chunk,
-    list,
 };

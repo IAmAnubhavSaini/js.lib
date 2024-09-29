@@ -163,4 +163,6 @@ declare function inplaceFilterOut<T>(array: T[], predicate: (item: T) => boolean
  */
 declare function inplaceFilterIn<T>(array: T[], predicate: (item: T) => boolean): T[];
 declare function chunk<T>(array: T[], size: number): Promise<T[][]>;
-export { arrayToString, defaultArray, intersperse, isArray, isArraylike, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, median, arrayMayGet, filterOut, filterIn, inplaceFilterOut, inplaceFilterIn, chunk, };
+declare function filterOutStream<T>(array: T[], predicate: (item: T) => boolean): Generator<T>;
+declare function filterInStream<T>(array: T[], predicate: (item: T) => boolean): Generator<T>;
+export { arrayMayGet, arrayToString, chunk, defaultArray, filterIn, filterInStream, filterOut, filterOutStream, inplaceFilterIn, inplaceFilterOut, intersperse, isArray, isArraylike, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, };

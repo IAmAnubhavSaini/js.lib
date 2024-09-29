@@ -322,12 +322,37 @@ async function chunk<T>(array: T[], size: number): Promise<T[][]> {
     });
 }
 
+function *filterOutStream<T>(array: T[], predicate: (item: T) => boolean): Generator<T> {
+    for (const item of array) {
+        if (!predicate(item)) {
+            yield item;
+        }
+    }
+}
+
+function *filterInStream<T>(array: T[], predicate: (item: T) => boolean): Generator<T> {
+    for (const item of array) {
+        if (predicate(item)) {
+            yield item;
+        }
+    }
+}
+
 export {
+    arrayMayGet,
     arrayToString,
+    chunk,
     defaultArray,
+    filterIn,
+    filterInStream,
+    filterOut,
+    filterOutStream,
+    inplaceFilterIn,
+    inplaceFilterOut,
     intersperse,
     isArray,
     isArraylike,
+    median,
     randomArray,
     randomMatrix,
     resetArray,
@@ -337,11 +362,4 @@ export {
     sortedArray,
     zeroNumberArray,
     zeroStringArray,
-    median,
-    arrayMayGet,
-    filterOut,
-    filterIn,
-    inplaceFilterOut,
-    inplaceFilterIn,
-    chunk,
 };
