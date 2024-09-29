@@ -14,6 +14,10 @@ import {
     sortedArray,
     zeroNumberArray,
     zeroStringArray,
+    filterOut,
+    filterIn,
+    inplaceFilterOut,
+    inplaceFilterIn
 } from "./fns/array.js";
 
 const list = { filterReduce, foldl, foldr, take, tail, head };
@@ -33,5 +37,9 @@ export {
     sortedArray,
     zeroNumberArray,
     zeroStringArray,
+    filterOut,
+    filterIn,
+    inplaceFilterOut,
+    inplaceFilterIn,
     list,
 };

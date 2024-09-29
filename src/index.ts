@@ -44,6 +44,7 @@ const FalseT = require("./primitives/false");
 import StringT from "./primitives/string";
 import { htmlTableToMarkdown, htmlTableToMarkdownDOM } from "./markdown/markdown";
 import { generateCalendar } from "./misc/calendar";
+import { filterIn, filterOut, inplaceFilterIn, inplaceFilterOut } from "./array/fns/array";
 const TrueT = require("./primitives/true");
 
 const { canvas } = require("./canvas/canvas");
@@ -104,6 +105,10 @@ export {
     sortedArray,
     zeroNumberArray,
     zeroStringArray,
+    filterOut,
+    filterIn,
+    inplaceFilterOut,
+    inplaceFilterIn,
     list,
     either,
     future,

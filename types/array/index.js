@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.list = exports.zeroStringArray = exports.zeroNumberArray = exports.sortedArray = exports.rotateRight = exports.rotateLeft = exports.reverseSortedArray = exports.resetArray = exports.randomMatrix = exports.randomArray = exports.median = exports.isArraylike = exports.isArray = exports.defaultArray = exports.arrayToString = void 0;
+exports.list = exports.inplaceFilterIn = exports.inplaceFilterOut = exports.filterIn = exports.filterOut = exports.zeroStringArray = exports.zeroNumberArray = exports.sortedArray = exports.rotateRight = exports.rotateLeft = exports.reverseSortedArray = exports.resetArray = exports.randomMatrix = exports.randomArray = exports.median = exports.isArraylike = exports.isArray = exports.defaultArray = exports.arrayToString = void 0;
 const { filterReduce, foldl, foldr, take, tail, head } = require("./fns/list.js");
 const array_js_1 = require("./fns/array.js");
 Object.defineProperty(exports, "arrayToString", { enumerable: true, get: function () { return array_js_1.arrayToString; } });
@@ -17,5 +17,9 @@ Object.defineProperty(exports, "rotateRight", { enumerable: true, get: function 
 Object.defineProperty(exports, "sortedArray", { enumerable: true, get: function () { return array_js_1.sortedArray; } });
 Object.defineProperty(exports, "zeroNumberArray", { enumerable: true, get: function () { return array_js_1.zeroNumberArray; } });
 Object.defineProperty(exports, "zeroStringArray", { enumerable: true, get: function () { return array_js_1.zeroStringArray; } });
+Object.defineProperty(exports, "filterOut", { enumerable: true, get: function () { return array_js_1.filterOut; } });
+Object.defineProperty(exports, "filterIn", { enumerable: true, get: function () { return array_js_1.filterIn; } });
+Object.defineProperty(exports, "inplaceFilterOut", { enumerable: true, get: function () { return array_js_1.inplaceFilterOut; } });
+Object.defineProperty(exports, "inplaceFilterIn", { enumerable: true, get: function () { return array_js_1.inplaceFilterIn; } });
 const list = { filterReduce, foldl, foldr, take, tail, head };
 exports.list = list;

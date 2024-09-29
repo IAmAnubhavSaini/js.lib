@@ -219,6 +219,69 @@ function arrayMayGet<T>(array: Array<T>, index: number): Result2<T, string> {
     }
 }
 
+
+/**
+ * filterOut filters out items from an array when the predicate is true
+ * @param array {T[]}
+ * @param predicate {(item: T) => boolean}
+ * @returns {T[]}
+ */
+function filterOut<T>(array: T[], predicate: (item: T) => boolean): T[] {
+    return array.filter((item) => !predicate(item));
+}
+
+/**
+ * filterIn filters in (OR keeps) items from an array when the predicate is true
+ * @param array {T[]}
+ * @param predicate {(item: T) => boolean}
+ * @returns {T[]}
+ */
+function filterIn<T>(array: T[], predicate: (item: T) => boolean): T[] {
+    return array.filter((item) => predicate(item));
+}
+
+/**
+ * inplaceFilterOut in place filters out items from an array when the predicate is true
+ * @param array {T[]}
+ * @param predicate {(item: T) => boolean}
+ * @returns {T[]}
+ */
+function inplaceFilterOut<T>(array: T[], predicate: (item: T) => boolean): T[] {
+    let i = 0;
+    let j = 0;
+    let len = array.length;
+    while (i < len) {
+        if (!predicate(array[i])) {
+            array[j] = array[i];
+            j++;
+        }
+        i++;
+    }
+    array.length = j;
+    return array;
+}
+
+/**
+ * inplaceFilterIn in place filters in (OR keeps) items from an array when the predicate is true
+ * @param array {T[]}
+ * @param predicate {(item: T) => boolean}
+ * @returns {T[]}
+ */
+function inplaceFilterIn<T>(array: T[], predicate: (item: T) => boolean): T[] {
+    let i = 0;
+    let j = 0;
+    let len = array.length;
+    while (i < len) {
+        if (predicate(array[i])) {
+            array[j] = array[i];
+            j++;
+        }
+        i++;
+    }
+    array.length = j;
+    return array;
+}
+
 export {
     arrayToString,
     defaultArray,
@@ -236,4 +299,8 @@ export {
     zeroStringArray,
     median,
     arrayMayGet,
+    filterOut,
+    filterIn,
+    inplaceFilterOut,
+    inplaceFilterIn,
 };

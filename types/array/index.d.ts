@@ -1,4 +1,4 @@
-import { arrayToString, defaultArray, isArray, isArraylike, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray } from "./fns/array.js";
+import { arrayToString, defaultArray, isArray, isArraylike, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, filterOut, filterIn, inplaceFilterOut, inplaceFilterIn } from "./fns/array.js";
 declare const list: {
     filterReduce: any;
     foldl: any;
@@ -7,4 +7,4 @@ declare const list: {
     tail: any;
     head: any;
 };
-export { arrayToString, defaultArray, isArray, isArraylike, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, list, };
+export { arrayToString, defaultArray, isArray, isArraylike, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, filterOut, filterIn, inplaceFilterOut, inplaceFilterIn, list, };

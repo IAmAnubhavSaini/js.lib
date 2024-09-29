@@ -13,6 +13,7 @@ declare const FalseT: any;
 import StringT from "./primitives/string";
 import { htmlTableToMarkdown, htmlTableToMarkdownDOM } from "./markdown/markdown";
 import { generateCalendar } from "./misc/calendar";
+import { filterIn, filterOut, inplaceFilterIn, inplaceFilterOut } from "./array/fns/array";
 declare const TrueT: any;
 declare const canvas: any;
 declare const Conversions: any;
@@ -39,5 +40,5 @@ declare const json: {
     detectCircularity: typeof detectCircularity;
     validateJsonAndConvertToCsv: typeof validateJsonAndConvertToCsv;
 };
-export { base64, canvas, Conversions, fs, DirInfo, hash256, hash512, platform, osname, isLinux, isWindows, isMac, LinuxDirectoryNode, int, posint, negint, readStream, NumberMinHeap, NumberMaxHeap, arrayMayGet, defaultArray, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, list, either, future, just, monad_list, maybe, nothing, state, headingToHTML, sanitize, verifyHeading1, verifyHeading2, verifyHeading3, markdownTableToJson, htmlTableToMarkdownDOM, htmlTableToMarkdown, coinChange, objectToString, deepEqual, keyEqual, valueEqual, findKeys, BooleanT, Default, FalseT, StringT, TrueT, checks, isString, isEmptyString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf, Option, Some, None, object, filterOutKeysFromObject, filterInKeysFromObject, json, jsonToCsv, detectCircularity, validateJsonAndConvertToCsv, generateCalendar, };
+export { base64, canvas, Conversions, fs, DirInfo, hash256, hash512, platform, osname, isLinux, isWindows, isMac, LinuxDirectoryNode, int, posint, negint, readStream, NumberMinHeap, NumberMaxHeap, arrayMayGet, defaultArray, median, randomArray, randomMatrix, resetArray, reverseSortedArray, rotateLeft, rotateRight, sortedArray, zeroNumberArray, zeroStringArray, filterOut, filterIn, inplaceFilterOut, inplaceFilterIn, list, either, future, just, monad_list, maybe, nothing, state, headingToHTML, sanitize, verifyHeading1, verifyHeading2, verifyHeading3, markdownTableToJson, htmlTableToMarkdownDOM, htmlTableToMarkdown, coinChange, objectToString, deepEqual, keyEqual, valueEqual, findKeys, BooleanT, Default, FalseT, StringT, TrueT, checks, isString, isEmptyString, isEmptyOrNullString, isUndefinedOrNull, isPrimitive, isArrayOf, Option, Some, None, object, filterOutKeysFromObject, filterInKeysFromObject, json, jsonToCsv, detectCircularity, validateJsonAndConvertToCsv, generateCalendar, };
 export type { Result, ErrorType, ValueType, Result2 };

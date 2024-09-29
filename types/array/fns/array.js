@@ -16,6 +16,10 @@ exports.zeroNumberArray = zeroNumberArray;
 exports.zeroStringArray = zeroStringArray;
 exports.median = median;
 exports.arrayMayGet = arrayMayGet;
+exports.filterOut = filterOut;
+exports.filterIn = filterIn;
+exports.inplaceFilterOut = inplaceFilterOut;
+exports.inplaceFilterIn = inplaceFilterIn;
 /**
  *
  * @param {Object} options - The options object.
@@ -219,4 +223,62 @@ function arrayMayGet(array, index) {
     else {
         return { ok: false, errors: ["ERROR: index out of range."] };
     }
+}
+/**
+ * filterOut filters out items from an array when the predicate is true
+ * @param array {T[]}
+ * @param predicate {(item: T) => boolean}
+ * @returns {T[]}
+ */
+function filterOut(array, predicate) {
+    return array.filter((item) => !predicate(item));
+}
+/**
+ * filterIn filters in (OR keeps) items from an array when the predicate is true
+ * @param array {T[]}
+ * @param predicate {(item: T) => boolean}
+ * @returns {T[]}
+ */
+function filterIn(array, predicate) {
+    return array.filter((item) => predicate(item));
+}
+/**
+ * inplaceFilterOut in place filters out items from an array when the predicate is true
+ * @param array {T[]}
+ * @param predicate {(item: T) => boolean}
+ * @returns {T[]}
+ */
+function inplaceFilterOut(array, predicate) {
+    let i = 0;
+    let j = 0;
+    let len = array.length;
+    while (i < len) {
+        if (!predicate(array[i])) {
+            array[j] = array[i];
+            j++;
+        }
+        i++;
+    }
+    array.length = j;
+    return array;
+}
+/**
+ * inplaceFilterIn in place filters in (OR keeps) items from an array when the predicate is true
+ * @param array {T[]}
+ * @param predicate {(item: T) => boolean}
+ * @returns {T[]}
+ */
+function inplaceFilterIn(array, predicate) {
+    let i = 0;
+    let j = 0;
+    let len = array.length;
+    while (i < len) {
+        if (predicate(array[i])) {
+            array[j] = array[i];
+            j++;
+        }
+        i++;
+    }
+    array.length = j;
+    return array;
 }

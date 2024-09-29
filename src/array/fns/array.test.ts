@@ -15,6 +15,10 @@ import {
     zeroNumberArray,
     zeroStringArray,
     arrayMayGet,
+    filterOut,
+    filterIn,
+    inplaceFilterIn,
+    inplaceFilterOut,
 } from "./array";
 
 describe("array functions", () => {
@@ -317,5 +321,142 @@ describe("intersperse", () => {
                 expect(errors[0]).toBe("ERROR: index out of range.");
             }
         });
+    });
+});
+
+
+describe("filterOut", () => {
+    it("should filter out elements that satisfy the predicate", () => {
+        const input = [1, 2, 3, 4, 5];
+        const predicate = (item: number) => item % 2 === 0;
+        const actual = filterOut(input, predicate);
+        const expected = [1, 3, 5];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should return the same list if no element satisfies the predicate", () => {
+        const input = [1, 3, 5];
+        const predicate = (item: number) => item % 2 === 0;
+        const actual = filterOut(input, predicate);
+        const expected = [1, 3, 5];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should return an empty list if all elements satisfy the predicate", () => {
+        const input = [2, 4, 6];
+        const predicate = (item: number) => item % 2 === 0;
+        const actual = filterOut(input, predicate);
+        const expected: number[] = [];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should handle empty list correctly", () => {
+        const input: number[] = [];
+        const predicate = (item: number) => item % 2 === 0;
+        const actual = filterOut(input, predicate);
+        const expected: number[] = [];
+        expect(actual).toEqual(expected);
+    });
+});
+
+describe("filterIn", () => {
+    it("should filter in elements that satisfy the predicate", () => {
+        const input = [1, 2, 3, 4, 5];
+        const predicate = (item: number) => item % 2 === 0;
+        const actual = filterIn(input, predicate);
+        const expected = [2, 4];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should return the same list if no element satisfies the predicate", () => {
+        const input = [1, 3, 5];
+        const predicate = (item: number) => item % 2 === 0;
+        const actual = filterIn(input, predicate);
+        const expected: number[] = [];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should return an empty list if all elements satisfy the predicate", () => {
+        const input = [2, 4, 6];
+        const predicate = (item: number) => item % 2 === 0;
+        const actual = filterIn(input, predicate);
+        const expected = [2, 4, 6];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should handle empty list correctly", () => {
+        const input: number[] = [];
+        const predicate = (item: number) => item % 2 === 0;
+        const actual = filterIn(input, predicate);
+        const expected: number[] = [];
+        expect(actual).toEqual(expected);
+    });
+});
+
+describe("inplaceFilterIn", () => {
+    it("should filter in elements that satisfy the predicate", () => {
+        const input = [1, 2, 3, 4, 5];
+        const predicate = (item: number) => item % 2 === 0;
+        const actual = inplaceFilterIn(input, predicate);
+        const expected = [2, 4];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should return the same list if no element satisfies the predicate", () => {
+        const input = [1, 3, 5];
+        const predicate = (item: number) => item % 2 === 0;
+        const actual = inplaceFilterIn(input, predicate);
+        const expected: number[] = [];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should return an empty list if all elements satisfy the predicate", () => {
+        const input = [2, 4, 6];
+        const predicate = (item: number) => item % 2 === 0;
+        const actual = inplaceFilterIn(input, predicate);
+        const expected = [2, 4, 6];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should handle empty list correctly", () => {
+        const input: number[] = [];
+        const predicate = (item: number) => item % 2 === 0;
+        const actual = inplaceFilterIn(input, predicate);
+        const expected: number[] = [];
+        expect(actual).toEqual(expected);
+    });
+});
+
+describe("inplaceFilterOut", () => {
+    it("should filter out elements that satisfy the predicate", () => {
+        const input = [1, 2, 3, 4, 5];
+        const predicate = (item: number) => item % 2 === 0;
+        const actual = inplaceFilterOut(input, predicate);
+        const expected = [1, 3, 5];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should return the same list if no element satisfies the predicate", () => {
+        const input = [1, 3, 5];
+        const predicate = (item: number) => item % 2 === 0;
+        const actual = inplaceFilterOut(input, predicate);
+        const expected = [1, 3, 5];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should return an empty list if all elements satisfy the predicate", () => {
+        const input = [2, 4, 6];
+        const predicate = (item: number) => item % 2 === 0;
+        const actual = inplaceFilterOut(input, predicate);
+        const expected: number[] = [];
+        expect(actual).toEqual(expected);
+    });
+
+    it("should handle empty list correctly", () => {
+        const input: number[] = [];
+        const predicate = (item: number) => item % 2 === 0;
+        const actual = inplaceFilterOut(input, predicate);
+        const expected: number[] = [];
+        expect(actual).toEqual(expected);
     });
 });
